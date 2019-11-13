@@ -1,7 +1,7 @@
 import React from 'react';
 import Hello from './Hello.jsx';
 import Info from './Info.jsx';
-import MainPageLayout from './MainPageLayout.jsx';
+import MainPageLayout from './layouts/MainPageLayout.jsx';
 
 const App = () => (
   <MainPageLayout>
