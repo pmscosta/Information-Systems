@@ -1,13 +1,14 @@
 import React from 'react';
 import Hello from './Hello.jsx';
 import Info from './Info.jsx';
+import MainPageLayout from './MainPageLayout.jsx';
 
 const App = () => (
-  <div>
+  <MainPageLayout>
     <h1>Welcome to Meteor!</h1>
     <Hello />
     <Info />
-  </div>
+  </MainPageLayout>
 );
 
 export default App;
