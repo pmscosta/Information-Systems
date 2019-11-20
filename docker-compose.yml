@@ -1,0 +1,29 @@
+version: "3"
+services:
+  sinf-mongodb:
+    image: "mongo"
+    ports:
+      - "27017:27017"
+  sinf-backend:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    ports:
+      - "6200:6200"
+    volumes:
+      - ./backend/src:/app/src
+    depends_on:
+      - sinf-mongodb
+    environment:
+      - NODE_ENV=development
+  sinf-frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+    depends_on:
+      - sinf-backend
