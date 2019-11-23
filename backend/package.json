@@ -1,13 +1,23 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "SINF-AK Backend",
   "main": "src/server.js",
   "scripts": {
     "start": "nodemon src/server.js",
-    "lint": "eslint . --fix",
-    "format": "prettier-eslint '**/*.{js,json}' --write"
+    "lint": "eslint src/**/*.js --fix",
+    "format": "prettier-eslint 'src/**/*.{js,json}' --write"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmscosta/FEUP-SINF.git"
+  },
+  "author": "SINF-AK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pmscosta/FEUP-SINF/issues"
+  },
+  "homepage": "https://github.com/pmscosta/FEUP-SINF",
   "lint-staged": {
     "**/*.{js}": [
       "npm run lint",
@@ -44,7 +54,5 @@
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
     "prettier-eslint-cli": "^5.0.0"
-  },
-  "author": "",
-  "license": "ISC"
+  }
 }

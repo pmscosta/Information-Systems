@@ -15,7 +15,9 @@
     "strict": ["error", "global"],
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["**/*.test.js", "**/setupTests.js"] }
+      {
+        "devDependencies": ["**/*.test.js", "**/setupTests.js"]
+      }
     ]
   }
 }
