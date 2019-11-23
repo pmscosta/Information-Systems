@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const refreshToken = require('../api/jasmin/token');
+const getBilling = require('../api/jasmin/purchases');
 const userRouter = require('../api/routes/user');
 
 module.exports = app => {
@@ -13,8 +14,9 @@ module.exports = app => {
 
   app.use('/api/user', userRouter);
 
-  refreshToken();
+  // refreshToken();
 
+  getBilling();
   // Adding headers (CORS)
   app.use((_, res, next) => {
     // Allow connections for all origins

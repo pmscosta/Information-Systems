@@ -30,7 +30,6 @@ const refreshToken = () => {
         `bearer_token= ${bearerToken}\nexpires in = ${expires},\ntoken_type = ${tokenType}`,
       );
       jasminOptions.apiToken = bearerToken;
-      console.log(jasminOptions);
     })
     .catch(err => console.log(err));
 };
