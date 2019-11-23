@@ -4,7 +4,9 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "start": "nodemon src/server.js"
+    "start": "nodemon src/server.js",
+    "lint": "eslint . --fix",
+    "format": "prettier-eslint '**/*.{js,json}' --write"
   },
   "lint-staged": {
     "**/*.{js}": [
@@ -39,7 +41,6 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^3.0.8",
-    "jest": "^24.9.0",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
     "prettier-eslint-cli": "^5.0.0"
