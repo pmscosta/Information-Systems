@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+'use strict'
+
+const saf_tExample = `<?xml version="1.0" encoding="Windows-1252"?>
 <AuditFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:OECD:StandardAuditFile-Tax:PT_1.04_01">
   <Header>
     <AuditFileVersion>1.04_01</AuditFileVersion>
@@ -9,8 +11,8 @@
     <CompanyAddress>
       <BuildingNumber>0</BuildingNumber>
       <StreetName>Rua Oliveira Gaio </StreetName>
-      <AddressDetail>Rua Oliveira Gaio    4465-219 São Mamede Infesta</AddressDetail>
-      <City>São Mamede Infesta</City>
+      <AddressDetail>Rua Oliveira Gaio    4465-219 Sï¿½o Mamede Infesta</AddressDetail>
+      <City>Sï¿½o Mamede Infesta</City>
       <PostalCode>4465-219</PostalCode>
       <Region>Desconhecido</Region>
       <Country xsi:type="xsd:string">PT</Country>
@@ -31,11 +33,11 @@
       <CustomerID>0004.506325776</CustomerID>
       <AccountID>Desconhecido</AccountID>
       <CustomerTaxID>506325776</CustomerTaxID>
-      <CompanyName>Escola de Música de Rock, UNIPESSOAL, LDA</CompanyName>
+      <CompanyName>Escola de Mï¿½sica de Rock, UNIPESSOAL, LDA</CompanyName>
       <BillingAddress>
         <BuildingNumber>Desconheci</BuildingNumber>
         <StreetName>LUGAR DE RIBEIRO</StreetName>
-        <AddressDetail>Escola de Música de Rock, UNIPESSOAL, LDA  LUGAR DE RIBEIRO   4715-472 PEDRALVA</AddressDetail>
+        <AddressDetail>Escola de Mï¿½sica de Rock, UNIPESSOAL, LDA  LUGAR DE RIBEIRO   4715-472 PEDRALVA</AddressDetail>
         <City>PEDRALVA</City>
         <PostalCode>4715-472</PostalCode>
         <Region>Desconhecido</Region>
@@ -95,8 +97,8 @@
       <BillingAddress>
         <BuildingNumber>Desconheci</BuildingNumber>
         <StreetName>Rua Oliveira Gaio </StreetName>
-        <AddressDetail>SINFonia  Rua Oliveira Gaio    4465-219 São Mamede Infesta</AddressDetail>
-        <City>São Mamede Infesta</City>
+        <AddressDetail>SINFonia  Rua Oliveira Gaio    4465-219 Sï¿½o Mamede Infesta</AddressDetail>
+        <City>Sï¿½o Mamede Infesta</City>
         <PostalCode>4465-219</PostalCode>
         <Region>Desconhecido</Region>
         <Country>PT</Country>
@@ -110,14 +112,14 @@
     <Product>
       <ProductType>P</ProductType>
       <ProductCode>W0001</ProductCode>
-      <ProductGroup>Sem família</ProductGroup>
+      <ProductGroup>Sem famï¿½lia</ProductGroup>
       <ProductDescription>Description</ProductDescription>
       <ProductNumberCode>W0001</ProductNumberCode>
     </Product>
     <Product>
       <ProductType>P</ProductType>
       <ProductCode>FL001</ProductCode>
-      <ProductGroup>Sem família</ProductGroup>
+      <ProductGroup>Sem famï¿½lia</ProductGroup>
       <ProductDescription>German Flute</ProductDescription>
       <ProductNumberCode>FL001</ProductNumberCode>
     </Product>
@@ -147,7 +149,7 @@
         <TaxType>IVA</TaxType>
         <TaxCountryRegion>PT</TaxCountryRegion>
         <TaxCode>INT</TaxCode>
-        <Description>Taxa Intermédia</Description>
+        <Description>Taxa Intermï¿½dia</Description>
         <TaxPercentage>13.000000</TaxPercentage>
       </TaxTableEntry>
       <TaxTableEntry>
@@ -168,7 +170,7 @@
         <TaxType>IVA</TaxType>
         <TaxCountryRegion>PT-MA</TaxCountryRegion>
         <TaxCode>INT</TaxCode>
-        <Description>Taxa Intermédia</Description>
+        <Description>Taxa Intermï¿½dia</Description>
         <TaxPercentage>12.000000</TaxPercentage>
       </TaxTableEntry>
       <TaxTableEntry>
@@ -196,7 +198,7 @@
         <TaxType>IVA</TaxType>
         <TaxCountryRegion>PT-AC</TaxCountryRegion>
         <TaxCode>INT</TaxCode>
-        <Description>Taxa Intermédia</Description>
+        <Description>Taxa Intermï¿½dia</Description>
         <TaxPercentage>9.000000</TaxPercentage>
       </TaxTableEntry>
       <TaxTableEntry>
@@ -248,8 +250,8 @@
         <ShipFrom>
           <Address>
             <StreetName>Rua Oliveira Gaio </StreetName>
-            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 São Mamede Infesta</AddressDetail>
-            <City>São Mamede Infesta</City>
+            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 Sï¿½o Mamede Infesta</AddressDetail>
+            <City>Sï¿½o Mamede Infesta</City>
             <PostalCode>4465-219</PostalCode>
             <Region>Desconhecido</Region>
             <Country>PT</Country>
@@ -321,8 +323,8 @@
         <ShipFrom>
           <Address>
             <StreetName>Rua Oliveira Gaio </StreetName>
-            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 São Mamede Infesta</AddressDetail>
-            <City>São Mamede Infesta</City>
+            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 Sï¿½o Mamede Infesta</AddressDetail>
+            <City>Sï¿½o Mamede Infesta</City>
             <PostalCode>4465-219</PostalCode>
             <Region>Desconhecido</Region>
             <Country>PT</Country>
@@ -391,8 +393,8 @@
         <ShipFrom>
           <Address>
             <StreetName>Rua Oliveira Gaio </StreetName>
-            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 São Mamede Infesta</AddressDetail>
-            <City>São Mamede Infesta</City>
+            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 Sï¿½o Mamede Infesta</AddressDetail>
+            <City>Sï¿½o Mamede Infesta</City>
             <PostalCode>4465-219</PostalCode>
             <Region>Desconhecido</Region>
             <Country>PT</Country>
@@ -462,8 +464,8 @@
           <Address>
             <BuildingNumber>0</BuildingNumber>
             <StreetName>Rua Oliveira Gaio </StreetName>
-            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 São Mamede Infesta</AddressDetail>
-            <City>São Mamede Infesta</City>
+            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 Sï¿½o Mamede Infesta</AddressDetail>
+            <City>Sï¿½o Mamede Infesta</City>
             <PostalCode>4465-219</PostalCode>
             <Region>Desconhecido</Region>
             <Country>PT</Country>
@@ -513,8 +515,8 @@
           <Address>
             <BuildingNumber>0</BuildingNumber>
             <StreetName>Rua Oliveira Gaio </StreetName>
-            <AddressDetail>01 Rua Oliveira Gaio    4465-219 São Mamede Infesta</AddressDetail>
-            <City>São Mamede Infesta</City>
+            <AddressDetail>01 Rua Oliveira Gaio    4465-219 Sï¿½o Mamede Infesta</AddressDetail>
+            <City>Sï¿½o Mamede Infesta</City>
             <PostalCode>4465-219</PostalCode>
             <Region>Desconhecido</Region>
             <Country>PT</Country>
@@ -580,8 +582,8 @@
           <Address>
             <BuildingNumber>0</BuildingNumber>
             <StreetName>Rua Oliveira Gaio </StreetName>
-            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 São Mamede Infesta</AddressDetail>
-            <City>São Mamede Infesta</City>
+            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 Sï¿½o Mamede Infesta</AddressDetail>
+            <City>Sï¿½o Mamede Infesta</City>
             <PostalCode>4465-219</PostalCode>
             <Region>Desconhecido</Region>
             <Country>PT</Country>
@@ -643,8 +645,8 @@
           <Address>
             <BuildingNumber>71</BuildingNumber>
             <StreetName>Rua Oliveira Gaio </StreetName>
-            <AddressDetail>01 Rua Oliveira Gaio  71  4465-219 São Mamede Infesta</AddressDetail>
-            <City>São Mamede Infesta</City>
+            <AddressDetail>01 Rua Oliveira Gaio  71  4465-219 Sï¿½o Mamede Infesta</AddressDetail>
+            <City>Sï¿½o Mamede Infesta</City>
             <PostalCode>4465-219</PostalCode>
             <Region>Desconhecido</Region>
             <Country>PT</Country>
@@ -795,4 +797,6 @@
       </WorkDocument>
     </WorkingDocuments>
   </SourceDocuments>
-</AuditFile>
+</AuditFile>`
+
+module.exports = saf_tExample;
