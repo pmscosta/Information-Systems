@@ -3,6 +3,7 @@ import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // route components
 import Purchases from './pages/purchases';
+import Homepage from './pages/Homepage'
 
 
 import "./App.css";
@@ -17,6 +18,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/purchases" exact component={Purchases} />
+          <Route path="/" exact component={Homepage} />
         </Switch>
       </div>
     </Router>
