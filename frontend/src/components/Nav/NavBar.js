@@ -2,6 +2,9 @@ import React from "react";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+
 
 const navBarStyle = makeStyles(theme => ({
     toolbar: {
@@ -10,10 +13,8 @@ const navBarStyle = makeStyles(theme => ({
     },
     appbar: {
         position: "fixed",
-        marginBottom: theme.spacing(16)
-    },
-    button: {
-        margin: theme.spacing(1),
+        marginBottom: theme.spacing(16),
+        color: "--light-color"
     },
     input: {
         display: 'none',
@@ -25,23 +26,12 @@ function NavBar() {
     const styles = navBarStyle();
 
     return (
-        <AppBar className={styles.appbar}>
+        <AppBar className={styles.appbar} color="primary">
             <Toolbar className={styles.toolbar} >
                 <Typography variant="h6" href="/">
                     SINFonia
                 </Typography>
-                <Button href="/finances" className={styles.button}>
-                    Finances
-                </Button>
-                <Button href="/purchases" className={styles.button}>
-                    Purchases
-                </Button>
-                <Button href="/sales" className={styles.button}>
-                    Sales
-                </Button>
-                <Button href="/inventory" className={styles.button}>
-                    Inventory
-                </Button>
+
                 <input
                     accept="image/*"
                     className={styles.input}
@@ -50,7 +40,12 @@ function NavBar() {
                     type="file"
                 />
                 <label htmlFor="text-button-file">
-                    <Button component="span" className={styles.button}>
+                    <Button
+                        variant="outlined"
+                        color="inherit"
+                        className={styles.button}
+                        startIcon={<CloudUploadIcon />}
+                    >
                         Upload SAF-T
                     </Button>
                 </label>
