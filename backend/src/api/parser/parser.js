@@ -53,59 +53,46 @@ class Invoice {
     }
 }
 
-const getCompanyName = (pathToFile) => {
-    fs.readFile(pathToFile, 'utf8', (err, data) => {
+const getCompanyName = (data) => {
+    parser.parseString(data, (err, result) => {
         if (err) throw err;
-        parser.parseString(data, (err, result) => {
-            if (err) throw err;
-            console.log(result.AuditFile.Header[0].CompanyName[0]);
+        console.log(result.AuditFile.Header[0].CompanyName[0]);
+    });
+}
+
+const getCustomers = (data) => {
+    parser.parseString(data, (err, result) => {
+        if (err) throw err;
+        result.AuditFile.MasterFiles[0].Customer.forEach(customer => {
+            const billingAddr = new Address(customer.BillingAddress[0].StreetName[0], customer.BillingAddress[0].AddressDetail[0], customer.BillingAddress[0].City[0], customer.BillingAddress[0].PostalCode[0],customer.BillingAddress[0].Region[0], customer.BillingAddress[0].Country[0]);
+            const cust = new Customer(customer.CustomerTaxID[0], customer.CompanyName[0], billingAddr, customer.Telephone[0]);
+            console.log(cust);
         });
     });
 }
 
-const getCustomers = (pathToFile) => {
-    fs.readFile(pathToFile, 'utf8', (err, data) => {
+const getProducts = (data) => {
+    parser.parseString(data, (err, result) => {
         if (err) throw err;
-        parser.parseString(data, (err, result) => {
-            if (err) throw err;
-            result.AuditFile.MasterFiles[0].Customer.forEach(customer => {
-                const billingAddr = new Address(customer.BillingAddress[0].StreetName[0], customer.BillingAddress[0].AddressDetail[0], customer.BillingAddress[0].City[0], customer.BillingAddress[0].PostalCode[0],customer.BillingAddress[0].Region[0], customer.BillingAddress[0].Country[0]);
-                const cust = new Customer(customer.CustomerTaxID[0], customer.CompanyName[0], billingAddr, customer.Telephone[0]);
-                console.log(cust);
-            });
-        });
-    });
-}
-
-const getProducts = (pathToFile) => {
-    fs.readFile(pathToFile, 'utf8', (err, data) => {
-        if (err) throw err;
-        parser.parseString(data, (err, result) => {
-            if (err) throw err;
-            result.AuditFile.MasterFiles[0].Product.forEach(product => {
-                const prod = new Product(product.ProductType[0], product.ProductCode[0], product.ProductDescription[0]);
-                console.log(prod);
-            });
+        result.AuditFile.MasterFiles[0].Product.forEach(product => {
+            const prod = new Product(product.ProductType[0], product.ProductCode[0], product.ProductDescription[0]);
+            console.log(prod);
         });
     });
 }
 
 const getInvoices = (pathToFile) => {
-    fs.readFile(pathToFile, 'utf8', (err, data) => {
+    const invoices_to_be_ret = []
+    parser.parseString(data, (err, result) => {
         if (err) throw err;
-        parser.parseString(data, (err, result) => {
-            if (err) throw err;
-            result.AuditFile.SourceDocuments[0].SalesInvoices[0].Invoice.forEach(invoice => {
-                const invoice_products = [];
-                invoice.Line.forEach(line => {
-                    invoice_products.push(new InvoiceProduct(line.ProductCode[0], line.ProductDescription[0], line.Quantity[0], line.UnitPrice[0]));
-                });
-
-                const invoi = new Invoice(invoice.InvoiceNo[0], invoice.InvoiceDate[0], invoice.InvoiceType[0], invoice_products, invoice.DocumentTotals[0].TaxPayable[0], invoice.DocumentTotals[0].NetTotal[0], invoice.DocumentTotals[0].GrossTotal[0]); 
-                console.log(JSON.stringify(result));
-            })
-            
-        });
+        result.AuditFile.SourceDocuments[0].SalesInvoices[0].Invoice.forEach(invoice => {
+            const invoice_products = [];
+            invoice.Line.forEach(line => {
+                invoice_products.push(new InvoiceProduct(line.ProductCode[0], line.ProductDescription[0], line.Quantity[0], line.UnitPrice[0]));
+            });
+            const invoi = new Invoice(invoice.InvoiceNo[0], invoice.InvoiceDate[0], invoice.InvoiceType[0], invoice_products, invoice.DocumentTotals[0].TaxPayable[0], invoice.DocumentTotals[0].NetTotal[0], invoice.DocumentTotals[0].GrossTotal[0]); 
+            invoices_to_be_ret.push(invoi);
+        })
     });
 }
 
