@@ -5,6 +5,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 const userRouter = require('../api/routes/user');
+const invoiceRouter = require('../api/routes/invoice');
 
 module.exports = app => {
   app.use(bodyParser.json());
@@ -12,6 +13,7 @@ module.exports = app => {
   app.use(cors());
 
   app.use('/api/user', userRouter);
+  app.use ('/api/invoice', invoiceRouter);
 
   // Adding headers (CORS)
   app.use((_, res, next) => {
