@@ -31,9 +31,24 @@ class Product {
     }
 }
 
-class Invoice {
-    constructor(InvoiceNo, InvoiceDate, InvoiceType, ShipToAddress, ShipFromAddress){
+class InvoiceProduct {
+    constructor(ProductCode, ProductDescription, Quantity, UnitPrice){
+        this.ProductCode = ProductCode;
+        this.ProductDescription = ProductDescription;
+        this.Quantity = Quantity;
+        this.UnitPrice = UnitPrice;
+    }
+}
 
+class Invoice {
+    constructor(InvoiceNo, InvoiceDate, InvoiceType, InvoiceProducts, TaxPayable, NetTotal, GrossTotal){
+        this.InvoiceNo = InvoiceNo;
+        this.InvoiceDate = InvoiceDate;
+        this.InvoiceType = InvoiceType;
+        this.InvoiceProducts = InvoiceProducts;
+        this.TaxPayable = TaxPayable;
+        this.NetTotal = NetTotal;
+        this.GrossTotal = GrossTotal;
     }
 }
 
@@ -79,11 +94,20 @@ const getInvoices = (pathToFile) => {
         if (err) throw err;
         parser.parseString(data, (err, result) => {
             if (err) throw err;
-            console.log(result.AuditFile.Header[0].CompanyName[0]);
+            result.AuditFile.SourceDocuments[0].SalesInvoices[0].Invoice.forEach(invoice => {
+                const invoice_products = [];
+                invoice.Line.forEach(line => {
+                    invoice_products.push(new InvoiceProduct(line.ProductCode[0], line.ProductDescription[0], line.Quantity[0], line.UnitPrice[0]));
+                });
+
+                const invoi = new Invoice(invoice.InvoiceNo[0], invoice.InvoiceDate[0], invoice.InvoiceType[0], invoice_products, invoice.DocumentTotals[0].TaxPayable[0], invoice.DocumentTotals[0].NetTotal[0], invoice.DocumentTotals[0].GrossTotal[0]); 
+                console.log(invoi);
+            })
+            
         });
     });
 }
 
-getProducts('./saft_t.xml');
+getInvoices('./saft_2items.xml');
     
 
