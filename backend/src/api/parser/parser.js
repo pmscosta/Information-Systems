@@ -1,6 +1,7 @@
 const xml2js = require('xml2js');
 const fs = require('fs');
 
+
 const parser = new xml2js.Parser();
 
 class Customer {
@@ -101,7 +102,7 @@ const getInvoices = (pathToFile) => {
                 });
 
                 const invoi = new Invoice(invoice.InvoiceNo[0], invoice.InvoiceDate[0], invoice.InvoiceType[0], invoice_products, invoice.DocumentTotals[0].TaxPayable[0], invoice.DocumentTotals[0].NetTotal[0], invoice.DocumentTotals[0].GrossTotal[0]); 
-                console.log(invoi);
+                console.log(JSON.stringify(result));
             })
             
         });
