@@ -30,6 +30,8 @@ const refreshToken = () => {
         `bearer_token= ${bearerToken}\nexpires in = ${expires},\ntoken_type = ${tokenType}`,
       );
       jasminOptions.apiToken = bearerToken;
+
+      axios.defaults.headers.common.Authorization = bearerToken;
     })
     .catch(err => console.log(err));
 };

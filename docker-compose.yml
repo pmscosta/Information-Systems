@@ -3,7 +3,7 @@ services:
   sinf-mongodb:
     image: "mongo"
     ports:
-      - "27017:27017"
+      - "27019:27017"
   sinf-backend:
     build:
       context: ./backend/
