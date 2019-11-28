@@ -23,15 +23,15 @@ const refreshToken = () => {
     )
     .then(res => {
       const jsonData = res.data;
-      const bearerToken = 'Bearer '.concat(jsonData.access_token);
+      const apiToken = 'Bearer '.concat(jsonData.access_token);
       const expires = jsonData.expires_in;
       const tokenType = jsonData.token_type;
-      console.log(
-        `bearer_token= ${bearerToken}\nexpires in = ${expires},\ntoken_type = ${tokenType}`,
-      );
-      jasminOptions.apiToken = bearerToken;
 
-      axios.defaults.headers.common.Authorization = bearerToken;
+      console.log(
+        `bearer_token= ${apiToken}\nexpires in = ${expires},\ntoken_type = ${tokenType}`,
+      );
+      // eslint-disable-next-line dot-notation
+      axios.defaults.headers.common['Authorization'] = apiToken;
     })
     .catch(err => console.log(err));
 };

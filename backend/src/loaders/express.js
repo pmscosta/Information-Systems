@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser');
 const userRouter = require('../api/routes/user');
 const jasminRouter = require('../api/routes/jasmin');
 
+const refreshToken = require('../api/jasmin/token');
+
 module.exports = app => {
   app.use(bodyParser.json());
   app.use(cookieParser());
@@ -13,6 +15,8 @@ module.exports = app => {
 
   app.use('/api/user', userRouter);
   app.use('/api/jasmin', jasminRouter);
+
+  refreshToken();
 
   // Adding headers (CORS)
   app.use((_, res, next) => {

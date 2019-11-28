@@ -2,8 +2,9 @@ import React from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // route components
-import Purchases from './pages/purchases';
+import Purchases from "./pages/purchases";
 
+import Stock from "./pages/stock";
 
 import "./App.css";
 
@@ -17,6 +18,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/purchases" exact component={Purchases} />
+          <Route path="/stock" exact component={Stock} />
         </Switch>
       </div>
     </Router>
