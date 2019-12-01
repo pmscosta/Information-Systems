@@ -1,11 +1,13 @@
 const xml2js = require('xml2js');
 const fs = require('fs');
 
+const Invoice = require('../../models/invoice');
+
 
 const parser = new xml2js.Parser();
 
 class Customer {
-    constructor(CustomerTaxID, CompanyName, BillingAddress, Telephone){
+    constructor(CustomerTaxID, CompanyName, BillingAddress, Telephone) {
         this.CustomerTaxID = CustomerTaxID;
         this.CompanyName = CompanyName;
         this.BillingAddress = BillingAddress;
@@ -14,7 +16,7 @@ class Customer {
 }
 
 class Address {
-    constructor(StreetName, AddressDetail, City, PostalCode, Region, Country){
+    constructor(StreetName, AddressDetail, City, PostalCode, Region, Country) {
         this.StreetName = StreetName;
         this.AddressDetail = AddressDetail;
         this.City = City;
@@ -25,7 +27,7 @@ class Address {
 }
 
 class Product {
-    constructor(ProductType, ProductCode, ProductDescription){
+    constructor(ProductType, ProductCode, ProductDescription) {
         this.ProductType = ProductType;
         this.ProductCode = ProductCode;
         this.ProductDescription = ProductDescription;
@@ -33,7 +35,7 @@ class Product {
 }
 
 class InvoiceProduct {
-    constructor(ProductCode, ProductDescription, Quantity, UnitPrice){
+    constructor(ProductCode, ProductDescription, Quantity, UnitPrice) {
         this.ProductCode = ProductCode;
         this.ProductDescription = ProductDescription;
         this.Quantity = Quantity;
@@ -41,17 +43,17 @@ class InvoiceProduct {
     }
 }
 
-class Invoice {
-    constructor(InvoiceNo, InvoiceDate, InvoiceType, InvoiceProducts, TaxPayable, NetTotal, GrossTotal){
-        this.InvoiceNo = InvoiceNo;
-        this.InvoiceDate = InvoiceDate;
-        this.InvoiceType = InvoiceType;
-        this.InvoiceProducts = InvoiceProducts;
-        this.TaxPayable = TaxPayable;
-        this.NetTotal = NetTotal;
-        this.GrossTotal = GrossTotal;
-    }
-}
+// class Invoice {
+//     constructor(InvoiceNo, InvoiceDate, InvoiceType, InvoiceProducts, TaxPayable, NetTotal, GrossTotal){
+//         this.InvoiceNo = InvoiceNo;
+//         this.InvoiceDate = InvoiceDate;
+//         this.InvoiceType = InvoiceType;
+//         this.InvoiceProducts = InvoiceProducts;
+//         this.TaxPayable = TaxPayable;
+//         this.NetTotal = NetTotal;
+//         this.GrossTotal = GrossTotal;
+//     }
+// }
 
 const getCompanyName = (pathToFile) => {
     fs.readFile(pathToFile, 'utf8', (err, data) => {
@@ -69,7 +71,7 @@ const getCustomers = (pathToFile) => {
         parser.parseString(data, (err, result) => {
             if (err) throw err;
             result.AuditFile.MasterFiles[0].Customer.forEach(customer => {
-                const billingAddr = new Address(customer.BillingAddress[0].StreetName[0], customer.BillingAddress[0].AddressDetail[0], customer.BillingAddress[0].City[0], customer.BillingAddress[0].PostalCode[0],customer.BillingAddress[0].Region[0], customer.BillingAddress[0].Country[0]);
+                const billingAddr = new Address(customer.BillingAddress[0].StreetName[0], customer.BillingAddress[0].AddressDetail[0], customer.BillingAddress[0].City[0], customer.BillingAddress[0].PostalCode[0], customer.BillingAddress[0].Region[0], customer.BillingAddress[0].Country[0]);
                 const cust = new Customer(customer.CustomerTaxID[0], customer.CompanyName[0], billingAddr, customer.Telephone[0]);
                 console.log(cust);
             });
@@ -90,25 +92,83 @@ const getProducts = (pathToFile) => {
     });
 }
 
-const getInvoices = (pathToFile) => {
-    fs.readFile(pathToFile, 'utf8', (err, data) => {
-        if (err) throw err;
-        parser.parseString(data, (err, result) => {
-            if (err) throw err;
-            result.AuditFile.SourceDocuments[0].SalesInvoices[0].Invoice.forEach(invoice => {
-                const invoice_products = [];
-                invoice.Line.forEach(line => {
-                    invoice_products.push(new InvoiceProduct(line.ProductCode[0], line.ProductDescription[0], line.Quantity[0], line.UnitPrice[0]));
-                });
+// const parseInvoices = (data) => {
 
-                const invoi = new Invoice(invoice.InvoiceNo[0], invoice.InvoiceDate[0], invoice.InvoiceType[0], invoice_products, invoice.DocumentTotals[0].TaxPayable[0], invoice.DocumentTotals[0].NetTotal[0], invoice.DocumentTotals[0].GrossTotal[0]); 
-                console.log(JSON.stringify(result));
-            })
-            
+//     parser.parseString(data, (err, result) => {
+//         if (err) throw err;
+//         result.AuditFile.SourceDocuments[0].SalesInvoices[0].Invoice.forEach(invoice => {
+//             const invoice_products = [];
+
+//             invoice.Line.forEach(line => {
+//                 invoice_products.push(new InvoiceProduct(line.ProductCode[0], line.ProductDescription[0], line.Quantity[0], line.UnitPrice[0]));
+//             });
+
+//             const invoice = new Invoice(
+//                 {
+//                     invoiceNo: invoice.InvoiceNo[0],
+//                     invoiceType: invoice.InvoiceType[0],
+//                     InvoiceDate: invoice.InvoiceDate[0]
+
+//                 }
+//             );
+
+//             invoicesList.push(invoice);
+
+//             // const invoi = new Invoice(invoice.InvoiceNo[0], invoice.InvoiceDate[0], invoice.InvoiceType[0], invoice_products, invoice.DocumentTotals[0].TaxPayable[0], invoice.DocumentTotals[0].NetTotal[0], invoice.DocumentTotals[0].GrossTotal[0]);
+//         })
+
+//         return invoicesList;
+//     });
+// }
+
+
+function parseXML(xml, parserFunction) {
+    return new Promise((resolve, reject) => {
+        parser.parseString(xml, (err, result) => {
+            if (err) {
+                reject(err);
+            }
+            else {
+                parserFunction(resolve, result);
+            }
         });
     });
 }
 
-getInvoices('./saft_2items.xml');
-    
+function parseInvoiceTest(resolve, result) {
+
+    const invoicesList = [];
+
+    result.AuditFile.SourceDocuments[0].SalesInvoices[0].Invoice.forEach(invoice => {
+
+        const invoice_products = [];
+
+        invoice.Line.forEach(line => {
+            invoice_products.push(new InvoiceProduct(line.ProductCode[0], line.ProductDescription[0], line.Quantity[0], line.UnitPrice[0]));
+        });
+
+        const newInvoice = new Invoice(
+            {
+                invoiceNo: invoice.InvoiceNo[0],
+                invoiceType: invoice.InvoiceType[0],
+                InvoiceDate: invoice.InvoiceDate[0]
+
+            }
+        );
+
+        invoicesList.push(newInvoice);
+
+    })
+
+    resolve(invoicesList);
+}
+
+
+module.exports = {
+    parseXML,
+    parseInvoiceTest
+};
+
+// getInvoices('./saft_2items.xml');
+
 
