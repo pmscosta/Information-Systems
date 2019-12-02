@@ -5,6 +5,7 @@ const invoice = require('../../controllers/invoice');
 
 
 router.get('/', invoice.getAll);
+router.get('/totalsales', invoice.getTotalSales)
 
 router.post('/', invoice.addInvoice); 
 
