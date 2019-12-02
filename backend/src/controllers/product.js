@@ -15,23 +15,21 @@ function getAllTest(req, res) {
     .exec(function (err, invoices) {
       res.json(invoices)
     });
+}
 
-  // Invoice.find({ "netTotal": { "$gte": 5 } })
-  //   .select({ "_id": 0 })
-  //   .populate('invoiceProducts')
-  //   .populate({
-  //     path: 'invoiceProducts',
-  //     match: { age: { $gte: 21 } },
-  //     // Explicitly exclude `_id`, see http://bit.ly/2aEfTdB
-  //     select: 'name -_id',
-  //     options: { limit: 5 }
-  //   }).
-  //   .exec(function (err, invoices) {
-  //     res.json(invoices);
-  //   })
+function getTopSoldProducts(req, res) {
+
+  InvoiceProduct.aggregate([
+    // { $match: { time: {$gte: a, $lte: tomorrow} } },
+    { $group: { _id: "$productCode", count: { $sum: 1 }, salesValue: { $sum: {$multiply: ["$quantity", "$unitPrice"] } } }},
+    { $sort : { count : -1} }
+  ])
+    .then(invoice => res.json(invoice))
+    .catch(err => res.status(400).json(err));
 }
 
 module.exports = {
   getAll,
-  getAllTest
+  getAllTest,
+  getTopSoldProducts
 };
