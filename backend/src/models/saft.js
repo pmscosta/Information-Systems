@@ -6,7 +6,7 @@ const { Schema } = mongoose;
 
 const saftSchema = new Schema({
     type: { type: String, required: true },
-    data: { type: Buffer, required: true },
+    data: { type: String, required: true },
 });
 
 const SafT = mongoose.model('saft', saftSchema);

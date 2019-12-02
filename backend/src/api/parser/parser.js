@@ -1,10 +1,24 @@
-const xml2js = require('xml2js');
 const fs = require('fs');
-
 const Invoice = require('../../models/invoice');
+const InvoiceProduct = require('../../models/invoiceProduct');
+
+const parser = require('xml2js');
+const parseString = parser.parseString;
 
 
-const parser = new xml2js.Parser();
+function parseXML(xml) {
+    return new Promise((resolve, reject) => {
+        parseString(xml, (err, result) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+}
+
+
 
 class Customer {
     constructor(CustomerTaxID, CompanyName, BillingAddress, Telephone) {
@@ -34,14 +48,14 @@ class Product {
     }
 }
 
-class InvoiceProduct {
-    constructor(ProductCode, ProductDescription, Quantity, UnitPrice) {
-        this.ProductCode = ProductCode;
-        this.ProductDescription = ProductDescription;
-        this.Quantity = Quantity;
-        this.UnitPrice = UnitPrice;
-    }
-}
+// class InvoiceProduct {
+//     constructor(ProductCode, ProductDescription, Quantity, UnitPrice) {
+//         this.ProductCode = ProductCode;
+//         this.ProductDescription = ProductDescription;
+//         this.Quantity = Quantity;
+//         this.UnitPrice = UnitPrice;
+//     }
+// }
 
 // class Invoice {
 //     constructor(InvoiceNo, InvoiceDate, InvoiceType, InvoiceProducts, TaxPayable, NetTotal, GrossTotal){
@@ -79,96 +93,57 @@ const getCustomers = (pathToFile) => {
     });
 }
 
-const getProducts = (pathToFile) => {
-    fs.readFile(pathToFile, 'utf8', (err, data) => {
-        if (err) throw err;
-        parser.parseString(data, (err, result) => {
-            if (err) throw err;
-            result.AuditFile.MasterFiles[0].Product.forEach(product => {
-                const prod = new Product(product.ProductType[0], product.ProductCode[0], product.ProductDescription[0]);
-                console.log(prod);
-            });
-        });
+function getProducts(xml2js){
+    let productsList = [];
+
+    xml2js.AuditFile.MasterFiles[0].Product.forEach(product => {
+        const prod = new Product(product.ProductType[0], product.ProductCode[0], product.ProductDescription[0]);
+        productsList.push(prod);
     });
+
+    return productsList;
 }
 
-// const parseInvoices = (data) => {
+function getInvoice(xml2js) {
 
-//     parser.parseString(data, (err, result) => {
-//         if (err) throw err;
-//         result.AuditFile.SourceDocuments[0].SalesInvoices[0].Invoice.forEach(invoice => {
-//             const invoice_products = [];
+    let invoicesList = [];
 
-//             invoice.Line.forEach(line => {
-//                 invoice_products.push(new InvoiceProduct(line.ProductCode[0], line.ProductDescription[0], line.Quantity[0], line.UnitPrice[0]));
-//             });
-
-//             const invoice = new Invoice(
-//                 {
-//                     invoiceNo: invoice.InvoiceNo[0],
-//                     invoiceType: invoice.InvoiceType[0],
-//                     InvoiceDate: invoice.InvoiceDate[0]
-
-//                 }
-//             );
-
-//             invoicesList.push(invoice);
-
-//             // const invoi = new Invoice(invoice.InvoiceNo[0], invoice.InvoiceDate[0], invoice.InvoiceType[0], invoice_products, invoice.DocumentTotals[0].TaxPayable[0], invoice.DocumentTotals[0].NetTotal[0], invoice.DocumentTotals[0].GrossTotal[0]);
-//         })
-
-//         return invoicesList;
-//     });
-// }
-
-
-function parseXML(xml, parserFunction) {
-    return new Promise((resolve, reject) => {
-        parser.parseString(xml, (err, result) => {
-            if (err) {
-                reject(err);
-            }
-            else {
-                parserFunction(resolve, result);
-            }
-        });
-    });
-}
-
-function parseInvoiceTest(resolve, result) {
-
-    const invoicesList = [];
-
-    result.AuditFile.SourceDocuments[0].SalesInvoices[0].Invoice.forEach(invoice => {
-
-        const invoice_products = [];
-
-        invoice.Line.forEach(line => {
-            invoice_products.push(new InvoiceProduct(line.ProductCode[0], line.ProductDescription[0], line.Quantity[0], line.UnitPrice[0]));
-        });
+    xml2js.AuditFile.SourceDocuments[0].SalesInvoices[0].Invoice.forEach(invoice => {
 
         const newInvoice = new Invoice(
             {
                 invoiceNo: invoice.InvoiceNo[0],
                 invoiceType: invoice.InvoiceType[0],
-                InvoiceDate: invoice.InvoiceDate[0]
-
+                invoiceDate: invoice.InvoiceDate[0],
+                netTotal: invoice.DocumentTotals[0].NetTotal[0]
             }
         );
 
-        invoicesList.push(newInvoice);
+        invoice.Line.forEach(line => {
+            const newProductInvoice = new InvoiceProduct(
+                {
+                    productCode: line.ProductCode[0],
+                    productDescription: line.ProductDescription[0],
+                    quantity: line.Quantity[0],
+                    unitPrice: line.UnitPrice[0]
+                }
+            );
 
+            newInvoice.invoiceProducts.push(newProductInvoice);
+            invoicesList.push(newProductInvoice);
+        });
+
+       
+        invoicesList.push(newInvoice);
     })
 
-    resolve(invoicesList);
+    return invoicesList;
 }
 
 
 module.exports = {
     parseXML,
-    parseInvoiceTest
+    getInvoice,
+    getProducts
 };
-
-// getInvoices('./saft_2items.xml');
-
 
