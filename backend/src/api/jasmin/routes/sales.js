@@ -4,9 +4,10 @@ const axios = require('axios');
 const jasminOptions = require('../consts');
 const refreshToken = require('../token');
 
-const getPurchaseOrders = () => {
+const getSalesInvoices = () => {
+  // get the jasmin api token
   return axios
-    .get(`${jasminOptions.baseUrlRequest}/purchases/orders?`)
+    .get(`${jasminOptions.baseUrlRequest}/billing/invoices/`)
     .then(res => {
       return res.data;
     })
@@ -18,9 +19,9 @@ const getPurchaseOrders = () => {
     });
 };
 
-const getPurchaseInvoices = () => {
+const getSalesOrders = () => {
   return axios
-    .get(`${jasminOptions.baseUrlRequest}/invoiceReceipt/invoices`)
+    .get(`${jasminOptions.baseUrlRequest}/sales/orders`)
     .then(res => {
       return res.data;
     })
@@ -31,8 +32,7 @@ const getPurchaseInvoices = () => {
       return null;
     });
 };
-
 module.exports = {
-  getPurchaseOrders,
-  getPurchaseInvoices,
+  getSalesInvoices,
+  getSalesOrders,
 };

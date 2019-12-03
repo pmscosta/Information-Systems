@@ -22,7 +22,41 @@ router.get('/stock', (req, res) => {
   );
 });
 
-router.get('/purchases', (req, res) => {
+router.get('/sales', async (req, res) => {
+  const invoices = await jasmin.sales.getSalesInvoices();
+  const orders = await jasmin.sales.getSalesOrders();
+
+  res.status(200).json({
+    invoiced: invoices
+      .filter(({ isDeleted }) => {
+        return !isDeleted;
+      })
+      .reduce(
+        (a, b) =>
+          a.concat({
+            sourceDoc: b.documentLines[0].sourceDoc,
+            amount: b.payableAmount.amount,
+            date: b.dueDate,
+          }),
+        [],
+      ),
+    open: orders
+      .filter(({ isDeleted }) => {
+        return !isDeleted;
+      })
+      .filter(el => el.naturalKey.indexOf('EI') === -1)
+      .reduce(
+        (a, b) =>
+          a.concat({
+            naturalKey: b.naturalKey,
+            amount: b.taxExclusiveAmount.amount,
+          }),
+        [],
+      ),
+  });
+});
+
+router.get('/purchases', async (req, res) => {
   jasmin.purchases.getPurchaseInvoices().then(receiptPurchasesRes => {
     jasmin.purchases.getPurchaseOrders().then(openPurchasesRes => {
       const openPurchases = openPurchasesRes
@@ -45,12 +79,13 @@ router.get('/purchases', (req, res) => {
             a.concat({
               sourceDoc: b.documentLines[0].sourceDoc,
               amount: b.payableAmount.amount,
+              date: b.dueDate,
             }),
           [],
         );
 
       return res.status(200).json({
-        openPurchases: openPurchases
+        open: openPurchases
           .filter(el => {
             return (
               receiptPurchases.find(
@@ -59,7 +94,7 @@ router.get('/purchases', (req, res) => {
             );
           })
           .filter(el => el.naturalKey.indexOf('VEI') === -1),
-        receiptPurchases,
+        invoiced: receiptPurchases,
       });
     });
   });

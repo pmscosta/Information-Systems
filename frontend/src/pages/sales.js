@@ -1,7 +1,6 @@
 import React from "react";
 import Graph from "../components/graph/Graph";
-import axios from "axios";
-import { getPurchasesInfo } from "../services/PurchasesService";
+import { getSalesInfo } from "../services/SalesService";
 import { getData } from "../utils/data_generator";
 
 class Purchases extends React.Component {
@@ -20,7 +19,7 @@ class Purchases extends React.Component {
   }
 
   componentDidMount() {
-    getPurchasesInfo().then(result => {
+    getSalesInfo().then(result => {
       console.log(result);
       this.setState({
         openPurchases: result.openPurchases,

@@ -1,7 +1,7 @@
 import React from "react";
 import Chart from "chart.js";
 
-import './Graph.css';
+import "./Graph.css";
 
 class Graph extends React.Component {
   constructor(props) {
@@ -17,15 +17,15 @@ class Graph extends React.Component {
 
   componentDidMount() {
     this.myChart = new Chart(this.canvasRef.current, {
-      type: 'line',
+      type: "line",
       options: {
-			  maintainAspectRatio: false,
+        maintainAspectRatio: false,
         scales: {
           xAxes: [
             {
-              type: 'time',
+              type: "time",
               time: {
-                unit: 'week'
+                unit: "week"
               }
             }
           ],
@@ -40,16 +40,18 @@ class Graph extends React.Component {
       },
       data: {
         labels: this.props.data.map(d => d.time),
-        datasets: [{
-          label: this.props.title,
-          data: this.props.data.map(d => d.value),
-          fill: 'none',
-          backgroundColor: this.props.color,
-          pointRadius: 2,
-          borderColor: this.props.color,
-          borderWidth: 1,
-          lineTension: 0
-        }]
+        datasets: [
+          {
+            label: this.props.title,
+            data: this.props.data.map(d => d.value),
+            fill: "none",
+            backgroundColor: this.props.color,
+            pointRadius: 4,
+            borderColor: this.props.color,
+            borderWidth: 1,
+            lineTension: 0
+          }
+        ]
       }
     });
   }

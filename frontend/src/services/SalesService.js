@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export function getPurchasesInfo() {
-  return axios.get("/api/jasmin/purchases").then(res => {
+export function getSalesInfo() {
+  return axios.get("/api/jasmin/sales").then(res => {
     console.log(res);
 
     const openPurchases = res.data.open;
