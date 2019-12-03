@@ -4,16 +4,14 @@ export function getPurchasesInfo() {
   return axios.get("/api/jasmin/purchases").then(res => {
     console.log(res);
 
-    const openPurchases = res.data.open;
-    const receiptPurchases = res.data.invoiced;
+    const open = res.data.open;
+    const invoiced = res.data.invoiced;
 
-    receiptPurchases.sort((a, b) => {
+    invoiced.sort((a, b) => {
       return new Date(a.date) - new Date(b.date);
     });
 
-    console.log(receiptPurchases);
-
-    const purchasesEvolution = receiptPurchases.reduce((r, a) => {
+    const purchasesEvolution = invoiced.reduce((r, a) => {
       let prev_amount = r.length > 0 ? r[r.length - 1].value : 0;
       let prev_date = r.length > 0 ? r[r.length - 1].time : "";
 
@@ -34,23 +32,20 @@ export function getPurchasesInfo() {
       }
     }, []);
 
-    const purchasesGraphData = {
+    const graphData = {
       title: "Purchases",
       data: purchasesEvolution
     };
 
-    const totalOpenValue = openPurchases.reduce((a, b) => a + b.amount, 0);
-    const totalReceiptValue = receiptPurchases.reduce(
-      (a, b) => a + b.amount,
-      0
-    );
+    const totalOpenValue = open.reduce((a, b) => a + b.amount, 0);
+    const totalReceiptValue = invoiced.reduce((a, b) => a + b.amount, 0);
 
     return {
-      openPurchases,
-      receiptPurchases,
+      open,
+      invoiced,
       totalOpenValue,
       totalReceiptValue,
-      purchasesGraphData
+      graphData
     };
   });
 }

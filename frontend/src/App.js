@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Purchases from "./pages/purchases";
 import Stock from "./pages/stock";
 import Sales from "./pages/sales";
-
 import "./App.css";
 
 if (process.env.NODE_ENV === "development") {

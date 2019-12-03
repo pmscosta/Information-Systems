@@ -9,10 +9,29 @@ class Graph extends React.Component {
     this.canvasRef = React.createRef();
   }
 
-  componentDidUpdate() {
-    this.myChart.data.labels = this.props.data.map(d => d.time);
-    this.myChart.data.datasets[0].data = this.props.data.map(d => d.value);
-    this.myChart.update();
+  createDataset(data) {
+    return {
+      label: data.title,
+      data: data.data.map(d => d.value),
+      fill: "none",
+      backgroundColor: this.props.color,
+      pointRadius: 4,
+      borderColor: this.props.color,
+      borderWidth: 1,
+      lineTension: 0
+    };
+  }
+
+  createLabels(dataset) {
+    return dataset.data.map(d => d.time);
+  }
+
+  sortLabels(labels) {
+    labels.sort((a, b) => {
+      return new Date(a) - new Date(b);
+    });
+
+    return labels;
   }
 
   componentDidMount() {
@@ -39,19 +58,10 @@ class Graph extends React.Component {
         }
       },
       data: {
-        labels: this.props.data.map(d => d.time),
-        datasets: [
-          {
-            label: this.props.title,
-            data: this.props.data.map(d => d.value),
-            fill: "none",
-            backgroundColor: this.props.color,
-            pointRadius: 4,
-            borderColor: this.props.color,
-            borderWidth: 1,
-            lineTension: 0
-          }
-        ]
+        labels: this.sortLabels(
+          this.props.data.map(dataset => this.createLabels(dataset)).flat()
+        ),
+        datasets: this.props.data.map(dataset => this.createDataset(dataset))
       }
     });
   }

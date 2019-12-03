@@ -1,6 +1,5 @@
 import React from "react";
 import Graph from "../components/graph/Graph";
-import axios from "axios";
 import { getPurchasesInfo } from "../services/PurchasesService";
 import { getData } from "../utils/data_generator";
 
@@ -23,11 +22,11 @@ class Purchases extends React.Component {
     getPurchasesInfo().then(result => {
       console.log(result);
       this.setState({
-        openPurchases: result.openPurchases,
-        receiptPurchases: result.receiptPurchases,
+        openPurchases: result.open,
+        receiptPurchases: result.invoiced,
         totalOpenValue: result.totalOpenValue,
         totalReceiptValue: result.totalReceiptValue,
-        dataGraph: result.purchasesGraphData,
+        dataGraph: result.graphData,
         graphLoaded: true
       });
     });
@@ -41,8 +40,8 @@ class Purchases extends React.Component {
         {this.state.graphLoaded && (
           <div className="main chart-wrapper">
             <Graph
-              data={this.state.dataGraph.data}
-              title={this.state.dataGraph.title}
+              data={[this.state.dataGraph]}
+              title="Purchases"
               color="#3E517A"
             ></Graph>
           </div>

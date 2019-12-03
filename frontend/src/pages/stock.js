@@ -1,7 +1,4 @@
 import React from "react";
-import Graph from "../components/graph/Graph";
-import axios from "axios";
-import { getData } from "../utils/data_generator";
 import { getItems } from "../services/StockService";
 
 class Stock extends React.Component {
