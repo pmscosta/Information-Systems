@@ -57,47 +57,50 @@ router.get('/sales', async (req, res) => {
 });
 
 router.get('/purchases', async (req, res) => {
-  jasmin.purchases.getPurchaseInvoices().then(receiptPurchasesRes => {
-    jasmin.purchases.getPurchaseOrders().then(openPurchasesRes => {
-      const openPurchases = openPurchasesRes
-        .filter(({ isDeleted }) => {
-          return !isDeleted;
-        })
-        .reduce(
-          (a, b) =>
-            a.concat({
-              naturalKey: b.naturalKey,
-              amount: b.taxExclusiveAmount.amount,
-            }),
-          [],
-        );
+  const invoices = await jasmin.purchases.getPurchaseInvoices();
+  const orders = await jasmin.purchases.getPurchaseOrders();
 
-      const receiptPurchases = receiptPurchasesRes
-        .filter(({ isDeleted }) => isDeleted === false)
-        .reduce(
-          (a, b) =>
-            a.concat({
-              sourceDoc: b.documentLines[0].sourceDoc,
-              amount: b.payableAmount.amount,
-              date: b.dueDate,
-            }),
-          [],
-        );
+  const openPurchases = orders
+    .filter(({ isDeleted }) => {
+      return !isDeleted;
+    })
+    .reduce(
+      (a, b) =>
+        a.concat({
+          naturalKey: b.naturalKey,
+          amount: b.taxExclusiveAmount.amount,
+        }),
+      [],
+    );
 
-      return res.status(200).json({
-        open: openPurchases
-          .filter(el => {
-            return (
-              receiptPurchases.find(
-                obj => obj.sourceDoc === el.naturalKey,
-              ) === undefined
-            );
-          })
-          .filter(el => el.naturalKey.indexOf('VEI') === -1),
-        invoiced: receiptPurchases,
-      });
-    });
+  const receiptPurchases = invoices
+    .filter(({ isDeleted }) => isDeleted === false)
+    .reduce(
+      (a, b) =>
+        a.concat({
+          sourceDoc: b.documentLines[0].sourceDoc,
+          amount: b.payableAmount.amount,
+          date: b.dueDate,
+          item: {
+            itemId: b.documentLines[0].purchasesItem,
+            description: b.documentLines[0].purchasesItemDescription,
+            quantity: b.documentLines[0].quantity,
+          },
+        }),
+      [],
+    );
+
+  return res.status(200).json({
+    open: openPurchases
+      .filter(el => {
+        return (
+          receiptPurchases.find(
+            obj => obj.sourceDoc === el.naturalKey,
+          ) === undefined
+        );
+      })
+      .filter(el => el.naturalKey.indexOf('VEI') === -1),
+    invoiced: receiptPurchases,
   });
 });
-
 module.exports = router;

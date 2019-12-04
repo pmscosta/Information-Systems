@@ -1,7 +1,8 @@
 import React from "react";
-import Graph from "../components/graph/Graph";
+import LineChart from "../components/LineChart/LineChart";
 import { getPurchasesInfo } from "../services/PurchasesService";
 import { getData } from "../utils/data_generator";
+import BarChart from "../components/BarChart/BarChart";
 
 class Purchases extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class Purchases extends React.Component {
         totalOpenValue: result.totalOpenValue,
         totalReceiptValue: result.totalReceiptValue,
         dataGraph: result.graphData,
+        itemData: result.itemsData,
         graphLoaded: true
       });
     });
@@ -38,13 +40,23 @@ class Purchases extends React.Component {
         <div>Total Open Value: {this.state.totalOpenValue}</div>
         <div>Total Receipt Value: {this.state.totalReceiptValue}</div>
         {this.state.graphLoaded && (
-          <div className="main chart-wrapper">
-            <Graph
-              data={[this.state.dataGraph]}
-              title="Purchases"
-              color="#3E517A"
-            ></Graph>
-          </div>
+          <>
+            <div className="main chart-wrapper">
+              <LineChart
+                data={[this.state.dataGraph]}
+                title="Purchases"
+                color="#3E517A"
+              ></LineChart>
+            </div>
+
+            <div className="main chart-wrapper">
+              <BarChart
+                data={this.state.itemData}
+                title="Purchases"
+                color="#3E517A"
+              ></BarChart>
+            </div>
+          </>
         )}
       </>
     );

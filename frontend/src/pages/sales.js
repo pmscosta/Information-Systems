@@ -1,5 +1,5 @@
 import React from "react";
-import Graph from "../components/graph/Graph";
+import LineChart from "../components/LineChart/LineChart";
 import { getSalesInfo } from "../services/SalesService";
 import { getData } from "../utils/data_generator";
 
@@ -39,11 +39,11 @@ class Purchases extends React.Component {
         <div>Total Receipt Value: {this.state.totalReceiptValue}</div>
         {this.state.graphLoaded && (
           <div className="main chart-wrapper">
-            <Graph
+            <LineChart
               data={[this.state.dataGraph]}
               title="Sales"
               color="#3E517A"
-            ></Graph>
+            ></LineChart>
           </div>
         )}
       </>

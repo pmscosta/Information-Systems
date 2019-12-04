@@ -1,9 +1,9 @@
 import React from "react";
 import Chart from "chart.js";
 
-import "./Graph.css";
+import "./LineChart.css";
 
-class Graph extends React.Component {
+class LineChart extends React.Component {
   constructor(props) {
     super(props);
     this.canvasRef = React.createRef();
@@ -71,4 +71,4 @@ class Graph extends React.Component {
   }
 }
 
-export default Graph;
+export default LineChart;
