@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import NavBar from './nav/NavBar';
+import Toolbar from '@material-ui/core/Toolbar';
 
 const MainPageLayout = ({ children }) => (
     <>
-        <NavBar />
+        <Toolbar><NavBar /></Toolbar>
         {children}
 
     </>

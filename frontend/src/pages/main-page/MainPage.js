@@ -6,9 +6,8 @@ import MainTabsConfig from './MainTabsConfig';
 
 const MainPage = () =>
     <MainPageLayout>
-        <br /> <br /> <br /> <br />
+        <p/>
         <TabsLayout options={MainTabsConfig()} />
-        <br /> <br />
     </MainPageLayout>
 
 

@@ -28,8 +28,12 @@ function NavBar() {
     return (
         <AppBar className={styles.appbar} color="primary">
             <Toolbar className={styles.toolbar} >
-                <Typography variant="h6" href="/">
-                    SINFonia
+                <Typography variant="h6" href="/" style={{
+                    fontFamily: 'Pacifico',
+                    fontSize: '2em',
+                    margin: "0.5em",
+                }}>
+                    Sinfonia
                 </Typography>
 
                 <input

@@ -1,8 +1,10 @@
 import React from "react";
 import {
-    LocationCity as InstitutionIcon,
-    Person as PersonIcon,
-    Group as InteractionIcon,
+    ShoppingCartSharp,
+    StorefrontSharp,
+    EqualizerSharp,
+    EuroSharp,
+    LocalOfferSharp
 } from "@material-ui/icons";
 import Overview from "../tab-pages/Overview";
 import Finances from "../tab-pages/Finances";
@@ -12,28 +14,28 @@ import Inventory from "../tab-pages/Inventory";
 
 const MainTabsConfig = () => [{
     label: "Overview",
-    icon: InteractionIcon,
-    component: <Overview/>,
+    icon: EqualizerSharp,
+    component: Overview ,
 },
 {
     label: "Finances",
-    icon: InstitutionIcon,
-    component: <Finances />,
+    icon: EuroSharp,
+    component: Finances ,
 },
 {
     label: "Purchases",
-    icon: PersonIcon,
-    component: <Purchases />,
+    icon: ShoppingCartSharp,
+    component: Purchases ,
 },
 {
     label: "Sales",
-    icon: PersonIcon,
-    component: <Sales />,
+    icon: LocalOfferSharp,
+    component: Sales ,
 },
 {
     label: "Inventory",
-    icon: PersonIcon,
-    component: <Inventory />,
+    icon: StorefrontSharp,
+    component: Inventory ,
 }];
 
 

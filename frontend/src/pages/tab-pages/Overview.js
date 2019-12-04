@@ -6,9 +6,6 @@ const Overview = () => {
     
     return (
       <MainPageLayout>
-        <br/>
-        <br/>
-        <br/>
         <ValueCard name="Purchases" value="123k"/>
         <ValueCard name="Sales" value="343k"/>
         <ValueCard name="Equity" value="53k"/>
