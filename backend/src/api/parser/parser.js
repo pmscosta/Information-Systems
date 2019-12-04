@@ -101,7 +101,7 @@ const getProducts = (xml2js) =>{
     return productsList;
 }
 
-const getInvoice = (xml2js) => {
+const getInvoices = (xml2js) => {
 
     let invoicesList = [];
 
@@ -140,7 +140,7 @@ const getInvoice = (xml2js) => {
 
 module.exports = {
     parseXML,
-    getInvoice,
+    getInvoices,
     getProducts
 };
 
