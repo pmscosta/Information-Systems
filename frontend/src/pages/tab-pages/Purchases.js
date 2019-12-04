@@ -1,5 +1,5 @@
 import React from "react";
-import Graph from '../components/graph/Graph';
+import Graph from '../../components/graph/Graph';
 
 // Data generation
 function getRandomArray(numItems) {

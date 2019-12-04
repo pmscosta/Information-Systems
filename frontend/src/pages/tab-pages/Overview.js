@@ -1,8 +1,8 @@
 import React from "react";
-import MainPageLayout from './MainPageLayout';
-import ValueCard from '../components/ValueCard';
+import MainPageLayout from '../../components/layout/MainPageLayout';
+import ValueCard from '../../components/ValueCard';
 
-const Homepage = () => {
+const Overview = () => {
     
     return (
       <MainPageLayout>
@@ -24,5 +24,5 @@ const Homepage = () => {
     );
   }
   
-export default Homepage;
+export default Overview;
   

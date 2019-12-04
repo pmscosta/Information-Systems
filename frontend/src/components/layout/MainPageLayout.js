@@ -1,14 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import NavBar from '../components/Nav/NavBar';
-import FullWidthTabs from "../components/Tab/FullWidthTabs";
+import NavBar from './nav/NavBar';
 
 const MainPageLayout = ({ children }) => (
     <>
         <NavBar />
-        <br/><br/><br/><br/>
-        <FullWidthTabs/>
-        <br/><br/>
         {children}
 
     </>
