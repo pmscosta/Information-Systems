@@ -3,7 +3,7 @@ import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // route components
 import Purchases from './pages/purchases';
-
+import UploadFile from './components/uploadFile/uploadFile'
 
 import "./App.css";
 
@@ -16,6 +16,7 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
+          <Route path="/" exact component={UploadFile} />
           <Route path="/purchases" exact component={Purchases} />
         </Switch>
       </div>

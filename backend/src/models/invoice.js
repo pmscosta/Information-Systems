@@ -17,7 +17,14 @@ const invoiceSchema = new Schema({
     type: Date,
     required: true,
     default: Date.now
-  }
+  },
+  netTotal: {
+    type: Number,
+    required: true
+  },
+  invoiceProducts: [
+    {type: Schema.Types.ObjectId, ref: 'invoiceProduct'}
+  ]
 });
 
 const Invoice = mongoose.model('invoice', invoiceSchema);
