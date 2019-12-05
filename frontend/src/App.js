@@ -21,7 +21,7 @@ function App() {
       <Router>
         <div className="App">
           <Switch>
-            <Route path="/:view" component={MainPage} />
+            <Route path="/:view?" component={MainPage} />
           </Switch>
         </div>
       </Router>

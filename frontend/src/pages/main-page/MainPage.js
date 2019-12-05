@@ -5,11 +5,15 @@ import TabsLayout from "../../components/layout/tabs/TabsLayout";
 import MainTabsConfig from "./MainTabsConfig";
 import { useParams } from "react-router-dom";
 
-const MainPage = () => (
-  <MainPageLayout>
-    <br />
-    <TabsLayout value={useParams().view} options={MainTabsConfig()} />
-  </MainPageLayout>
-);
+const MainPage = () => {
+  const value = useParams().view || "overview";
+
+  return (
+    <MainPageLayout>
+      <br />
+      <TabsLayout value={value} options={MainTabsConfig()} />
+    </MainPageLayout>
+  );
+};
 
 export default MainPage;

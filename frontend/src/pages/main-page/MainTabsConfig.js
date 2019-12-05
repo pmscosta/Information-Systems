@@ -16,7 +16,7 @@ const MainTabsConfig = () => [
     label: "overview",
     icon: EqualizerSharp,
     component: Overview,
-    to: "/overview"
+    to: "/"
   },
   {
     label: "finances",

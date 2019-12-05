@@ -20,7 +20,7 @@ const TabLabels = options =>
 
 const TabPanels = options => {
   return options.map((option, i) => (
-    <Route path={`${option.to}`} key={option.label}>
+    <Route exact path={`${option.to}`} key={option.label}>
       <TabPanel
         value={`${options.label}`}
         index={i}

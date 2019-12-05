@@ -1,8 +1,8 @@
 import React from "react";
-import LineChart from "../components/LineChart/LineChart";
-import { getPurchasesInfo } from "../services/PurchasesService";
-import { getData } from "../utils/data_generator";
-import BarChart from "../components/BarChart/BarChart";
+import LineChart from "../../components/LineChart/LineChart";
+import { getPurchasesInfo } from "../../services/PurchasesService";
+import { getData } from "../../utils/data_generator";
+import BarChart from "../../components/BarChart/BarChart";
 
 class Purchases extends React.Component {
   constructor(props) {
