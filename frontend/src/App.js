@@ -25,9 +25,8 @@ function App() {
         <div className="App">
           <Switch>
             {/* <Redirect exact from="/" to="/overview" /> */}
-            <Route path="/" exact component={MainPage} />
-            {/* <Route path="/finances" exact component={Finances} />
-            <Route path="/purchases" exact component={Purchases} />
+            <Route path="/:view" component={MainPage} />
+            {/* <Route path="/purchases" exact component={Purchases} />
             <Route path="/sales" exact component={Sales} />
             <Route path="/inventory" exact component={Inventory} /> */}
           </Switch>
