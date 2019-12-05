@@ -66,48 +66,53 @@ const getProducts = (xml2js) => {
     return productsList;
 }
 
-const getInvoices = async (xml2js) => {
+const getInvoices = (xml2js) => {
 
     let invoicesList = [];
 
     xml2js.AuditFile.SourceDocuments[0].SalesInvoices[0].Invoice.forEach(invoice => {
 
         const query = CustomerController.getById(invoice.CustomerID[0]);
+       
+        const newInvoice = new Invoice(
+            {
+                invoiceNo: invoice.InvoiceNo[0],
+                invoiceType: invoice.InvoiceType[0],
+                invoiceDate: invoice.InvoiceDate[0],
+                netTotal: invoice.DocumentTotals[0].NetTotal[0]
+            }
+        );
+        
+        
+        console.log(query);
 
         query
-            .then((customer) => {
+        .then((customer, res) => {
+            console.log(customer);
+            newInvoice.customer.push(customer);
+            console.log(res)
+        }).catch(
+            err => res.status(400).json(err)
+        );
+        
+        invoice.Line.forEach(line => {
+            const newProductInvoice = new InvoiceProduct(
+                {
+                    productCode: line.ProductCode[0],
+                    productDescription: line.ProductDescription[0],
+                    quantity: line.Quantity[0],
+                    unitPrice: line.UnitPrice[0]
+                }
+            );
 
-                const newInvoice = new Invoice(
-                    {
-                        invoiceNo: invoice.InvoiceNo[0],
-                        invoiceType: invoice.InvoiceType[0],
-                        invoiceDate: invoice.InvoiceDate[0],
-                        netTotal: invoice.DocumentTotals[0].NetTotal[0]
-                    }
-                );
-        
-                newInvoice.customer.push(customer);
-        
-                invoice.Line.forEach(line => {
-                    const newProductInvoice = new InvoiceProduct(
-                        {
-                            productCode: line.ProductCode[0],
-                            productDescription: line.ProductDescription[0],
-                            quantity: line.Quantity[0],
-                            unitPrice: line.UnitPrice[0]
-                        }
-                    );
-        
-                    newInvoice.invoiceProducts.push(newProductInvoice);
-                    invoicesList.push(newProductInvoice);
-                });
-        
-        
-                invoicesList.push(newInvoice);
+            newInvoice.invoiceProducts.push(newProductInvoice);
+            invoicesList.push(newProductInvoice);
+        });
 
-            })
+
+        invoicesList.push(newInvoice);
     })
-
+    
     return invoicesList;
 }
 

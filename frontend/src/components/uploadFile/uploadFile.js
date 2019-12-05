@@ -11,7 +11,7 @@ class UploadFile extends React.Component {
 
         axios.post('/api/saft', data).then((response) => {
             console.log(response); // do something with the response
-        });
+        }).catch(err => console.log(err));
     }
 
     render() {

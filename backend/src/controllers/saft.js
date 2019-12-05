@@ -33,7 +33,7 @@ function addSaft(req, res) {
       parseFields(result);
 
       res.json("Done");
-    });
+    }).catch(err => res.status(400).json(err));
 }
 
 
