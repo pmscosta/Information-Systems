@@ -1,11 +1,15 @@
 import React from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// route components
-import Purchases from "./pages/purchases";
-import Stock from "./pages/stock";
-import Sales from "./pages/sales";
-import "./App.css";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+import { ThemeProvider } from "@material-ui/styles";
+import "./style/common.css";
+import theme from "./theme";
+import MainPage from "./pages/main-page/MainPage";
 
 if (process.env.NODE_ENV === "development") {
   axios.defaults.baseURL = "http://localhost:6002";
@@ -13,15 +17,15 @@ if (process.env.NODE_ENV === "development") {
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route path="/purchases" exact component={Purchases} />
-          <Route path="/stock" exact component={Stock} />
-          <Route path="/sales" exact component={Sales} />
-        </Switch>
-      </div>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route path="/:view" component={MainPage} />
+          </Switch>
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
