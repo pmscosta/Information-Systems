@@ -4,8 +4,6 @@ import { createGraphData } from "./utils";
 
 export function getSalesInfo() {
   return axios.get("/api/jasmin/sales").then(res => {
-    console.log(res);
-
     const open = res.data.open;
     const invoiced = res.data.invoiced;
 

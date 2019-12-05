@@ -36,9 +36,28 @@ export const createItemsData = (title, invoiced) => {
   const grouped = invoiced.reduce((a, b) => {
     console.log(b.item);
     if (!a[b.item.itemId]) {
-      a[b.item.itemId] = { description: b.item.description, quantity: 0 };
+      a[b.item.itemId] = {
+        description: b.item.description,
+        quantity: 0,
+        value: 0
+      };
     }
+    a[b.item.itemId].value += b.amount;
     a[b.item.itemId].quantity += b.item.quantity;
+    return a;
+  }, {});
+
+  return grouped;
+};
+
+export const createSuppliersData = (title, invoiced) => {
+  const grouped = invoiced.reduce((a, b) => {
+    if (!a[b.supplier]) {
+      a[b.supplier] = { quantity: 0, value: 0 };
+    }
+    a[b.supplier].quantity += b.item.quantity;
+    a[b.supplier].value += b.amount;
+
     return a;
   }, {});
 

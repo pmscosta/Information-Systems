@@ -86,6 +86,7 @@ router.get('/purchases', async (req, res) => {
             description: b.documentLines[0].purchasesItemDescription,
             quantity: b.documentLines[0].quantity,
           },
+          supplier: b.sellerSupplierPartyName,
         }),
       [],
     );

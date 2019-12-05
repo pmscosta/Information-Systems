@@ -1,22 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Chart from "chart.js";
 
 import "./BarChart.css";
 
-class BarChart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.canvasRef = React.createRef();
-  }
+const BarChart = props => {
+  const [items, setItems] = useState(props.data);
+  const [showQuantity, setToggle] = useState(true);
+  const canvasRef = React.createRef();
+  const [myChart, setMyChart] = useState("");
 
-  createDataset(items) {
+  const createDataset = () => {
     let data = [];
     Object.keys(items).forEach(key => {
-      data.push(items[key].quantity);
+      if (showQuantity) {
+        data.push(items[key].quantity);
+      } else {
+        data.push(items[key].value);
+      }
     });
 
+    let label = showQuantity ? "Quantity (UN)" : "Value (EUR)";
+
     return {
-      label: "Quantity (UN)",
+      label,
       backgroundColor: [
         "rgba(255, 99, 132, 0.2)",
         "rgba(54, 162, 235, 0.2)",
@@ -33,55 +39,64 @@ class BarChart extends React.Component {
       ],
       data
     };
-  }
+  };
 
-  createLabels() {
+  const createLabels = () => {
     let labels = [];
-    Object.keys(this.props.data).forEach(key => {
+    Object.keys(items).forEach(key => {
       labels.push(key);
     });
 
     return labels;
-  }
+  };
 
-  componentDidMount() {
-    this.myChart = new Chart(this.canvasRef.current, {
-      type: "horizontalBar",
-      options: {
-        scales: {
-          xAxes: [
-            {
-              ticks: {
-                min: 0
+  useEffect(() => {
+    setMyChart(
+      new Chart(canvasRef.current, {
+        type: "horizontalBar",
+        options: {
+          showTooltips: false,
+          scales: {
+            xAxes: [
+              {
+                ticks: {
+                  min: 0
+                }
               }
-            }
-          ],
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-                min: 0
+            ],
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                  min: 0
+                }
               }
+            ]
+          },
+          elements: {
+            rectangle: {
+              borderWidth: 1
             }
-          ]
+          },
+          responsive: true
         },
-        elements: {
-          rectangle: {
-            borderWidth: 1
-          }
-        },
-        responsive: true
-      },
-      data: {
-        labels: this.createLabels(),
-        datasets: [this.createDataset(this.props.data)]
-      }
-    });
-  }
+        data: {
+          labels: createLabels(),
+          datasets: [createDataset()]
+        }
+      })
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showQuantity]);
 
-  render() {
-    return <canvas ref={this.canvasRef} />;
-  }
-}
+  return (
+    <div>
+      <canvas ref={canvasRef} />
+      <button type="button" onClick={() => setToggle(!showQuantity)}>
+        Change
+      </button>
+    </div>
+  );
+};
 
 export default BarChart;

@@ -29,6 +29,7 @@ class Purchases extends React.Component {
         totalReceiptValue: result.totalReceiptValue,
         dataGraph: result.graphData,
         itemData: result.itemsData,
+        suppliersData: result.suppliersData,
         graphLoaded: true
       });
     });
@@ -52,6 +53,14 @@ class Purchases extends React.Component {
             <div className="main chart-wrapper">
               <BarChart
                 data={this.state.itemData}
+                title="Purchases"
+                color="#3E517A"
+              ></BarChart>
+            </div>
+
+            <div className="main chart-wrapper">
+              <BarChart
+                data={this.state.suppliersData}
                 title="Purchases"
                 color="#3E517A"
               ></BarChart>
