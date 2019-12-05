@@ -1,4 +1,3 @@
-import React from "react";
 import {
     ShoppingCartSharp,
     StorefrontSharp,
@@ -13,29 +12,34 @@ import Sales from "../tab-pages/Sales";
 import Inventory from "../tab-pages/Inventory";
 
 const MainTabsConfig = () => [{
-    label: "Overview",
+    label: "overview",
     icon: EqualizerSharp,
     component: Overview ,
+    to: "/overview",
 },
 {
-    label: "Finances",
+    label: "finances",
     icon: EuroSharp,
-    component: Finances ,
+    component: Finances,
+    to: "/finances",
 },
 {
-    label: "Purchases",
+    label: "purchases",
     icon: ShoppingCartSharp,
     component: Purchases ,
+    to: "/purchases",
 },
 {
-    label: "Sales",
+    label: "sales",
     icon: LocalOfferSharp,
-    component: Sales ,
+    component: Sales,
+    to: "/sales",
 },
 {
-    label: "Inventory",
+    label: "inventory",
     icon: StorefrontSharp,
-    component: Inventory ,
+    component: Inventory,
+    to: "/inventory",
 }];
 
 

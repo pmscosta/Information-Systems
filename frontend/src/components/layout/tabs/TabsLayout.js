@@ -1,51 +1,55 @@
-import React, { useState } from "react";
+import React from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import TabPanel from "./TabPanel";
 import PropTypes from "prop-types";
-import { Switch, Route, Link } from "react-router-dom";
 import "../../../style/common.css";
+import {
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
 const TabLabels = (options) =>
     options.map((option, i) =>
-        <Tab label={option.label} key={option.label + i} icon={<option.icon />}>
-            {/* <Link to={'/'+option.to}/> */}
-        </Tab>
+        <Tab
+            label={option.label}
+            icon={<option.icon />}
+            key={option.label}
+            value={option.label}
+            to={option.to}
+            component={Link}
+        />
     );
 
-const TabPanels = (options, state) =>
-    options.map((option, i) =>
-        <TabPanel value={state} key={option.label + i} index={i}>
-            <option.component/>
-            {/* <Route path={'/'+option.to} component={option.component}/> */}
-        </TabPanel>
+const TabPanels = (options) => {
+    return options.map((option, i) =>
+        <Route path={`${option.to}`} key={option.label}>
+            <TabPanel value={`${options.label}`} index={i} component={option.component} />
+        </Route>
     );
+}
 
 
-const TabsLayout = ({ options }) => {
-    const [value, setValue] = useState(0);
+const TabsLayout = ({ options , value }) => {
     const labels = TabLabels(options);
-    const panels = TabPanels(options, value);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+    const panels = TabPanels(options);
 
     return (
         <div>
             <Tabs
                 value={value}
-                onChange={handleChange}
                 indicatorColor="primary"
                 textColor="secondary"
                 variant="fullWidth"
                 centered
-                //style={{backgroundColor: "#E7DFDD"}}
             >
                 {labels}
             </Tabs>
-            {panels}
-        </div>
+            <Switch>
+                {panels}
+            </Switch>
+        </div >
     );
 };
 
