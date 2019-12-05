@@ -11,13 +11,6 @@ const customerSchema = new Schema({
   },
   CompanyName: {
     type: String
-  },
-  Address: [
-      {type: Schema.Types.ObjectId, ref: 'address'}
-    ]
-  ,
-  Telephone: {
-    type: Number
   }
 });
 

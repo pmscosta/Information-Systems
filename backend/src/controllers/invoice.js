@@ -17,6 +17,13 @@ function getTotalSales(req, res) {
     .catch(err => res.status(400).json(err));
 }
 
+function getTopClients(req, res) {
+  Invoice.find()
+    .populate('customer')
+    .then(invoice => res.json(invoice))
+    .catch(err => res.status(400).json(err));
+}
+
 function addInvoice(req, res) {
   let newInvoice = new Invoice(req.body);
 
@@ -31,5 +38,6 @@ function addInvoice(req, res) {
 module.exports = {
   getAll,
   addInvoice,
-  getTotalSales
+  getTotalSales,
+  getTopClients
 };

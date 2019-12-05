@@ -7,7 +7,7 @@ const parser = require('../api/parser/parser');
 
 function parseFields(xml2js) {
 
-  let parseFuncs = [parser.getInvoices];
+  let parseFuncs = [parser.getCustomers, parser.getInvoices];
 
   parseFuncs.forEach(parseFunc => {
 

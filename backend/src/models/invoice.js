@@ -24,6 +24,10 @@ const invoiceSchema = new Schema({
   },
   invoiceProducts: [
     {type: Schema.Types.ObjectId, ref: 'invoiceProduct'}
+  ],
+
+  customer: [
+    {type: Schema.Types.ObjectId, ref: 'customer', required: true}
   ]
 });
 
