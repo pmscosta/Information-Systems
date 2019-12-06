@@ -2,6 +2,7 @@ import React from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import TabPanel from "./TabPanel";
+import Grid from '@material-ui/core/Grid';
 import PropTypes from "prop-types";
 import "../../../style/common.css";
 import { Switch, Route, Link } from "react-router-dom";
@@ -9,8 +10,16 @@ import { Switch, Route, Link } from "react-router-dom";
 const TabLabels = options =>
   options.map((option, i) => (
     <Tab
-      label={option.label}
-      icon={<option.icon />}
+      label={<>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
+          <option.icon fontSize="small" style={{ marginRight: "1em" }} />
+          {option.label}
+        </Grid></>}
       key={option.label}
       value={option.label}
       to={option.to}
@@ -39,7 +48,7 @@ const TabsLayout = ({ options, value }) => {
       <Tabs
         value={value}
         indicatorColor="primary"
-        textColor="secondary"
+        textColor="primary"
         variant="fullWidth"
         centered
       >

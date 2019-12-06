@@ -9,9 +9,8 @@ const MainPage = () => {
   const value = useParams().view || "overview";
 
   return (
-    <MainPageLayout>
-      <br />
-      <TabsLayout value={value} options={MainTabsConfig()} />
+    <MainPageLayout style>
+      <TabsLayout style={{ backgroundColor: "yellow" }} value={value} options={MainTabsConfig()} />
     </MainPageLayout>
   );
 };
