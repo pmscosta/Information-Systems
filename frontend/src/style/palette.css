@@ -8,6 +8,6 @@
     /* Colors */
     --color-primary: var(--jewel);
     --color-secondary: var(--stark);
-    --color: var(--void);
-    --light-color: var(--stark);
+    --dark: var(--void);
+    --lilac: var(--fuschia);
 }

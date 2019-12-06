@@ -17,9 +17,10 @@ const TabLabels = options =>
           justify="center"
           alignItems="center"
         >
-          <option.icon fontSize="small" style={{ marginRight: "1em" }} />
-          {option.label}
-        </Grid></>}
+          <Grid item> <option.icon fontSize="small" style={{ marginRight: "1em" }} /> </Grid>
+          <Grid item>{option.label}</Grid>
+        </Grid>
+      </>}
       key={option.label}
       value={option.label}
       to={option.to}

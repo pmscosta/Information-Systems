@@ -10,7 +10,13 @@ const theme = createMuiTheme({
     },
     secondary: {
       main: getCssValue("--color-secondary").trim() || "#333"
-    }
+    },
+    error: {
+      main: getCssValue("--lilac").trim() || "#333"
+    },
+    disabled: {
+      main: getCssValue("--dark").trim() || "#333"
+    },
   }
 });
 
