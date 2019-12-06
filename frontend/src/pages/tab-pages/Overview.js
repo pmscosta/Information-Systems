@@ -4,7 +4,7 @@ import ValueCard from "../../components/ValueCard";
 
 const Overview = () => {
   return (
-    <MainPageLayout>
+    <>
       <ValueCard name="Purchases" value="123k" />
       <ValueCard name="Sales" value="343k" />
       <ValueCard name="Equity" value="53k" />
@@ -16,7 +16,7 @@ const Overview = () => {
       <ValueCard name="Purchases" value="123k" />
       <ValueCard name="Sales" value="343k" />
       <ValueCard name="Equity" value="53k" />
-    </MainPageLayout>
+    </>
   );
 };
 

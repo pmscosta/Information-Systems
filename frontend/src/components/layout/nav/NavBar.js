@@ -30,8 +30,9 @@ function NavBar() {
           href="/"
           style={{
             fontFamily: "Pacifico",
-            fontSize: "2em",
-            margin: "0.5em"
+            fontSize: "2.2em",
+            margin: "0.1em",
+            color: "#E7DFDD",
           }}
         >
           Sinfonia
@@ -47,7 +48,7 @@ function NavBar() {
         <label htmlFor="text-button-file">
           <Button
             variant="outlined"
-            color="inherit"
+            color="secondary"
             className={styles.button}
             startIcon={<CloudUploadIcon />}
           >
