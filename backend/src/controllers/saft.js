@@ -5,18 +5,11 @@ const fs = require('fs');
 const parser = require('../api/parser/parser');
 
 
-function parseFields(xml2js) {
+async function parseFields(xml2js) {
+  
+  await parser.parseCustomers(xml2js);
+  await parser.parseInvoices(xml2js);
 
-  let parseFuncs = [parser.getCustomers, parser.getInvoices];
-
-  parseFuncs.forEach(parseFunc => {
-
-    let list = parseFunc(xml2js);
-
-    list.forEach(elem => {
-      elem.save();
-    });
-  });
 }
 
 function addSaft(req, res) {
@@ -27,8 +20,8 @@ function addSaft(req, res) {
     .catch(console.error)
     .then((result) => {
       let newSafT = new SafT({ type: req.file.mimetype, data: result });
-      newSafT.save()
-        .catch(res.send);
+      // newSafT.save()
+      //   .catch(res.send);
 
       parseFields(result);
 

@@ -9,13 +9,13 @@ function getAll(req, res) {
 }
 
 function getByIdApi(req, res) {
-  Customer.find({CustomerTaxID: req.params.id})
+  Customer.find({CustomerID: req.params.id})
     .then(customer => res.json(customer))
     .catch(err => res.status(400).json(err));
 }
 
 function getById(id) {
-   return Customer.findOne({CustomerTaxID: id});
+   return Customer.findOne({CustomerID: id});
 }
 
 module.exports = {
