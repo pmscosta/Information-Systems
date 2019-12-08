@@ -10,6 +10,8 @@ function getAll(req, res) {
 }
 
 async function getTopClients(req, res) {
+  const orderedCustomers = [];
+
   let topCustomer = {
     customer: null,
     totalSpent: -Infinity
@@ -26,12 +28,18 @@ async function getTopClients(req, res) {
       totalSpent += i.netTotal;
     }
 
+    orderedCustomers.push({customer, totalSpent});
+
     if(topCustomer.totalSpent < totalSpent) {
       topCustomer = { customer, totalSpent };
     }
   }
 
-  res.json(topCustomer);
+  orderedCustomers.sort((a, b) => {
+    return b.totalSpent - a.totalSpent;
+  });
+
+  res.json(orderedCustomers);
 }
 
 function getByIdApi(req, res) {
