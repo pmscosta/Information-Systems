@@ -25,9 +25,7 @@ const invoiceSchema = new Schema({
   invoiceProducts: [
     {type: Schema.Types.ObjectId, ref: 'invoiceProduct'}
   ],
-  customer: [
-    {type: Schema.Types.ObjectId, ref: 'customer'}
-  ]
+  customer: {type: Schema.Types.ObjectId, ref: 'customer'}
 });
 
 const Invoice = mongoose.model('invoice', invoiceSchema);

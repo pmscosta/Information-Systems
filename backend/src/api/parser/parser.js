@@ -99,7 +99,7 @@ const parseInvoices = (xml2js) => {
 
             CustomerController.getById(invoice.CustomerID[0])
                 .then((customerdb) => {
-                    newInvoice.customer.push(customerdb);
+                    newInvoice.customer = customerdb;
                     newInvoice.save();
                 }).catch(err =>
                     res.status(400).json(err)
