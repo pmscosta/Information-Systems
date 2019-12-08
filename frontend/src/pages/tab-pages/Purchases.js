@@ -3,6 +3,7 @@ import LineChart from "../../components/LineChart/LineChart";
 import { getPurchasesInfo } from "../../services/PurchasesService";
 import { getData } from "../../utils/data_generator";
 import BarChart from "../../components/BarChart/BarChart";
+import { useSelector } from "react-redux";
 
 class Purchases extends React.Component {
   constructor(props) {
@@ -20,8 +21,11 @@ class Purchases extends React.Component {
   }
 
   componentDidMount() {
+    // const {
+    //   purchases,
+    // } = useSelector((reduxState) => reduxState.purchases);
+
     getPurchasesInfo().then(result => {
-      console.log(result);
       this.setState({
         openPurchases: result.open,
         receiptPurchases: result.invoiced,

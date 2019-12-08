@@ -1,12 +1,5 @@
 import React from "react";
-import MainPageLayout from "../../components/layout/MainPageLayout";
 import ValueCard from "../../components/ValueCard";
-import {
-  setPurchasesLoading,
-  setInventoryLoading,
-  setPurchasesData,
-  setInventoryData
-} from "../../actions/jasminActions";
 
 class Overview extends React.Component {
   render() {

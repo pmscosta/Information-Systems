@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import jasminReducer from "./jasminReducer";
+import purchasesReducer from "./purchasesReducer";
+import inventoryReducer from "./inventoryReducer";
 
 export default combineReducers({
-  jasmin: jasminReducer
+  purchases: purchasesReducer,
+  inventory: inventoryReducer
 });
