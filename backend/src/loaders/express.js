@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 
 const userRouter = require('../api/routes/user');
 const invoiceRouter = require('../api/routes/invoice');
+const customerRouter = require('../api/routes/customer');
 const saftRouter = require('../api/routes/saft');
 const productRouter = require('../api/routes/product');
 
@@ -16,6 +17,7 @@ module.exports = app => {
 
   app.use('/api/user', userRouter);
   app.use ('/api/invoice', invoiceRouter);
+  app.use ('/api/customer', customerRouter);
   app.use ('/api/saft', saftRouter);
   app.use('/api/product', productRouter);
 
