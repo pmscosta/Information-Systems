@@ -1,9 +1,21 @@
 import { purchasesTypes } from "../actions/purchasesActions";
+import {
+  createGraphData,
+  createItemsData,
+  createSuppliersData
+} from "../services/utils";
 
 const initialState = {
   loading: false,
   purchases: [],
-  purchasesError: null
+  purchasesError: null,
+  open: [],
+  invoiced: [],
+  totalOpenValue: 0,
+  totalReceiptValue: 0,
+  graphData: null,
+  itemsData: null,
+  suppliersData: null
 };
 
 export default (state = initialState, action) => {
@@ -13,11 +25,21 @@ export default (state = initialState, action) => {
         ...state,
         loading: action.payload
       };
-    case purchasesTypes.SET_PURCHASES:
+    case purchasesTypes.SET_PURCHASES: {
+      let invoiced = action.payload.invoiced;
+      let open = action.payload.open;
       return {
         ...state,
-        purchases: action.payload
+        invoiced: invoiced,
+        open: open,
+        purchases: action.payload,
+        totalReceiptValue: invoiced.reduce((a, b) => a + b.amount, 0),
+        totalOpenValue: open.reduce((a, b) => a + b.amount, 0),
+        graphData: createGraphData("Purchases", invoiced),
+        itemsData: createItemsData("Items", invoiced),
+        suppliersData: createSuppliersData("Suppliers", invoiced)
       };
+    }
     case purchasesTypes.SET_ERROR:
       return {
         ...state,
@@ -27,3 +49,26 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+// const open = res.data.open;
+// let invoiced = res.data.invoiced;
+
+// const graphData = createGraphData("Purchases", invoiced);
+
+// const itemsData = createItemsData("Items", invoiced);
+
+// const suppliersData = createSuppliersData("Suppliers", invoiced);
+
+// console.log(suppliersData);
+
+// const totalOpenValue = open.reduce((a, b) => a + b.amount, 0);
+// const totalReceiptValue = invoiced.reduce((a, b) => a + b.amount, 0);
+
+// return {
+//   open,
+//   invoiced,
+//   totalOpenValue,
+//   totalReceiptValue,
+//   graphData,
+//   itemsData,
+//   suppliersData
