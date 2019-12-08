@@ -1,11 +1,15 @@
 import React, { PureComponent } from "react";
 import { Treemap } from "recharts";
 import { getItems } from "../../services/StockService";
+import processInventoryQuantities from "../../utils/inventory/processInventoryQuantities";
 
 const data = [
   {
     name: "axis",
-    children: [{ name: "Axis", size: 24593 }]
+    children: [
+      { name: "Axis", size: 24593 },
+      { name: "Axis", size: 10000 }
+    ]
   },
   {
     name: "controls",
@@ -151,7 +155,8 @@ class CustomizedContent extends React.Component {
       payload,
       colors,
       rank,
-      name
+      name,
+      size
     } = this.props;
 
     return (
@@ -171,7 +176,7 @@ class CustomizedContent extends React.Component {
             strokeOpacity: 1 / (depth + 1e-10)
           }}
         />
-        {depth === 1 ? (
+        {depth === 1 && width > 100 ? (
           <text
             x={x + width / 2}
             y={y + height / 2 + 7}
@@ -190,7 +195,7 @@ class CustomizedContent extends React.Component {
             fontSize={16}
             fillOpacity={0.9}
           >
-            {index + 1}
+            {size}
           </text>
         ) : null}
       </g>
@@ -209,22 +214,24 @@ class Inventory extends React.Component {
   componentDidMount() {
     getItems().then(items => {
       this.setState({ items });
-      console.log(items);
+      console.log(processInventoryQuantities(items));
     });
   }
 
   render() {
     return (
-      <Treemap
-        width={400}
-        height={200}
-        data={data}
-        dataKey="size"
-        ratio={4 / 3}
-        stroke="#fff"
-        fill="#8884d8"
-        content={<CustomizedContent colors={COLORS} />}
-      />
+      this.state.items.length > 0 && (
+        <Treemap
+          width={400}
+          height={200}
+          data={processInventoryQuantities(this.state.items)}
+          dataKey="size"
+          ratio={4 / 3}
+          stroke="#fff"
+          fill="#8884d8"
+          content={<CustomizedContent colors={COLORS} />}
+        />
+      )
     );
   }
 }
