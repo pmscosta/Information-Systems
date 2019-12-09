@@ -37,7 +37,7 @@ const getCompanyName = (data) => {
 }
 
 const parseCustomers = (xml2js) => {
-    return Promise.all(xml2js.AuditFile.MasterFiles[0].Customer.map(async () => {
+    return Promise.all(xml2js.AuditFile.MasterFiles[0].Customer.map(async (customer) => {
         try {
             const result = await Customer.findOne({ CustomerID: customer.CustomerID[0] });
 
