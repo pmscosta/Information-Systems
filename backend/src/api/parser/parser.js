@@ -37,24 +37,25 @@ const getCompanyName = (data) => {
 }
 
 const parseCustomers = (xml2js) => {
+    return Promise.all(xml2js.AuditFile.MasterFiles[0].Customer.map(async () => {
+        try {
+            const result = await Customer.findOne({ CustomerID: customer.CustomerID[0] });
 
-    return new Promise((resolve, reject) => {
-
-        xml2js.AuditFile.MasterFiles[0].Customer.forEach(customer => {
-
-            const cust = new Customer(
-                {
-                    CustomerID: customer.CustomerID[0],
-                    CustomerTaxID: customer.CustomerTaxID[0],
-                    CompanyName: customer.CompanyName[0]
-                }
-            );
-
-            cust.save()
-                .then((res) => resolve(res))
-                .catch((err) => reject(err))
-        });
-    });
+            if(result === null) {
+                const cust = new Customer(
+                    {
+                        CustomerID: customer.CustomerID[0],
+                        CustomerTaxID: customer.CustomerTaxID[0],
+                        CompanyName: customer.CompanyName[0]
+                    }
+                );
+    
+                await cust.save();
+            }
+        } catch(error) {
+            console.log(error);
+        }
+    }));
 }
 
 const getProducts = (xml2js) => {
@@ -71,7 +72,6 @@ const getProducts = (xml2js) => {
 const parseInvoices = (xml2js) => {
 
     return new Promise((resolve, reject) => {
-
         xml2js.AuditFile.SourceDocuments[0].SalesInvoices[0].Invoice.forEach(invoice => {
 
             const newInvoice = new Invoice(
