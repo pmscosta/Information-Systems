@@ -17,7 +17,7 @@ class LineChart extends React.Component {
       backgroundColor: this.props.color,
       pointRadius: 4,
       borderColor: this.props.color,
-      borderWidth: 1,
+      borderWidth: 3,
       lineTension: 0
     };
   }

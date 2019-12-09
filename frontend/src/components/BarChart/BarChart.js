@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Chart from "chart.js";
 
 import "./BarChart.css";
+import { Button } from "@material-ui/core";
+import UpdateOutlinedIcon from "@material-ui/icons/UpdateOutlined";
 
 const BarChart = props => {
   const [items, setItems] = useState(props.data);
@@ -13,7 +15,7 @@ const BarChart = props => {
     let data = [];
     Object.keys(items).forEach(key => {
       if (showQuantity) {
-        data.push(items[key].quantity);
+        data.push(items[key].quantity * 20);
       } else {
         data.push(items[key].value);
       }
@@ -23,20 +25,7 @@ const BarChart = props => {
 
     return {
       label,
-      backgroundColor: [
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(255, 206, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-        "rgba(153, 102, 255, 0.2)",
-        "rgba(255, 159, 64, 0.2)",
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(255, 206, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-        "rgba(153, 102, 255, 0.2)",
-        "rgba(255, 159, 64, 0.2)"
-      ],
+      backgroundColor: ["#FF555E", "#FF8650", "#83B2FF", "#FFE981", "#8BF18B"],
       data
     };
   };
@@ -55,6 +44,14 @@ const BarChart = props => {
       new Chart(canvasRef.current, {
         type: "horizontalBar",
         options: {
+          legend: {
+            position: "top"
+          },
+          elements: {
+            rectangle: {
+              borderWidth: 0.2
+            }
+          },
           showTooltips: false,
           scales: {
             xAxes: [
@@ -66,17 +63,13 @@ const BarChart = props => {
             ],
             yAxes: [
               {
+                barPercentage: 0.4,
                 ticks: {
                   beginAtZero: true,
                   min: 0
                 }
               }
             ]
-          },
-          elements: {
-            rectangle: {
-              borderWidth: 1
-            }
           },
           responsive: true
         },
@@ -90,11 +83,15 @@ const BarChart = props => {
   }, [showQuantity]);
 
   return (
-    <div>
+    <div className="inner-graph">
       <canvas ref={canvasRef} />
-      <button type="button" onClick={() => setToggle(!showQuantity)}>
-        Change
-      </button>
+      <Button
+        variant="outlined"
+        endIcon={<UpdateOutlinedIcon>change</UpdateOutlinedIcon>}
+        onClick={() => setToggle(!showQuantity)}
+      >
+        Toggle data
+      </Button>
     </div>
   );
 };

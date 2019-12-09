@@ -1,0 +1,57 @@
+#purchases-page {
+  margin-top: 2em;
+}
+#purchases-bar-graph {
+  max-width: 100%;
+  max-height: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 500px) {
+  #purchases-bar-graph {
+    flex-direction: column;
+  }
+}
+
+#purchases-line-graph {
+  margin-top: 3.5em;
+  max-width: 100%;
+  max-height: 50%;
+  display: flex;
+  align-content: center;
+  vertical-align: middle;
+  align-items: center;
+}
+
+@media (max-width: 500px) {
+  #purchases-line-graph {
+    flex-direction: column;
+  }
+}
+
+.graph-wrapper {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inner-graph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inner-graph button {
+  max-width: fit-content;
+}
+
+#purchases-line-graph .graph-wrapper {
+  max-height: 20em;
+}
+
+.graph-title {
+  font-size: larger;
+}
