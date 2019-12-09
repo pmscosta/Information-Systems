@@ -8,6 +8,7 @@ const parser = require('../api/parser/parser');
 async function parseFields(xml2js) {
   
   await parser.parseCustomers(xml2js);
+
   await parser.parseInvoices(xml2js);
 
 }
@@ -18,12 +19,12 @@ function addSaft(req, res) {
 
   parser.parseXML(file)
     .catch(console.error)
-    .then((result) => {
+    .then(async (result) => {
       let newSafT = new SafT({ type: req.file.mimetype, data: result });
       // newSafT.save()
       //   .catch(res.send);
 
-      parseFields(result);
+      await parseFields(result);
 
       res.json("Done");
     }).catch(err => res.status(400).json(err));
