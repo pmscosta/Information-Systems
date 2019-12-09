@@ -2,6 +2,7 @@ const fs = require('fs');
 const Invoice = require('../../models/invoice');
 const InvoiceProduct = require('../../models/invoiceProduct');
 const Customer = require('../../models/customer');
+const Product = require('../../models/product')
 const CustomerController = require('../../controllers/customer');
 
 const parser = require('xml2js');
@@ -17,22 +18,6 @@ function parseXML(xml) {
                 resolve(result);
             }
         });
-    });
-}
-
-
-class Product {
-    constructor(ProductType, ProductCode, ProductDescription) {
-        this.ProductType = ProductType;
-        this.ProductCode = ProductCode;
-        this.ProductDescription = ProductDescription;
-    }
-}
-
-const getCompanyName = (data) => {
-    parser.parseString(data, (err, result) => {
-        if (err) throw err;
-        console.log(result.AuditFile.Header[0].CompanyName[0]);
     });
 }
 
@@ -53,20 +38,31 @@ const parseCustomers = (xml2js) => {
                 await cust.save();
             }
         } catch(error) {
-            console.log(error);
+            console.error(error);
         }
     }));
 }
 
-const getProducts = (xml2js) => {
-    let productsList = [];
+const parseProducts = (xml2js) => {
+    await Promise.all(xml2js.AuditFile.MasterFiles[0].Product.map(async (product) => {
+        try {
+            const result = await Product.findOne({ productCode: product.ProductCode[0] });
 
-    xml2js.AuditFile.MasterFiles[0].Product.forEach(product => {
-        const prod = new Product(product.ProductType[0], product.ProductCode[0], product.ProductDescription[0]);
-        productsList.push(prod);
-    });
+            if(result === null){
+                const prod = new Product(
+                    {
+                    ProductType: product.ProductType[0], 
+                    ProductCode: product.ProductCode[0], 
+                    ProductDescription: product.ProductDescription[0]
+                    }
+                );
 
-    return productsList;
+                await prod.save();
+            }
+        } catch(error){
+            console.error(error)
+        }
+    }))
 }
 
 const parseInvoices = (xml2js) => {
@@ -112,7 +108,7 @@ const parseInvoices = (xml2js) => {
 module.exports = {
     parseXML,
     parseInvoices,
-    getProducts,
+    parseProducts,
     parseCustomers
 };
 
