@@ -12,11 +12,6 @@ function getAll(req, res) {
 async function getTopClients(req, res) {
   const orderedCustomers = [];
 
-  let topCustomer = {
-    customer: null,
-    totalSpent: -Infinity
-  };
-
   const customers = await Customer.find();
 
   for(const customer of customers) {
@@ -29,10 +24,6 @@ async function getTopClients(req, res) {
     }
 
     orderedCustomers.push({customer, totalSpent});
-
-    if(topCustomer.totalSpent < totalSpent) {
-      topCustomer = { customer, totalSpent };
-    }
   }
 
   orderedCustomers.sort((a, b) => {
