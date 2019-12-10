@@ -20,7 +20,6 @@ function getAllTest(req, res) {
 function getTopSoldProducts(req, res) {
 
   InvoiceProduct.aggregate([
-    // { $match: { time: {$gte: a, $lte: tomorrow} } },
     { $group: { _id: "$productCode", count: { $sum: 1 }, salesValue: { $sum: {$multiply: ["$quantity", "$unitPrice"] } } }},
     { $sort : { count : -1} }
   ])
@@ -28,8 +27,36 @@ function getTopSoldProducts(req, res) {
     .catch(err => res.status(400).json(err));
 }
 
+const getSalesPerMonth = async (req, res) => {
+  const salesPerMonth = [];
+
+  try{
+    for(let i = 1; i <= 12; i++){
+      let monthTotal = 0;
+      const monthStartDate = `${moment().year()}-${i}-1`;
+      const nextMonthStartDate = i + 1 > 12? `${moment().year() + 1}-${1}-1` : `${moment().year()}-${i + 1}-1`;
+      const aMonthWorthOfInvoices = await InvoiceProduct.find({ date: { $gte: monthStartDate, $lte:  nextMonthStartDate} });
+
+      for(const invoice of aMonthWorthOfInvoices){
+        monthTotal += invoice.quantity * invoice.unitPrice;
+      }
+      const lastInvoice = aMonthWorthOfInvoices[aMonthWorthOfInvoices.length - 1];
+      monthTotal -= lastInvoice.quantity * lastInvoice.unitPrice;
+
+      salesPerMonth.push(monthTotal);
+    }
+
+  } catch (err){
+    console.error(err)
+    err => res.status(400).json(err)
+  }
+
+  res.json(productsPerMonth);
+}
+
 module.exports = {
   getAll,
   getAllTest,
-  getTopSoldProducts
+  getTopSoldProducts,
+  getSalesPerMonth
 };
