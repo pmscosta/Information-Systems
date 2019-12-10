@@ -2,8 +2,9 @@ const fs = require('fs');
 const Invoice = require('../../models/invoice');
 const InvoiceProduct = require('../../models/invoiceProduct');
 const Customer = require('../../models/customer');
-const Product = require('../../models/product')
 const CustomerController = require('../../controllers/customer');
+const moment = require('moment')
+
 
 const parser = require('xml2js');
 const parseString = parser.parseString;
@@ -43,28 +44,6 @@ const parseCustomers = (xml2js) => {
     }));
 }
 
-const parseProducts = (xml2js) => {
-    await Promise.all(xml2js.AuditFile.MasterFiles[0].Product.map(async (product) => {
-        try {
-            const result = await Product.findOne({ productCode: product.ProductCode[0] });
-
-            if(result === null){
-                const prod = new Product(
-                    {
-                    ProductType: product.ProductType[0], 
-                    ProductCode: product.ProductCode[0], 
-                    ProductDescription: product.ProductDescription[0]
-                    }
-                );
-
-                await prod.save();
-            }
-        } catch(error){
-            console.error(error)
-        }
-    }))
-}
-
 const parseInvoices = (xml2js) => {
 
     return new Promise((resolve, reject) => {
@@ -85,7 +64,8 @@ const parseInvoices = (xml2js) => {
                         productCode: line.ProductCode[0],
                         productDescription: line.ProductDescription[0],
                         quantity: line.Quantity[0],
-                        unitPrice: line.UnitPrice[0]
+                        unitPrice: line.UnitPrice[0],
+                        date: moment(invoice.InvoiceDate[0])
                     }
                 );
 
@@ -108,7 +88,6 @@ const parseInvoices = (xml2js) => {
 module.exports = {
     parseXML,
     parseInvoices,
-    parseProducts,
     parseCustomers
 };
 
