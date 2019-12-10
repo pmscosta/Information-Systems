@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+require('mongoose-moment')(mongoose);
 
 const { Schema } = mongoose;
 
@@ -19,6 +20,10 @@ const invoiceProductSchema = new Schema({
   },
   unitPrice: {
     type: Number,
+    required: true
+  },
+  date: {
+    type: Date,
     required: true
   }
 });
