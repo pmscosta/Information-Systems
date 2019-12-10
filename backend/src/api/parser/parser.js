@@ -3,7 +3,7 @@ const Invoice = require('../../models/invoice');
 const InvoiceProduct = require('../../models/invoiceProduct');
 const Customer = require('../../models/customer');
 const CustomerController = require('../../controllers/customer');
-const moment = require('moment')
+const moment = require('moment');
 
 
 const parser = require('xml2js');

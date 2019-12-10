@@ -2,6 +2,7 @@
 
 const Invoice = require('../models/invoice');
 const InvoiceProduct = require('../models/invoiceProduct');
+const moment = require('moment');
 
 function getAll(req, res) {
   InvoiceProduct.find()
@@ -35,14 +36,11 @@ const getSalesPerMonth = async (req, res) => {
       let monthTotal = 0;
       const monthStartDate = `${moment().year()}-${i}-1`;
       const nextMonthStartDate = i + 1 > 12? `${moment().year() + 1}-${1}-1` : `${moment().year()}-${i + 1}-1`;
-      const aMonthWorthOfInvoices = await InvoiceProduct.find({ date: { $gte: monthStartDate, $lte:  nextMonthStartDate} });
+      const aMonthWorthOfInvoices = await InvoiceProduct.find({ date: { $gte: monthStartDate, $lt:  nextMonthStartDate} });
 
       for(const invoice of aMonthWorthOfInvoices){
         monthTotal += invoice.quantity * invoice.unitPrice;
       }
-      const lastInvoice = aMonthWorthOfInvoices[aMonthWorthOfInvoices.length - 1];
-      monthTotal -= lastInvoice.quantity * lastInvoice.unitPrice;
-
       salesPerMonth.push(monthTotal);
     }
 
@@ -50,8 +48,8 @@ const getSalesPerMonth = async (req, res) => {
     console.error(err)
     err => res.status(400).json(err)
   }
-
-  res.json(productsPerMonth);
+  
+  res.json(salesPerMonth);
 }
 
 module.exports = {
