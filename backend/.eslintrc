@@ -1,0 +1,23 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "script"
+  },
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["promise", "prettier"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "strict": ["error", "global"],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.test.js", "**/setupTests.js"]
+      }
+    ]
+  }
+}

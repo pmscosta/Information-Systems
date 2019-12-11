@@ -9,7 +9,6 @@ const options = {
   useFindAndModify: false,
 };
 
-
 const setupDBConnection = async () => {
   try {
     await mongoose
