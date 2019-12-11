@@ -16,7 +16,12 @@ import {
 } from "../../actions/purchasesActions";
 import {
   setSalesLoading,
-  setSalesData,
+  setSalesTopClients,
+  setSalesClients,
+  setSalesInvoices,
+  setSalesTotal,
+  setSalesTopSoldProducts,
+  setSalesPerMonth,
   setSalesError
 } from "../../actions/salesActions";
 
@@ -26,7 +31,7 @@ class MainPage extends React.Component {
   componentDidMount() {
     this.getInventory();
     this.getPurchases();
-    // this.getSales();
+    this.getSales();
   }
 
   getInventory = () => {
@@ -51,7 +56,7 @@ class MainPage extends React.Component {
       .get("/api/jasmin/purchases")
       .then(res => {
         this.props.setPurchasesData(res.data);
-        console.log("hey");
+
         this.props.setPurchasesLoading(false);
       })
       .catch(err => {
@@ -63,14 +68,58 @@ class MainPage extends React.Component {
   getSales = () => {
     this.props.setSalesLoading(true);
     axios
-      .get("/api/jasmin/sales")
+      .get("/api/customer/topclient")
       .then(res => {
-        this.props.setSalesData(res.data);
+        this.props.setSalesTopClients(res.data);
         this.props.setSalesLoading(false);
       })
       .catch(err => {
         this.props.setSalesError(err);
-        this.props.setPurchasesLoading(false);
+      });
+    axios
+      .get("/api/customer")
+      .then(res => {
+        this.props.setSalesClients(res.data);
+        this.props.setSalesLoading(false);
+      })
+      .catch(err => {
+        this.props.setSalesError(err);
+      });
+    axios
+      .get("/api/invoice")
+      .then(res => {
+        this.props.setSalesInvoices(res.data);
+        this.props.setSalesLoading(false);
+      })
+      .catch(err => {
+        this.props.setSalesError(err);
+      });
+    axios
+      .get("/api/invoice/totalSales")
+      .then(res => {
+        this.props.setSalesTotal(res.data);
+        this.props.setSalesLoading(false);
+      })
+      .catch(err => {
+        this.props.setSalesError(err);
+      });
+    axios
+      .get("/api/product/topSoldProducts")
+      .then(res => {
+        this.props.setSalesTopSoldProducts(res.data);
+        this.props.setSalesLoading(false);
+      })
+      .catch(err => {
+        this.props.setSalesError(err);
+      });
+    axios
+      .get("/api/product/salesPerMonth")
+      .then(res => {
+        this.props.setSalesPerMonth(res.data);
+        this.props.setSalesLoading(false);
+      })
+      .catch(err => {
+        this.props.setSalesError(err);
       });
   };
 
@@ -89,27 +138,25 @@ class MainPage extends React.Component {
 }
 
 MainPage.propTypes = {
-  inventory: PropTypes.object.isRequired,
   setInventoryData: PropTypes.func.isRequired,
   setInventoryLoading: PropTypes.func.isRequired,
   setInventoryError: PropTypes.func.isRequired,
 
-  purchases: PropTypes.object.isRequired,
   setPurchasesData: PropTypes.func.isRequired,
   setPurchasesLoading: PropTypes.func.isRequired,
   setPurchasesError: PropTypes.func.isRequired,
 
-  sales: PropTypes.object.isRequired,
-  setSalesData: PropTypes.func.isRequired,
+  setSalesTopClients: PropTypes.func.isRequired,
+  setSalesClients: PropTypes.func.isRequired,
+  setSalesInvoices: PropTypes.func.isRequired,
+  setSalesTotal: PropTypes.func.isRequired,
+  setSalesTopSoldProducts: PropTypes.func.isRequired,
+  setSalesPerMonth: PropTypes.func.isRequired,
   setSalesLoading: PropTypes.func.isRequired,
   setSalesError: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-  inventory: { ...state.inventory.inventory },
-  purchases: { ...state.purchases.purchases },
-  sales: { ...state.sales.sales }
-});
+const mapStateToProps = () => {};
 
 const mapDispatchToProps = {
   setInventoryLoading,
@@ -119,7 +166,12 @@ const mapDispatchToProps = {
   setPurchasesData,
   setPurchasesError,
   setSalesLoading,
-  setSalesData,
+  setSalesTopClients,
+  setSalesClients,
+  setSalesInvoices,
+  setSalesTotal,
+  setSalesTopSoldProducts,
+  setSalesPerMonth,
   setSalesError
 };
 
