@@ -45,6 +45,8 @@ const useStyles = makeStyles(theme => ({
 const Inventory = () => {
   const classes = useStyles();
   const { loading, inventory } = useSelector(state => state.inventory);
+  console.log("inventory");
+  console.log(inventory);
 
   console.log(inventory);
 

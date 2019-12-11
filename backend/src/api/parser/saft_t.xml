@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<AuditFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:OECD:StandardAuditFile-Tax:PT_1.04_01">
+  <Header>
+    <AuditFileVersion>1.04_01</AuditFileVersion>
+    <CompanyID>232707669</CompanyID>
+    <TaxRegistrationNumber>232707669</TaxRegistrationNumber>
+    <TaxAccountingBasis>F</TaxAccountingBasis>
+    <CompanyName>SINFonia</CompanyName>
+    <CompanyAddress>
+      <BuildingNumber>0</BuildingNumber>
+      <StreetName>Rua Oliveira Gaio </StreetName>
+      <AddressDetail>Rua Oliveira Gaio    4465-219 S�o Mamede Infesta</AddressDetail>
+      <City>S�o Mamede Infesta</City>
+      <PostalCode>4465-219</PostalCode>
+      <Region>Desconhecido</Region>
+      <Country xsi:type="xsd:string">PT</Country>
+    </CompanyAddress>
+    <FiscalYear>2019</FiscalYear>
+    <StartDate>2019-09-01</StartDate>
+    <EndDate>2019-11-30</EndDate>
+    <CurrencyCode xsi:type="xsd:string">EUR</CurrencyCode>
+    <DateCreated>2019-11-13</DateCreated>
+    <TaxEntity>GLOBAL</TaxEntity>
+    <ProductCompanyTaxID>503140600</ProductCompanyTaxID>
+    <SoftwareCertificateNumber>2616</SoftwareCertificateNumber>
+    <ProductID>PRIMAVERA JASMIN/PRIMAVERA Business Software Solutions</ProductID>
+    <ProductVersion>1.00</ProductVersion>
+  </Header>
+  <MasterFiles>
+    <Customer>
+      <CustomerID>0004.506325776</CustomerID>
+      <AccountID>Desconhecido</AccountID>
+      <CustomerTaxID>506325776</CustomerTaxID>
+      <CompanyName>Escola de Musica de Rock, UNIPESSOAL, LDA</CompanyName>
+      <BillingAddress>
+        <BuildingNumber>Desconheci</BuildingNumber>
+        <StreetName>LUGAR DE RIBEIRO</StreetName>
+        <AddressDetail>Escola de M�sica de Rock, UNIPESSOAL, LDA  LUGAR DE RIBEIRO   4715-472 PEDRALVA</AddressDetail>
+        <City>PEDRALVA</City>
+        <PostalCode>4715-472</PostalCode>
+        <Region>Desconhecido</Region>
+        <Country>PT</Country>
+      </BillingAddress>
+      <Telephone>Desconhecido</Telephone>
+      <Fax>Desconhecido</Fax>
+      <Email>Desconhecido</Email>
+      <Website>Desconhecido</Website>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Customer>
+      <CustomerID>INDIF.1</CustomerID>
+      <AccountID>Desconhecido</AccountID>
+      <CustomerTaxID>999999990</CustomerTaxID>
+      <CompanyName>Consumidor final</CompanyName>
+      <BillingAddress>
+        <BuildingNumber>Desconheci</BuildingNumber>
+        <StreetName>Desconhecido</StreetName>
+        <AddressDetail>Cliente Indiferenciado</AddressDetail>
+        <City>Desconhecido</City>
+        <PostalCode>Desconhecido</PostalCode>
+        <Region>Desconhecido</Region>
+        <Country>PT</Country>
+      </BillingAddress>
+      <Telephone>Desconhecido</Telephone>
+      <Fax>Desconhecido</Fax>
+      <Email>Desconhecido</Email>
+      <Website>Desconhecido</Website>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Customer>
+      <CustomerID>INDIF.2</CustomerID>
+      <AccountID>Desconhecido</AccountID>
+      <CustomerTaxID>999999990</CustomerTaxID>
+      <CompanyName>Consumidor final</CompanyName>
+      <BillingAddress>
+        <BuildingNumber>Desconheci</BuildingNumber>
+        <StreetName>Desconhecido</StreetName>
+        <AddressDetail>Cliente Indiferenciado</AddressDetail>
+        <City>Desconhecido</City>
+        <PostalCode>Desconhecido</PostalCode>
+        <Region>Desconhecido</Region>
+        <Country>PT</Country>
+      </BillingAddress>
+      <Telephone>Desconhecido</Telephone>
+      <Fax>Desconhecido</Fax>
+      <Email>Desconhecido</Email>
+      <Website>Desconhecido</Website>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Customer>
+      <CustomerID>SINF.232707669</CustomerID>
+      <AccountID>Desconhecido</AccountID>
+      <CustomerTaxID>232707669</CustomerTaxID>
+      <CompanyName>SINFonia</CompanyName>
+      <BillingAddress>
+        <BuildingNumber>Desconheci</BuildingNumber>
+        <StreetName>Rua Oliveira Gaio </StreetName>
+        <AddressDetail>SINFonia  Rua Oliveira Gaio    4465-219 S�o Mamede Infesta</AddressDetail>
+        <City>S�o Mamede Infesta</City>
+        <PostalCode>4465-219</PostalCode>
+        <Region>Desconhecido</Region>
+        <Country>PT</Country>
+      </BillingAddress>
+      <Telephone>Desconhecido</Telephone>
+      <Fax>Desconhecido</Fax>
+      <Email>Desconhecido</Email>
+      <Website>Desconhecido</Website>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>W0001</ProductCode>
+      <ProductGroup>Sem fam�lia</ProductGroup>
+      <ProductDescription>Description</ProductDescription>
+      <ProductNumberCode>W0001</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>FL001</ProductCode>
+      <ProductGroup>Sem fam�lia</ProductGroup>
+      <ProductDescription>German Flute</ProductDescription>
+      <ProductNumberCode>FL001</ProductNumberCode>
+    </Product>
+    <TaxTable>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>NOR</TaxCode>
+        <Description>Taxa Normal</Description>
+        <TaxPercentage>23.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>ISE</TaxCode>
+        <Description>Isento</Description>
+        <TaxPercentage>0.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>RED</TaxCode>
+        <Description>Taxa Reduzida</Description>
+        <TaxPercentage>6.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>INT</TaxCode>
+        <Description>Taxa Interm�dia</Description>
+        <TaxPercentage>13.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-MA</TaxCountryRegion>
+        <TaxCode>NOR</TaxCode>
+        <Description>Taxa Normal</Description>
+        <TaxPercentage>22.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-MA</TaxCountryRegion>
+        <TaxCode>ISE</TaxCode>
+        <Description>Isento</Description>
+        <TaxPercentage>0.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-MA</TaxCountryRegion>
+        <TaxCode>INT</TaxCode>
+        <Description>Taxa Interm�dia</Description>
+        <TaxPercentage>12.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-MA</TaxCountryRegion>
+        <TaxCode>RED</TaxCode>
+        <Description>Taxa Reduzida</Description>
+        <TaxPercentage>5.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-AC</TaxCountryRegion>
+        <TaxCode>NOR</TaxCode>
+        <Description>Taxa Normal</Description>
+        <TaxPercentage>18.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-AC</TaxCountryRegion>
+        <TaxCode>ISE</TaxCode>
+        <Description>Isento</Description>
+        <TaxPercentage>0.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-AC</TaxCountryRegion>
+        <TaxCode>INT</TaxCode>
+        <Description>Taxa Interm�dia</Description>
+        <TaxPercentage>9.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-AC</TaxCountryRegion>
+        <TaxCode>RED</TaxCode>
+        <Description>Taxa Reduzida</Description>
+        <TaxPercentage>4.000000</TaxPercentage>
+      </TaxTableEntry>
+    </TaxTable>
+  </MasterFiles>
+  <SourceDocuments>
+    <SalesInvoices>
+      <NumberOfEntries>3</NumberOfEntries>
+      <TotalDebit>0</TotalDebit>
+      <TotalCredit>75.000000</TotalCredit>
+      <Invoice>
+        <InvoiceNo>FA 2019/1</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2019-11-09T18:19:27</InvoiceStatusDate>
+          <SourceID>up201605339@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>aSbvzB2Q5cahww/Fp15l9nuw4Ul4AKlMKkeVCr/+DUoLXF/sMYIRL7La4p9p5BxOBx0VZFb6vsIYcTeGpbVTUxkttOCUbGgiL8mCWekdJdVfhTqT3ubdrmkQ051YsK2aW+RerarmHrl1LU8CLa2XJfkYc24qiYJIQibUXtmSklw=</Hash>
+        <HashControl>1</HashControl>
+        <Period>11</Period>
+        <InvoiceDate>2019-11-09</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>up201605339@fe.up.pt</SourceID>
+        <SystemEntryDate>2019-11-09T18:19:27</SystemEntryDate>
+        <CustomerID>0004.506325776</CustomerID>
+        <ShipTo>
+          <Address>
+            <StreetName>LUGAR DE RIBEIRO</StreetName>
+            <AddressDetail>Your Address LUGAR DE RIBEIRO   4715-472 PEDRALVA</AddressDetail>
+            <City>PEDRALVA</City>
+            <PostalCode>4715-472</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <Address>
+            <StreetName>Rua Oliveira Gaio </StreetName>
+            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 S�o Mamede Infesta</AddressDetail>
+            <City>S�o Mamede Infesta</City>
+            <PostalCode>4465-219</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2019-11-09T18:21:17</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <OrderReferences>
+            <OriginatingON>GR 2019/1</OriginatingON>
+          </OrderReferences>
+          <ProductCode>FL001</ProductCode>
+          <ProductDescription>German Flute</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>25.000000</UnitPrice>
+          <TaxPointDate>2019-11-09</TaxPointDate>
+          <Description>German Flute</Description>
+          <CreditAmount>25.000000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.000000</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>5.75</TaxPayable>
+          <NetTotal>25.00</NetTotal>
+          <GrossTotal>30.75</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.000000</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA 2019/2</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2019-11-10T00:16:43</InvoiceStatusDate>
+          <SourceID>up201506154@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>PhrKeHoQtL3cilqnBIMgOmqtajuzMPNteRI1MhdLmMVJYWMAyF37sq2a+UAfRqp1AQpkZPOGjp7pMtVyaYO9KJbX4B0jhTBaw55EQbJkciGuJ5HcEIc2km6ipSX8BT2Al3Vb6j5BFv4dWFc2Hyzpz2S1rBvfnRL55dLkxDp1A7Q=</Hash>
+        <HashControl>1</HashControl>
+        <Period>11</Period>
+        <InvoiceDate>2019-11-10</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>up201506154@fe.up.pt</SourceID>
+        <SystemEntryDate>2019-11-10T00:16:43</SystemEntryDate>
+        <CustomerID>0004.506325776</CustomerID>
+        <ShipTo>
+          <Address>
+            <StreetName>LUGAR DE RIBEIRO</StreetName>
+            <AddressDetail>Your Address LUGAR DE RIBEIRO   4715-472 PEDRALVA</AddressDetail>
+            <City>PEDRALVA</City>
+            <PostalCode>4715-472</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <Address>
+            <StreetName>Rua Oliveira Gaio </StreetName>
+            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 S�o Mamede Infesta</AddressDetail>
+            <City>S�o Mamede Infesta</City>
+            <PostalCode>4465-219</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2019-11-10T00:17:56</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>FL001</ProductCode>
+          <ProductDescription>German Flute</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>25.000000</UnitPrice>
+          <TaxPointDate>2019-11-10</TaxPointDate>
+          <Description>German Flute</Description>
+          <CreditAmount>25.000000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.000000</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>5.75</TaxPayable>
+          <NetTotal>25.00</NetTotal>
+          <GrossTotal>30.75</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.000000</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA 2019/3</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2019-11-13T11:24:11</InvoiceStatusDate>
+          <SourceID>up201605344@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>gfbqpFmWAzn3iT73L4QuVh03Fssa5zdX+SkZvCf61vhWL1bqX3J01sdXuglgDhrPbuQyZalYBJSOoBvjLpjV6573krbtquFmEdVtFEccpaJv361sI9OCmKVtV4DIUGouDxEM6el497O/6n+LsP5W/uOyGV3jzD08kNWxRI0sTiY=</Hash>
+        <HashControl>1</HashControl>
+        <Period>11</Period>
+        <InvoiceDate>2019-11-13</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>up201605344@fe.up.pt</SourceID>
+        <SystemEntryDate>2019-11-13T11:24:10</SystemEntryDate>
+        <CustomerID>0004.506325776</CustomerID>
+        <ShipTo>
+          <Address>
+            <StreetName>LUGAR DE RIBEIRO</StreetName>
+            <AddressDetail>Your Address LUGAR DE RIBEIRO   4715-472 PEDRALVA</AddressDetail>
+            <City>PEDRALVA</City>
+            <PostalCode>4715-472</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <Address>
+            <StreetName>Rua Oliveira Gaio </StreetName>
+            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 S�o Mamede Infesta</AddressDetail>
+            <City>S�o Mamede Infesta</City>
+            <PostalCode>4465-219</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2019-11-13T11:25:15</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>FL001</ProductCode>
+          <ProductDescription>German Flute</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>25.000000</UnitPrice>
+          <TaxPointDate>2019-11-13</TaxPointDate>
+          <Description>German Flute</Description>
+          <CreditAmount>25.000000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.000000</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>5.75</TaxPayable>
+          <NetTotal>25.00</NetTotal>
+          <GrossTotal>30.75</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.000000</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+    </SalesInvoices>
+    <MovementOfGoods>
+      <NumberOfMovementLines>4</NumberOfMovementLines>
+      <TotalQuantityIssued>4.000000</TotalQuantityIssued>
+      <StockMovement>
+        <DocumentNumber>GR 2019/1</DocumentNumber>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <MovementStatus>N</MovementStatus>
+          <MovementStatusDate>2019-11-09T18:18:09</MovementStatusDate>
+          <SourceID>up201605339@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>cBJkkmG1kGVml32blmaCOQ4mx9FqDWmLyR3Sh0IRxf/lcpDJwYKp42wMpLxwLux6fsfmalP18aFbCllEutiB2x7rSyYL1m3gSbY2w0IGy3lIHcLkBwVrDwoY1bt9+mp9u0S4CoOs9lz3fRVe3NZpkUdMxYtgHuXMwRoEK7abyC0=</Hash>
+        <HashControl>1</HashControl>
+        <Period>11</Period>
+        <MovementDate>2019-11-09</MovementDate>
+        <MovementType>GR</MovementType>
+        <SystemEntryDate>2019-11-09T18:18:09</SystemEntryDate>
+        <CustomerID>0004.506325776</CustomerID>
+        <SourceID>up201605339@fe.up.pt</SourceID>
+        <ShipTo>
+          <Address>
+            <BuildingNumber>0</BuildingNumber>
+            <StreetName>LUGAR DE RIBEIRO</StreetName>
+            <AddressDetail>Your Address LUGAR DE RIBEIRO   4715-472 PEDRALVA</AddressDetail>
+            <City>PEDRALVA</City>
+            <PostalCode>4715-472</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <Address>
+            <BuildingNumber>0</BuildingNumber>
+            <StreetName>Rua Oliveira Gaio </StreetName>
+            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 S�o Mamede Infesta</AddressDetail>
+            <City>S�o Mamede Infesta</City>
+            <PostalCode>4465-219</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2019-11-09T18:18:09.107</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>FL001</ProductCode>
+          <ProductDescription>German Flute</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>25.0000000000000000</UnitPrice>
+          <Description>German Flute</Description>
+          <CreditAmount>25.000000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>5.75</TaxPayable>
+          <NetTotal>25.00</NetTotal>
+          <GrossTotal>30.75</GrossTotal>
+        </DocumentTotals>
+      </StockMovement>
+      <StockMovement>
+        <DocumentNumber>GMA 2019/1</DocumentNumber>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <MovementStatus>N</MovementStatus>
+          <MovementStatusDate>2019-11-10T05:09:01</MovementStatusDate>
+          <SourceID>up201506154@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>Poo+5vkcAuo1hyKKeGqmJ4iyZAQKsTWNTIMYCyvwCZyo64TxISwXqnN5z+jw9IOzjTG3H5/8GvvANSke7iZ5xd8pBfspPn8xD/jmcWPSmajL+knlvWMEvliVfz+KmsN3r9vm9J3+CpU38rdq/iNxw0P9XyOg/A3At+kw9ayzepg=</Hash>
+        <HashControl>1</HashControl>
+        <Period>11</Period>
+        <MovementDate>2019-11-10</MovementDate>
+        <MovementType>GA</MovementType>
+        <SystemEntryDate>2019-11-10T05:09:01</SystemEntryDate>
+        <CustomerID>SINF.232707669</CustomerID>
+        <SourceID>up201506154@fe.up.pt</SourceID>
+        <ShipTo>
+          <Address>
+            <BuildingNumber>0</BuildingNumber>
+            <StreetName>Rua Oliveira Gaio </StreetName>
+            <AddressDetail>01 Rua Oliveira Gaio    4465-219 S�o Mamede Infesta</AddressDetail>
+            <City>S�o Mamede Infesta</City>
+            <PostalCode>4465-219</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <Address>
+            <BuildingNumber>44</BuildingNumber>
+            <StreetName>Rua Dr. Roberto Frias</StreetName>
+            <AddressDetail>WAREHOUSETWO Rua Dr. Roberto Frias 44  4200-465 PORTO</AddressDetail>
+            <City>PORTO</City>
+            <PostalCode>4200-465</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2019-11-10T05:09:01.033</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>W0001</ProductCode>
+          <ProductDescription>Description</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>0.0000000000000000</UnitPrice>
+          <Description>Description</Description>
+          <CreditAmount>0.000000</CreditAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>0.00</TaxPayable>
+          <NetTotal>0.00</NetTotal>
+          <GrossTotal>0.00</GrossTotal>
+        </DocumentTotals>
+      </StockMovement>
+      <StockMovement>
+        <DocumentNumber>GR 2019/2</DocumentNumber>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <MovementStatus>N</MovementStatus>
+          <MovementStatusDate>2019-11-10T04:44:28</MovementStatusDate>
+          <SourceID>up201506154@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>F0F9bVvpueJIlFjSiyQgkL31hR2kXJDnlwFJQANvN7dDY091BNUHNn9d5IFZJyHemAoygt5qBADMb/thFJAOGfL9TJHhdbM3s1/L4D/FksY9BYUFX7MeGCTBm9FTz5nh1daC4Ld+ocSWGnI0wbhrE27EUEMSA9hmeJWoiTmKrAE=</Hash>
+        <HashControl>1</HashControl>
+        <Period>11</Period>
+        <MovementDate>2019-11-10</MovementDate>
+        <MovementType>GR</MovementType>
+        <SystemEntryDate>2019-11-10T04:44:28</SystemEntryDate>
+        <CustomerID>0004.506325776</CustomerID>
+        <SourceID>up201506154@fe.up.pt</SourceID>
+        <ShipTo>
+          <Address>
+            <BuildingNumber>0</BuildingNumber>
+            <StreetName>LUGAR DE RIBEIRO</StreetName>
+            <AddressDetail>Your Address LUGAR DE RIBEIRO   4715-472 PEDRALVA</AddressDetail>
+            <City>PEDRALVA</City>
+            <PostalCode>4715-472</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <Address>
+            <BuildingNumber>0</BuildingNumber>
+            <StreetName>Rua Oliveira Gaio </StreetName>
+            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 S�o Mamede Infesta</AddressDetail>
+            <City>S�o Mamede Infesta</City>
+            <PostalCode>4465-219</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2019-11-10T04:44:28.123</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>FL001</ProductCode>
+          <ProductDescription>German Flute</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>25.0000000000000000</UnitPrice>
+          <Description>German Flute</Description>
+          <CreditAmount>25.000000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>5.75</TaxPayable>
+          <NetTotal>25.00</NetTotal>
+          <GrossTotal>30.75</GrossTotal>
+        </DocumentTotals>
+      </StockMovement>
+      <StockMovement>
+        <DocumentNumber>GT 2019/1</DocumentNumber>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <MovementStatus>N</MovementStatus>
+          <MovementStatusDate>2019-11-10T05:06:17</MovementStatusDate>
+          <SourceID>up201506154@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>ZJNg7JSo5Ms97TiotuHSKBgUhKRE1s3Z+Il2O90W8X0MY6tolhSyxmNMHAnrBBybJ8EAjN0HMdAi1mPim0xeUqJBVhqcwe4ZfB7n8dPbAqn5B3lAS6vLh4TkKBS7468Pg+JJMjgo2j0xlaF6BaJksH1D1aQEtJyS8Veos/yYwlI=</Hash>
+        <HashControl>1</HashControl>
+        <Period>11</Period>
+        <MovementDate>2019-11-10</MovementDate>
+        <MovementType>GT</MovementType>
+        <SystemEntryDate>2019-11-10T05:06:17</SystemEntryDate>
+        <CustomerID>SINF.232707669</CustomerID>
+        <SourceID>up201506154@fe.up.pt</SourceID>
+        <MovementComments>Assq</MovementComments>
+        <ShipTo>
+          <Address>
+            <BuildingNumber>55</BuildingNumber>
+            <StreetName>Rua Dr. Roberto Frias</StreetName>
+            <AddressDetail>WAREHOUSETWO Rua Dr. Roberto Frias 55  4200-465 PORTO</AddressDetail>
+            <City>PORTO</City>
+            <PostalCode>4200-465</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <Address>
+            <BuildingNumber>71</BuildingNumber>
+            <StreetName>Rua Oliveira Gaio </StreetName>
+            <AddressDetail>01 Rua Oliveira Gaio  71  4465-219 S�o Mamede Infesta</AddressDetail>
+            <City>S�o Mamede Infesta</City>
+            <PostalCode>4465-219</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2019-11-10T05:06:17.047</MovementStartTime>
+        <ATDocCodeID>11111111111</ATDocCodeID>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>FL001</ProductCode>
+          <ProductDescription>German Flute</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>0.0000000000000000</UnitPrice>
+          <Description>German Flute</Description>
+          <CreditAmount>0.000000</CreditAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>0.00</TaxPayable>
+          <NetTotal>0.00</NetTotal>
+          <GrossTotal>0.00</GrossTotal>
+        </DocumentTotals>
+      </StockMovement>
+    </MovementOfGoods>
+    <WorkingDocuments>
+      <NumberOfEntries>3</NumberOfEntries>
+      <TotalDebit>0</TotalDebit>
+      <TotalCredit>25.000000</TotalCredit>
+      <WorkDocument>
+        <DocumentNumber>ECL 2019/3</DocumentNumber>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <WorkStatus>F</WorkStatus>
+          <WorkStatusDate>2019-11-09T18:15:33</WorkStatusDate>
+          <SourceID>up201605339@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>eHCWxD7sUDEeHY4OO0OaVKEd2qGn3xcq2EGvIZ/4VFgb7iDeUF0v+P0tr5oiW/9oAUhD+tK63kF7sgUCrsK8CJIe1iW2JZyHyUb5ne6ZByrUEfM2UQd7A5yG1lgrUGYoHoGjFYHY5XeEpfdl41eXNGTa3jdFtil7RCrhz+pEYZY=</Hash>
+        <HashControl>1</HashControl>
+        <Period>11</Period>
+        <WorkDate>2019-11-18</WorkDate>
+        <WorkType>NE</WorkType>
+        <SourceID>up201605339@fe.up.pt</SourceID>
+        <SystemEntryDate>2019-11-09T18:15:33</SystemEntryDate>
+        <CustomerID>0004.506325776</CustomerID>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>FL001</ProductCode>
+          <ProductDescription>German Flute</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>25.0000000000000000</UnitPrice>
+          <TaxPointDate>2019-11-18</TaxPointDate>
+          <Description>German Flute</Description>
+          <CreditAmount>25.000000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>5.75</TaxPayable>
+          <NetTotal>25.00</NetTotal>
+          <GrossTotal>30.75</GrossTotal>
+        </DocumentTotals>
+      </WorkDocument>
+      <WorkDocument>
+        <DocumentNumber>ECL 2019/2</DocumentNumber>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <WorkStatus>A</WorkStatus>
+          <WorkStatusDate>2019-10-16T11:04:50</WorkStatusDate>
+          <SourceID>up201605339@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>adDKaFEin8lspPGNRfkLGM1jbc+LXr8zKk8oMqFWbcTPaRUgXyNVpL/7qqCEga4waAmJNjlkzwXYGHk1R72b3+qvlJ7rY8p5/2xlndUm2YnK7ikg6TWOLFnuQft8NvTnTRTYZIIJmk0G1nSle0SBnyOAVOGyxtB6K5f1EQDti5c=</Hash>
+        <HashControl>1</HashControl>
+        <Period>11</Period>
+        <WorkDate>2019-11-16</WorkDate>
+        <WorkType>NE</WorkType>
+        <SourceID>up201605339@fe.up.pt</SourceID>
+        <SystemEntryDate>2019-10-16T11:04:50</SystemEntryDate>
+        <CustomerID>INDIF.1</CustomerID>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>W0001</ProductCode>
+          <ProductDescription>Description</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>3.7500000000000000</UnitPrice>
+          <TaxPointDate>2019-11-16</TaxPointDate>
+          <Description>Description</Description>
+          <CreditAmount>3.750000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>RED</TaxCode>
+            <TaxPercentage>6.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>0.23</TaxPayable>
+          <NetTotal>3.75</NetTotal>
+          <GrossTotal>3.98</GrossTotal>
+        </DocumentTotals>
+      </WorkDocument>
+      <WorkDocument>
+        <DocumentNumber>ECL 2019/1</DocumentNumber>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <WorkStatus>A</WorkStatus>
+          <WorkStatusDate>2019-10-16T11:02:37</WorkStatusDate>
+          <SourceID>up201605339@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>I/5TG/I+21vo5apkFJWHuZcVZUEVUq3l2p+dur9BaLG9ijh8lYg94WMGywmGjZg+WwGDwFF6AKHLHMLcfGeHJtJlPPRuwnWIH0ULldsxJ5f4kRYhxE7NwMsaB6Ytr7Olp1xGNILNAwYmpoTWb+AeAQb18FlQ+gFw2Ha5LyNuML4=</Hash>
+        <HashControl>1</HashControl>
+        <Period>11</Period>
+        <WorkDate>2019-11-16</WorkDate>
+        <WorkType>NE</WorkType>
+        <SourceID>up201605339@fe.up.pt</SourceID>
+        <SystemEntryDate>2019-10-16T11:02:37</SystemEntryDate>
+        <CustomerID>INDIF.2</CustomerID>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>W0001</ProductCode>
+          <ProductDescription>Description</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>124.9400000000000000</UnitPrice>
+          <TaxPointDate>2019-11-16</TaxPointDate>
+          <Description>Description</Description>
+          <CreditAmount>124.940000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>RED</TaxCode>
+            <TaxPercentage>6.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>7.50</TaxPayable>
+          <NetTotal>124.94</NetTotal>
+          <GrossTotal>132.44</GrossTotal>
+        </DocumentTotals>
+      </WorkDocument>
+    </WorkingDocuments>
+  </SourceDocuments>
+</AuditFile>
