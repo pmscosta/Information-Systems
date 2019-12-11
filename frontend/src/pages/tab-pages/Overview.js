@@ -1,6 +1,7 @@
 import React from "react";
 import ValueCard from "../../components/ValueCard";
 import { useSelector } from "react-redux";
+import SimpleCard from "../../components/cards/SimpleCard";
 
 const Overview = () => {
   const { loading: iloading, inventory } = useSelector(
@@ -12,17 +13,7 @@ const Overview = () => {
 
   return (
     <>
-      <ValueCard name="Purchases" value="123k" />
-      <ValueCard name="Sales" value="343k" />
-      <ValueCard name="Equity" value="53k" />
-      <br />
-      <ValueCard name="Purchases" value="123k" />
-      <ValueCard name="Sales" value="343k" />
-      <ValueCard name="Equity" value="53k" />
-      <br />
-      <ValueCard name="Purchases" value="123k" />
-      <ValueCard name="Sales" value="343k" />
-      <ValueCard name="Equity" value="53k" />
+      <SimpleCard label="PURCHASES" to="/purchases" number="123" />
     </>
   );
 };
