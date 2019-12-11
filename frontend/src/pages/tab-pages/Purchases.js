@@ -17,6 +17,7 @@ const Purchases = () => {
     itemsData,
     suppliersData
   } = useSelector(state => state.purchases);
+
   return (
     <>
       {loading && <AppLinearProgress />}

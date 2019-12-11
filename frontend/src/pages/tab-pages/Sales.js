@@ -1,53 +1,72 @@
 import React from "react";
 import LineChart from "../../components/LineChart/LineChart";
-import { getSalesInfo } from "../../services/SalesService";
-import { getData } from "../../utils/data_generator";
+import BarChart from "../../components/BarChart/BarChart";
+import { useSelector } from "react-redux";
+import AppLinearProgress from "../../components/AppLinearProgress";
+import { Container } from "@material-ui/core";
 
-class Purchases extends React.Component {
-  constructor(props) {
-    super(props);
+import "./Purchases.css";
+import SimpleValueCard from "../../components/SimpleValueCard";
 
-    this.state = {
-      data: getData(),
-      openPurchases: [], // keeps the sourceDocs of the purchases whose receipt was created
-      receiptPurchases: [],
-      totalOpenValue: 0,
-      totalReceiptValue: 0,
-      dataGraph: {},
-      graphLoaded: false
-    };
-  }
+const Sales = () => {
+  const {
+    loading,
+    topClients,
+    clients,
+    invoices,
+    totalSales,
+    topSoldProducts,
+    salesPerMonth
+  } = useSelector(state => state.sales);
 
-  componentDidMount() {
-    getSalesInfo().then(result => {
-      this.setState({
-        openPurchases: result.open,
-        receiptPurchases: result.invoiced,
-        totalOpenValue: result.totalOpenValue,
-        totalReceiptValue: result.totalReceiptValue,
-        dataGraph: result.graphData,
-        graphLoaded: true
-      });
-    });
-  }
+  return (
+    <>
+      {loading && <AppLinearProgress />}
+      {/* {graphData && itemsData && suppliersData && (
+        <Container id="purchases-page">
+          <Container id="purchases-bar-graph">
+            <div className="graph-wrapper">
+              <span className="graph-title"> Top Purchased Products</span>
+              <BarChart
+                data={itemsData}
+                title="Purchases"
+                color="#3E517A"
+              ></BarChart>
+            </div>
 
-  render() {
-    return (
-      <>
-        <div>Total Open Value: {this.state.totalOpenValue}</div>
-        <div>Total Receipt Value: {this.state.totalReceiptValue}</div>
-        {this.state.graphLoaded && (
-          <div className="main chart-wrapper">
-            <LineChart
-              data={[this.state.dataGraph]}
-              title="Sales"
-              color="#3E517A"
-            ></LineChart>
-          </div>
-        )}
-      </>
-    );
-  }
-}
+            <div className="graph-wrapper">
+              <span className="graph-title"> Top Suppliers</span>
+              <BarChart
+                data={suppliersData}
+                title="Purchases"
+                color="#3E517A"
+              ></BarChart>
+            </div>
+          </Container>
+          <Container id="purchases-line-graph">
+            <div className="graph-wrapper">
+              <span className="graph-title"> Purchases Timeline</span>
+              <LineChart
+                data={[graphData]}
+                title="Purchases"
+                color="#3BA9E0"
+              ></LineChart>
+            </div>
+            <div className="vertical-cards">
+              <SimpleValueCard
+                name="Total Purchases"
+                value={`${totalReceiptValue} €`}
+              />
+              <SimpleValueCard
+                name="Received but not invoiced"
+                value={`${totalOpenValue} €`}
+              />
+            </div>
+          </Container>
+        </Container>
+      )} */}
+    </>
+  );
+};
 
-export default Purchases;
+export default Sales;
