@@ -45,10 +45,6 @@ const useStyles = makeStyles(theme => ({
 const Inventory = () => {
   const classes = useStyles();
   const { loading, inventory } = useSelector(state => state.inventory);
-  console.log("inventory");
-  console.log(inventory);
-
-  console.log(inventory);
 
   const inventoryValue = inventory.reduce(
     (acc, b) => acc + b.warehouses.reduce((i, j) => i + j.balanceAmount, 0),

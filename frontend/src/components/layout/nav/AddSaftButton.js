@@ -1,19 +1,9 @@
 import React from "react";
+import axios from "axios";
+import Button from "@material-ui/core/Button";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import MainPageLayout from "../../components/layout/MainPageLayout";
-import TabsLayout from "../../components/layout/tabs/TabsLayout";
-import MainTabsConfig from "./MainTabsConfig";
-import {
-  setInventoryLoading,
-  setInventoryData,
-  setInventoryError
-} from "../../actions/inventoryActions";
-import {
-  setPurchasesLoading,
-  setPurchasesData,
-  setPurchasesError
-} from "../../actions/purchasesActions";
 import {
   setSalesLoading,
   setSalesTopClients,
@@ -23,50 +13,26 @@ import {
   setSalesTopSoldProducts,
   setSalesPerMonth,
   setSalesError
-} from "../../actions/salesActions";
+} from "../../../actions/salesActions";
 
-import axios from "axios";
-
-class MainPage extends React.Component {
-  componentDidMount() {
-    this.getInventory();
-    this.getPurchases();
-    this.getSales();
-  }
-
-  getInventory = () => {
-    this.props.setInventoryLoading(true);
-    axios
-      .get("/api/jasmin/stock")
-      .then(res => {
-        this.props.setInventoryData(
-          res.data,
-          this.props.setInventoryLoading(false)
-        );
-      })
-      .catch(err => {
-        this.props.setInventoryError(err);
-        this.props.setInventoryLoading(false);
-      });
+class AddSaftButton extends React.Component {
+  handleUploadFile = event => {
+    const data = new FormData();
+    data.append("xmlFile", event.target.files[0]);
+    if (data) {
+      axios
+        .post("/api/saft", data)
+        .then(this.updateSales())
+        .catch(err => console.log(err));
+    }
   };
 
-  getPurchases = () => {
-    this.props.setPurchasesLoading(true);
-    axios
-      .get("/api/jasmin/purchases")
-      .then(res => {
-        this.props.setPurchasesData(res.data);
-
-        this.props.setPurchasesLoading(false);
-      })
-      .catch(err => {
-        this.props.setPurchasesError(err);
-        this.props.setPurchasesLoading(false);
-      });
+  updateSales = () => {
+    this.props.setSalesLoading(true);
+    setTimeout(this.getSales(), 1000);
   };
 
   getSales = () => {
-    this.props.setSalesLoading(true);
     axios
       .get("/api/customer/topclient")
       .then(res => {
@@ -123,29 +89,32 @@ class MainPage extends React.Component {
       });
   };
 
-  render() {
-    const value = this.props.match.params.view || "overview";
+  render = () => {
     return (
-      <MainPageLayout style>
-        <TabsLayout
-          style={{ backgroundColor: "yellow" }}
-          value={value}
-          options={MainTabsConfig()}
+      <>
+        <input
+          style={{ display: "none" }}
+          id="contained-button-file"
+          multiple
+          type="file"
+          onChange={this.handleUploadFile}
         />
-      </MainPageLayout>
+        <label htmlFor="contained-button-file">
+          <Button
+            variant="contained"
+            color="primary"
+            component="span"
+            startIcon={<CloudUploadIcon />}
+          >
+            Upload SAF-T
+          </Button>
+        </label>
+      </>
     );
-  }
+  };
 }
 
-MainPage.propTypes = {
-  setInventoryData: PropTypes.func.isRequired,
-  setInventoryLoading: PropTypes.func.isRequired,
-  setInventoryError: PropTypes.func.isRequired,
-
-  setPurchasesData: PropTypes.func.isRequired,
-  setPurchasesLoading: PropTypes.func.isRequired,
-  setPurchasesError: PropTypes.func.isRequired,
-
+AddSaftButton.propTypes = {
   setSalesTopClients: PropTypes.func.isRequired,
   setSalesClients: PropTypes.func.isRequired,
   setSalesInvoices: PropTypes.func.isRequired,
@@ -161,12 +130,6 @@ const mapStateToProps = () => {
 };
 
 const mapDispatchToProps = {
-  setInventoryLoading,
-  setInventoryData,
-  setInventoryError,
-  setPurchasesLoading,
-  setPurchasesData,
-  setPurchasesError,
   setSalesLoading,
   setSalesTopClients,
   setSalesClients,
@@ -177,4 +140,4 @@ const mapDispatchToProps = {
   setSalesError
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AddSaftButton);

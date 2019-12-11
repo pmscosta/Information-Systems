@@ -41,14 +41,21 @@ const SimpleCard = ({ label, number, to }) => {
           >
             {label}
           </Typography>
-          <Typography align="left" className={classes.number} color="primary">
-            <Grid container className={classes.root} spacing={2}>
-              <Grid item>{number}</Grid>
-              <Grid item>
-                <EuroIcon color="primary" />
-              </Grid>
+
+          <Grid container className={classes.root} spacing={2}>
+            <Grid item>
+              <Typography
+                align="left"
+                className={classes.number}
+                color="primary"
+              >
+                {number}
+              </Typography>
             </Grid>
-          </Typography>
+            <Grid item>
+              <EuroIcon color="primary" />
+            </Grid>
+          </Grid>
         </CardContent>
       </StyledLink>
     </Card>

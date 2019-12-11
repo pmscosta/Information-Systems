@@ -21,14 +21,7 @@ const Overview = () => {
     topSoldProducts,
     salesPerMonth
   } = useSelector(state => state.sales);
-  console.log(
-    loading,
-    topClients,
-    clients,
-    invoices,
-    topSoldProducts,
-    salesPerMonth
-  );
+
   return (
     <>
       {ploading ? (
