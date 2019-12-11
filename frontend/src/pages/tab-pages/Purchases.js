@@ -1,6 +1,5 @@
 import React from "react";
 import LineChart from "../../components/LineChart/LineChart";
-import { getData } from "../../utils/data_generator";
 import BarChart from "../../components/BarChart/BarChart";
 import { useSelector } from "react-redux";
 import AppLinearProgress from "../../components/AppLinearProgress";
@@ -13,12 +12,11 @@ const Purchases = () => {
   const {
     loading,
     totalReceiptValue,
+    totalOpenValue,
     graphData,
     itemsData,
     suppliersData
   } = useSelector(state => state.purchases);
-  console.log(loading);
-  console.log(itemsData);
   return (
     <>
       {loading && <AppLinearProgress />}
@@ -52,10 +50,16 @@ const Purchases = () => {
                 color="#3BA9E0"
               ></LineChart>
             </div>
-            <SimpleValueCard
-              name="Total Purchases"
-              value={`${totalReceiptValue} €`}
-            />
+            <div className="vertical-cards">
+              <SimpleValueCard
+                name="Total Purchases"
+                value={`${totalReceiptValue} €`}
+              />
+              <SimpleValueCard
+                name="Received but not invoiced"
+                value={`${totalOpenValue} €`}
+              />
+            </div>
           </Container>
         </Container>
       )}

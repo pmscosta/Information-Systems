@@ -59,6 +59,11 @@ router.get('/sales', async (req, res) => {
 router.get('/purchases', async (req, res) => {
   const invoices = await jasmin.purchases.getPurchaseInvoices();
   const orders = await jasmin.purchases.getPurchaseOrders();
+  let payments = await jasmin.purchases.getPayments();
+  payments = payments.reduce(
+    (a, b) => a.concat({ sourceDoc: b.documentLines[0].sourceDoc }),
+    [],
+  );
 
   const openPurchases = orders
     .filter(({ isDeleted }) => {
@@ -78,6 +83,7 @@ router.get('/purchases', async (req, res) => {
     .reduce(
       (a, b) =>
         a.concat({
+          naturalKey: b.naturalKey,
           sourceDoc: b.documentLines[0].sourceDoc,
           amount: b.payableAmount.amount,
           date: b.dueDate,
@@ -102,6 +108,7 @@ router.get('/purchases', async (req, res) => {
       })
       .filter(el => el.naturalKey.indexOf('VEI') === -1),
     invoiced: receiptPurchases,
+    payments,
   });
 });
 module.exports = router;

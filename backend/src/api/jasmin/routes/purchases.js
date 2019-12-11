@@ -18,6 +18,20 @@ const getPurchaseOrders = () => {
     });
 };
 
+const getPayments = () => {
+  return axios
+    .get(`${jasminOptions.baseUrlRequest}/accountsPayable/payments`)
+    .then(res => {
+      return res.data;
+    })
+    .catch(err => {
+      console.log(err);
+      console.log('API REQUEST FAILED!\n WILL REFRESH TOKEN');
+      refreshToken();
+      return null;
+    });
+};
+
 const getPurchaseInvoices = () => {
   return axios
     .get(`${jasminOptions.baseUrlRequest}/invoiceReceipt/invoices`)
@@ -35,4 +49,5 @@ const getPurchaseInvoices = () => {
 module.exports = {
   getPurchaseOrders,
   getPurchaseInvoices,
+  getPayments,
 };

@@ -28,11 +28,16 @@ export default (state = initialState, action) => {
     case purchasesTypes.SET_PURCHASES: {
       let invoiced = action.payload.invoiced;
       let open = action.payload.open;
+      const payments = action.payload.payments;
+
       return {
         ...state,
         invoiced: invoiced,
         open: open,
         purchases: action.payload,
+        accountsPayable: invoiced.filter(({ naturalKey }) => {
+          return !payments.find(x => x.sourceDoc === naturalKey);
+        }),
         totalReceiptValue: invoiced.reduce((a, b) => a + b.amount, 0),
         totalOpenValue: open.reduce((a, b) => a + b.amount, 0),
         graphData: createGraphData("Purchases", invoiced),

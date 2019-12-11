@@ -1,0 +1,8 @@
+#inventory-page {
+  margin-top: 3em;
+  display: flex;
+}
+
+#inventory-page #inventory-lists {
+  display: flex;
+}

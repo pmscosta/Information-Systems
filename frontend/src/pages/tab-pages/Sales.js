@@ -20,7 +20,6 @@ class Purchases extends React.Component {
 
   componentDidMount() {
     getSalesInfo().then(result => {
-      console.log(result);
       this.setState({
         openPurchases: result.open,
         receiptPurchases: result.invoiced,

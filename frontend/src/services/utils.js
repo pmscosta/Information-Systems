@@ -1,5 +1,4 @@
 export const createGraphData = (title, invoiced) => {
-  console.log(invoiced);
   invoiced.sort((a, b) => {
     return new Date(a.date) - new Date(b.date);
   });
@@ -34,7 +33,6 @@ export const createGraphData = (title, invoiced) => {
 
 export const createItemsData = (title, invoiced) => {
   const grouped = invoiced.reduce((a, b) => {
-    console.log(b.item);
     if (!a[b.item.itemId]) {
       a[b.item.itemId] = {
         description: b.item.description,

@@ -6,7 +6,7 @@ import { Button } from "@material-ui/core";
 import UpdateOutlinedIcon from "@material-ui/icons/UpdateOutlined";
 
 const BarChart = props => {
-  const [items, setItems] = useState(props.data);
+  const [items] = useState(props.data);
   const [showQuantity, setToggle] = useState(true);
   const canvasRef = React.createRef();
   const [myChart, setMyChart] = useState("");

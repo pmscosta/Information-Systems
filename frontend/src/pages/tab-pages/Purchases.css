@@ -55,3 +55,8 @@
 .graph-title {
   font-size: larger;
 }
+
+.vertical-cards {
+  display: flex;
+  flex-direction: column;
+}
