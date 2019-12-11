@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<AuditFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:OECD:StandardAuditFile-Tax:PT_1.04_01">
+  <Header>
+    <AuditFileVersion>1.04_01</AuditFileVersion>
+    <CompanyID>232707669</CompanyID>
+    <TaxRegistrationNumber>232707669</TaxRegistrationNumber>
+    <TaxAccountingBasis>F</TaxAccountingBasis>
+    <CompanyName>SINFonia</CompanyName>
+    <CompanyAddress>
+      <BuildingNumber>0</BuildingNumber>
+      <StreetName>Rua Oliveira Gaio </StreetName>
+      <AddressDetail>Rua Oliveira Gaio    4465-219 São Mamede Infesta</AddressDetail>
+      <City>São Mamede Infesta</City>
+      <PostalCode>4465-219</PostalCode>
+      <Region>Desconhecido</Region>
+      <Country xsi:type="xsd:string">PT</Country>
+    </CompanyAddress>
+    <FiscalYear>2019</FiscalYear>
+    <StartDate>2019-11-01</StartDate>
+    <EndDate>2019-11-30</EndDate>
+    <CurrencyCode xsi:type="xsd:string">EUR</CurrencyCode>
+    <DateCreated>2019-11-27</DateCreated>
+    <TaxEntity>GLOBAL</TaxEntity>
+    <ProductCompanyTaxID>503140600</ProductCompanyTaxID>
+    <SoftwareCertificateNumber>2616</SoftwareCertificateNumber>
+    <ProductID>PRIMAVERA JASMIN/PRIMAVERA Business Software Solutions</ProductID>
+    <ProductVersion>1.00</ProductVersion>
+  </Header>
+  <MasterFiles>
+    <Customer>
+      <CustomerID>INDIF.3</CustomerID>
+      <AccountID>Desconhecido</AccountID>
+      <CustomerTaxID>999999990</CustomerTaxID>
+      <CompanyName>Consumidor final</CompanyName>
+      <BillingAddress>
+        <BuildingNumber>Desconheci</BuildingNumber>
+        <StreetName>Desconhecido</StreetName>
+        <AddressDetail>Cliente Indiferenciado</AddressDetail>
+        <City>Desconhecido</City>
+        <PostalCode>Desconhecido</PostalCode>
+        <Region>Desconhecido</Region>
+        <Country>PT</Country>
+      </BillingAddress>
+      <Telephone>Desconhecido</Telephone>
+      <Fax>Desconhecido</Fax>
+      <Email>Desconhecido</Email>
+      <Website>Desconhecido</Website>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>W0001</ProductCode>
+      <ProductGroup>Sem família</ProductGroup>
+      <ProductDescription>Description</ProductDescription>
+      <ProductNumberCode>W0001</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>FL001</ProductCode>
+      <ProductGroup>Sem família</ProductGroup>
+      <ProductDescription>German Flute</ProductDescription>
+      <ProductNumberCode>FL001</ProductNumberCode>
+    </Product>
+    <TaxTable>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>NOR</TaxCode>
+        <Description>Taxa Normal</Description>
+        <TaxPercentage>23.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>ISE</TaxCode>
+        <Description>Isento</Description>
+        <TaxPercentage>0.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>RED</TaxCode>
+        <Description>Taxa Reduzida</Description>
+        <TaxPercentage>6.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>INT</TaxCode>
+        <Description>Taxa Intermédia</Description>
+        <TaxPercentage>13.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-MA</TaxCountryRegion>
+        <TaxCode>NOR</TaxCode>
+        <Description>Taxa Normal</Description>
+        <TaxPercentage>22.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-MA</TaxCountryRegion>
+        <TaxCode>ISE</TaxCode>
+        <Description>Isento</Description>
+        <TaxPercentage>0.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-MA</TaxCountryRegion>
+        <TaxCode>INT</TaxCode>
+        <Description>Taxa Intermédia</Description>
+        <TaxPercentage>12.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-MA</TaxCountryRegion>
+        <TaxCode>RED</TaxCode>
+        <Description>Taxa Reduzida</Description>
+        <TaxPercentage>5.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-AC</TaxCountryRegion>
+        <TaxCode>NOR</TaxCode>
+        <Description>Taxa Normal</Description>
+        <TaxPercentage>18.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-AC</TaxCountryRegion>
+        <TaxCode>ISE</TaxCode>
+        <Description>Isento</Description>
+        <TaxPercentage>0.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-AC</TaxCountryRegion>
+        <TaxCode>INT</TaxCode>
+        <Description>Taxa Intermédia</Description>
+        <TaxPercentage>9.000000</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-AC</TaxCountryRegion>
+        <TaxCode>RED</TaxCode>
+        <Description>Taxa Reduzida</Description>
+        <TaxPercentage>4.000000</TaxPercentage>
+      </TaxTableEntry>
+    </TaxTable>
+  </MasterFiles>
+  <SourceDocuments>
+    <SalesInvoices>
+      <NumberOfEntries>1</NumberOfEntries>
+      <TotalDebit>0</TotalDebit>
+      <TotalCredit>50.000000</TotalCredit>
+      <Invoice>
+        <InvoiceNo>FA 2019/4</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2019-11-27T11:07:44</InvoiceStatusDate>
+          <SourceID>up201506154@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>aaDeJsJcvT0ActwpoFYbwIwQQZZUp97kN50bgWIF25b/DknSuPk06LXnqfwjCrpNA51Odp46ZQW0UecSQJ7d648RkphS5jpR5GzRxMG8w3WKnWdSY7GglEP5xc6+wH2g5g/ibF35mdwzDGhbj1kqptrK1SDE4O5fNP1l0ziumW4=</Hash>
+        <HashControl>1</HashControl>
+        <Period>11</Period>
+        <InvoiceDate>2019-11-27</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>up201506154@fe.up.pt</SourceID>
+        <SystemEntryDate>2019-11-27T11:07:44</SystemEntryDate>
+        <CustomerID>INDIF.3</CustomerID>
+        <ShipTo>
+          <Address>
+            <StreetName>Desconhecido</StreetName>
+            <AddressDetail>Your Address</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <Address>
+            <StreetName>Rua Oliveira Gaio </StreetName>
+            <AddressDetail>Our Address Rua Oliveira Gaio    4465-219 São Mamede Infesta</AddressDetail>
+            <City>São Mamede Infesta</City>
+            <PostalCode>4465-219</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2019-11-27T11:08:51</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>FL001</ProductCode>
+          <ProductDescription>German Flute</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>20.000000</UnitPrice>
+          <TaxPointDate>2019-11-27</TaxPointDate>
+          <Description>German Flute</Description>
+          <CreditAmount>20.000000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.000000</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>W0001</ProductCode>
+          <ProductDescription>Description</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>30.000000</UnitPrice>
+          <TaxPointDate>2019-11-27</TaxPointDate>
+          <Description>Description</Description>
+          <CreditAmount>30.000000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.000000</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>11.50</TaxPayable>
+          <NetTotal>50.00</NetTotal>
+          <GrossTotal>61.50</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.000000</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+    </SalesInvoices>
+  </SourceDocuments>
+</AuditFile>
