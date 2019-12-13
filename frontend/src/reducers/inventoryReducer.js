@@ -16,7 +16,9 @@ export default (state = initialState, action) => {
     case inventoryTypes.SET_INVENTORY:
       const _inventory = action.payload;
       _inventory.forEach(item => {
-        const val = item.warehouses.reduce((acc, b) => acc + b.stockBalance, 0);
+        const val = item.warehouses
+          .reduce((acc, b) => acc + b.stockBalance, 0)
+          .toFixed(2);
         item.stockBalance = val;
       });
       return {

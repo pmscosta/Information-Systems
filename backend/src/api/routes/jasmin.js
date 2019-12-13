@@ -7,7 +7,12 @@ router.get('/stock', (req, res) => {
   jasmin.stock.getMaterialItems().then(data =>
     res.status(200).json(
       data.map(
-        ({ description, itemKey, materialsItemWarehouses }) => {
+        ({
+          description,
+          itemKey,
+          materialsItemWarehouses,
+          minStock,
+        }) => {
           const warehouses = materialsItemWarehouses.map(
             ({ stockBalance, lastUnitCost, inventoryBalance }) => {
               const unitAmount = lastUnitCost.amount;
@@ -15,7 +20,7 @@ router.get('/stock', (req, res) => {
               return { stockBalance, unitAmount, balanceAmount };
             },
           );
-          return { description, itemKey, warehouses };
+          return { description, itemKey, warehouses, minStock };
         },
       ),
     ),
@@ -85,8 +90,9 @@ router.get('/purchases', async (req, res) => {
         a.concat({
           naturalKey: b.naturalKey,
           sourceDoc: b.documentLines[0].sourceDoc,
-          amount: b.payableAmount.amount,
-          date: b.dueDate,
+          amount: b.taxExclusiveAmount.amount,
+          payableAmount: b.payableAmount.amount,
+          date: b.documentDate,
           item: {
             itemId: b.documentLines[0].purchasesItem,
             description: b.documentLines[0].purchasesItemDescription,

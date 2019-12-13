@@ -15,7 +15,7 @@ const BarChart = props => {
     let data = [];
     Object.keys(items).forEach(key => {
       if (showQuantity) {
-        data.push(items[key].quantity * 20);
+        data.push(items[key].quantity);
       } else {
         data.push(items[key].value);
       }

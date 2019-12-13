@@ -56,7 +56,6 @@ const Inventory = () => {
       return acc;
     }, {})
   );
-
   const handleClick = key => {
     const prev = open[key];
     const temp = update(open, { [key]: { $set: !prev } });
@@ -64,7 +63,6 @@ const Inventory = () => {
   };
 
   const drawItemList = (title, items, doDropdown) => {
-    console.log(doDropdown);
     return (
       <Card
         className={classes.card}
@@ -97,7 +95,11 @@ const Inventory = () => {
                   >
                     <ListItemText
                       primary={item.itemKey}
-                      className={item.stockBalance <= 0 ? classes.danger : ""}
+                      className={
+                        item.stockBalance <= (item.minStock || 0)
+                          ? classes.danger
+                          : ""
+                      }
                       secondary={`Total Stock Balance: ${item.stockBalance}`}
                     />
                     {doDropdown ? (
