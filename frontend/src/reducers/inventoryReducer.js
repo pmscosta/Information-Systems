@@ -3,6 +3,7 @@ import { inventoryTypes } from "../actions/inventoryActions";
 const initialState = {
   loading: false,
   inventory: [],
+  inventoryBalance: 0,
   error: null
 };
 
@@ -23,7 +24,12 @@ export default (state = initialState, action) => {
       });
       return {
         ...state,
-        inventory: _inventory
+        inventory: _inventory,
+        inventoryBalance: _inventory.reduce(
+          (acc, b) =>
+            acc + b.warehouses.reduce((i, j) => i + j.balanceAmount, 0),
+          0
+        )
       };
     case inventoryTypes.SET_ERROR:
       return {
