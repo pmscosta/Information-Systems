@@ -29,11 +29,11 @@ export default (state = initialState, action) => {
       let invoiced = action.payload.invoiced;
       let open = action.payload.open;
       const payments = action.payload.payments;
-
       return {
         ...state,
         invoiced: invoiced,
         open: open,
+        all_purchases: invoiced.concat(open),
         purchases: action.payload,
         accountsPayable: invoiced
           .filter(({ naturalKey }) => {

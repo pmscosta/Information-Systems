@@ -79,6 +79,12 @@ router.get('/purchases', async (req, res) => {
         a.concat({
           naturalKey: b.naturalKey,
           amount: b.taxExclusiveAmount.amount,
+          item: {
+            itemId: b.documentLines[0].purchasesItem,
+            description: b.documentLines[0].purchasesItemDescription,
+            value: b.documentLines[0].unitPrice.amount,
+            quantity: b.documentLines[0].quantity,
+          },
         }),
       [],
     );
@@ -96,6 +102,7 @@ router.get('/purchases', async (req, res) => {
           item: {
             itemId: b.documentLines[0].purchasesItem,
             description: b.documentLines[0].purchasesItemDescription,
+            value: b.documentLines[0].unitPrice.amount,
             quantity: b.documentLines[0].quantity,
           },
           supplier: b.sellerSupplierPartyName,

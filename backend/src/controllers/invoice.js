@@ -2,9 +2,27 @@
 
 const Invoice = require('../models/invoice');
 
+const InvoiceProduct = require('../models/invoiceProduct');
+
 function getAll(req, res) {
   Invoice.find()
-    .then(invoice => res.json(invoice))
+    .then(invoices => {
+      const promises = [];
+
+      invoices.forEach(invoice => {
+        const p = new Promise(resolve => {
+          InvoiceProduct.find({
+            _id: { $in: invoice.invoiceProducts },
+          }).then(prods => resolve({ invoice, prods }));
+        });
+        promises.push(p);
+      });
+
+      Promise.all(promises).then(values => {
+        res.json(values);
+      });
+    })
+
     .catch(err => res.status(400).json(err));
 }
 
