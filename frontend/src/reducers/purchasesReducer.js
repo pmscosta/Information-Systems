@@ -15,7 +15,8 @@ const initialState = {
   totalReceiptValue: 0,
   graphData: null,
   itemsData: null,
-  suppliersData: null
+  suppliersData: null,
+  payments: []
 };
 
 export default (state = initialState, action) => {
@@ -26,21 +27,14 @@ export default (state = initialState, action) => {
         loading: action.payload
       };
     case purchasesTypes.SET_PURCHASES: {
-      let invoiced = action.payload.invoiced;
-      let open = action.payload.open;
-      const payments = action.payload.payments;
-
+      const invoiced = action.payload.invoiced;
+      const open = action.payload.open;
       return {
         ...state,
         invoiced: invoiced,
+        payments: action.payload.payments,
         open: open,
         purchases: action.payload,
-        accountsPayable: invoiced
-          .filter(({ naturalKey }) => {
-            return !payments.find(x => x.sourceDoc === naturalKey);
-          })
-          .reduce((a, b) => a + b.payableAmount, 0)
-          .toFixed(2),
         totalReceiptValue: invoiced
           .reduce((a, b) => a + b.amount, 0)
           .toFixed(2),
