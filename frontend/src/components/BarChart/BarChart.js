@@ -7,14 +7,15 @@ import UpdateOutlinedIcon from "@material-ui/icons/UpdateOutlined";
 
 const BarChart = props => {
   const [items] = useState(props.data);
-  const [showQuantity, setToggle] = useState(true);
+  const [togglable] = useState(props.togglable);
+  const [showQuantity, setToggle] = useState(true && togglable);
   const canvasRef = React.createRef();
   const [myChart, setMyChart] = useState("");
 
   const createDataset = () => {
     let data = [];
     Object.keys(items).forEach(key => {
-      if (showQuantity) {
+      if (togglable && showQuantity) {
         data.push(items[key].quantity);
       } else {
         data.push(items[key].value);
@@ -24,6 +25,7 @@ const BarChart = props => {
     let label = showQuantity ? "Quantity (UN)" : "Value (EUR)";
 
     return {
+      barPercentage: 0.4,
       label,
       backgroundColor: ["#FF555E", "#FF8650", "#83B2FF", "#FFE981", "#8BF18B"],
       data
@@ -63,7 +65,6 @@ const BarChart = props => {
             ],
             yAxes: [
               {
-                barPercentage: 0.4,
                 ticks: {
                   beginAtZero: true,
                   min: 0
@@ -80,20 +81,22 @@ const BarChart = props => {
       })
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showQuantity]);
+  }, [props, showQuantity]);
 
   return (
     <div className="inner-graph">
       <canvas ref={canvasRef} />
-      <Button
-        variant="outlined"
-        endIcon={<UpdateOutlinedIcon>change</UpdateOutlinedIcon>}
-        onClick={() => setToggle(!showQuantity)}
-      >
-        Toggle data
-      </Button>
+      {togglable && (
+        <Button
+          variant="outlined"
+          endIcon={<UpdateOutlinedIcon>change</UpdateOutlinedIcon>}
+          onClick={() => setToggle(!showQuantity)}
+        >
+          Toggle data
+        </Button>
+      )}
     </div>
   );
 };
 
-export default BarChart;
+export default React.memo(BarChart);

@@ -12,8 +12,6 @@ const Sales = () => {
   const {
     loading,
     topClients,
-    clients,
-    invoices,
     totalSales,
     topSoldProducts,
     salesPerMonth
@@ -22,49 +20,52 @@ const Sales = () => {
   return (
     <>
       {loading && <AppLinearProgress />}
-      {/* {graphData && itemsData && suppliersData && (
+      {!loading && (
         <Container id="purchases-page">
           <Container id="purchases-bar-graph">
             <div className="graph-wrapper">
-              <span className="graph-title"> Top Purchased Products</span>
+              <span className="graph-title"> Top Sold Products</span>
               <BarChart
-                data={itemsData}
+                data={topSoldProducts}
                 title="Purchases"
                 color="#3E517A"
+                togglable={true}
               ></BarChart>
             </div>
-
-            <div className="graph-wrapper">
-              <span className="graph-title"> Top Suppliers</span>
-              <BarChart
-                data={suppliersData}
-                title="Purchases"
-                color="#3E517A"
-              ></BarChart>
-            </div>
+            {topClients !== [] && (
+              <div className="graph-wrapper">
+                <span className="graph-title"> Top Clients</span>
+                <BarChart
+                  data={topClients}
+                  title="Purchases"
+                  color="#3E517A"
+                  togglable={false}
+                ></BarChart>
+              </div>
+            )}
           </Container>
           <Container id="purchases-line-graph">
             <div className="graph-wrapper">
-              <span className="graph-title"> Purchases Timeline</span>
-              <LineChart
-                data={[graphData]}
-                title="Purchases"
-                color="#3BA9E0"
-              ></LineChart>
+              <span className="graph-title"> Sales Timeline</span>
+
+              {Array.isArray(salesPerMonth.data) && (
+                <LineChart
+                  data={salesPerMonth}
+                  title="Purchases"
+                  color="#3BA9E0"
+                ></LineChart>
+              )}
             </div>
             <div className="vertical-cards">
-              <SimpleValueCard
-                name="Total Purchases"
-                value={`${totalReceiptValue} €`}
-              />
-              <SimpleValueCard
+              <SimpleValueCard name="Total Sales" value={`${totalSales} €`} />
+              {/* <SimpleValueCard
                 name="Received but not invoiced"
                 value={`${totalOpenValue} €`}
-              />
+              /> */}
             </div>
           </Container>
         </Container>
-      )} */}
+      )}
     </>
   );
 };

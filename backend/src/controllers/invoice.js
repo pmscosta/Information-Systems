@@ -11,14 +11,14 @@ function getAll(req, res) {
 function getTotalSales(req, res) {
   Invoice.aggregate([
     // { $match: { time: {$gte: a, $lte: tomorrow} } },
-    { $group: { _id: 0, TotalSalesValue: { $sum: "$netTotal" } } }
+    { $group: { _id: 0, TotalSalesValue: { $sum: '$netTotal' } } },
   ])
     .then(invoice => res.json(invoice))
     .catch(err => res.status(400).json(err));
 }
 
 function addInvoice(req, res) {
-  let newInvoice = new Invoice(req.body);
+  const newInvoice = new Invoice(req.body);
 
   newInvoice.save((err, invoice) => {
     if (err) {
@@ -31,5 +31,5 @@ function addInvoice(req, res) {
 module.exports = {
   getAll,
   addInvoice,
-  getTotalSales
+  getTotalSales,
 };

@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   card: {
-    minWidth: "fit-content",
+    minWidth: "15em",
     maxHeight: "10em"
   },
   bullet: {

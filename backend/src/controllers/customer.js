@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+
 'use strict';
 
 const Customer = require('../models/customer');
@@ -14,37 +16,42 @@ async function getTopClients(req, res) {
 
   const customers = await Customer.find();
 
-  for(const customer of customers) {
-    const invoices = await Invoice.find({ customer: customer._id });
-    
-    let totalSpent = 0;
+  const promises = [];
 
-    for(const i of invoices) {
-      totalSpent += i.netTotal;
-    }
-
-    orderedCustomers.push({customer, totalSpent});
-  }
-
-  orderedCustomers.sort((a, b) => {
-    return b.totalSpent - a.totalSpent;
+  customers.forEach(customer => {
+    const p = new Promise(resolve => {
+      Invoice.find({ customer: customer._id }).then(invoices => {
+        const totalSpent = invoices.reduce(
+          (a, b) => a + b.netTotal,
+          0,
+        );
+        resolve({ customer, totalSpent });
+      });
+    });
+    promises.push(p);
   });
 
-  res.json(orderedCustomers);
+  Promise.all(promises).then(values => {
+    values.forEach(value => orderedCustomers.push(value));
+    orderedCustomers.sort((a, b) => {
+      return b.totalSpent - a.totalSpent;
+    });
+    res.json(orderedCustomers);
+  });
 }
 
 function getByIdApi(req, res) {
-  Customer.find({CustomerID: req.params.id})
+  Customer.find({ CustomerID: req.params.id })
     .then(customer => res.json(customer))
     .catch(err => res.status(400).json(err));
 }
 
 function getById(id) {
-   return Customer.findOne({CustomerID: id});
+  return Customer.findOne({ CustomerID: id });
 }
 
 module.exports = {
   getAll,
   getById,
-  getTopClients
+  getTopClients,
 };

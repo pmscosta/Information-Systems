@@ -29,7 +29,7 @@ class AddSaftButton extends React.Component {
 
   updateSales = () => {
     this.props.setSalesLoading(true);
-    setTimeout(this.getSales(), 1000);
+    setTimeout(this.getSales(), 2000);
   };
 
   getSales = () => {
@@ -37,52 +37,47 @@ class AddSaftButton extends React.Component {
       .get("/api/customer/topclient")
       .then(res => {
         this.props.setSalesTopClients(res.data);
-        this.props.setSalesLoading(false);
-      })
-      .catch(err => {
-        this.props.setSalesError(err);
-      });
-    axios
-      .get("/api/customer")
-      .then(res => {
-        this.props.setSalesClients(res.data);
-        this.props.setSalesLoading(false);
-      })
-      .catch(err => {
-        this.props.setSalesError(err);
-      });
-    axios
-      .get("/api/invoice")
-      .then(res => {
-        this.props.setSalesInvoices(res.data);
-        this.props.setSalesLoading(false);
-      })
-      .catch(err => {
-        this.props.setSalesError(err);
-      });
-    axios
-      .get("/api/invoice/totalSales")
-      .then(res => {
-        this.props.setSalesTotal(res.data);
-        this.props.setSalesLoading(false);
-      })
-      .catch(err => {
-        this.props.setSalesError(err);
-      });
-    axios
-      .get("/api/product/topSoldProducts")
-      .then(res => {
-        this.props.setSalesTopSoldProducts(res.data);
-        this.props.setSalesLoading(false);
-      })
-      .catch(err => {
-        this.props.setSalesError(err);
-      });
-    axios
-      .get("/api/product/salesPerMonth")
-      .then(res => {
-        this.props.setSalesPerMonth(res.data);
-        this.props.setSalesLoading(false);
+        axios
+          .get("/api/customer")
+          .then(res => {
+            this.props.setSalesClients(res.data);
+            axios
+              .get("/api/invoice")
+              .then(res => {
+                this.props.setSalesInvoices(res.data);
+                axios
+                  .get("/api/invoice/totalSales")
+                  .then(res => {
+                    this.props.setSalesTotal(res.data);
+                    axios
+                      .get("/api/product/topSoldProducts")
+                      .then(res => {
+                        this.props.setSalesTopSoldProducts(res.data);
+                        axios
+                          .get("/api/product/salesPerMonth")
+                          .then(res => {
+                            this.props.setSalesPerMonth(res.data);
+                            this.props.setSalesLoading(false);
+                          })
+                          .catch(err => {
+                            this.props.setSalesError(err);
+                          });
+                      })
+                      .catch(err => {
+                        this.props.setSalesError(err);
+                      });
+                  })
+                  .catch(err => {
+                    this.props.setSalesError(err);
+                  });
+              })
+              .catch(err => {
+                this.props.setSalesError(err);
+              });
+          })
+          .catch(err => {
+            this.props.setSalesError(err);
+          });
       })
       .catch(err => {
         this.props.setSalesError(err);

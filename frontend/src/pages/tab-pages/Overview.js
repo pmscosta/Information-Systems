@@ -13,13 +13,13 @@ const Overview = () => {
   );
   const {
     loading: sloading,
-    totalSales,
-    loading,
-    topClients,
-    clients,
-    invoices,
-    topSoldProducts,
-    salesPerMonth
+    totalSales
+    // loading,
+    // topClients,
+    // clients,
+    // invoices,
+    // topSoldProducts,
+    // salesPerMonth
   } = useSelector(state => state.sales);
 
   return (

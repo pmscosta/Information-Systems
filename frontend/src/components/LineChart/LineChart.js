@@ -43,9 +43,7 @@ class LineChart extends React.Component {
           xAxes: [
             {
               type: "time",
-              time: {
-                unit: "week"
-              }
+              distribution: "series"
             }
           ],
           yAxes: [
@@ -58,10 +56,8 @@ class LineChart extends React.Component {
         }
       },
       data: {
-        labels: this.sortLabels(
-          this.props.data.map(dataset => this.createLabels(dataset)).flat()
-        ),
-        datasets: this.props.data.map(dataset => this.createDataset(dataset))
+        labels: this.sortLabels(this.createLabels(this.props.data)),
+        datasets: [this.createDataset(this.props.data)]
       }
     });
   }

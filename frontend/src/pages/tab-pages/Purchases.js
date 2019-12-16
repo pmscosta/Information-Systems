@@ -29,6 +29,7 @@ const Purchases = () => {
                 data={itemsData}
                 title="Purchases"
                 color="#3E517A"
+                togglable={true}
               ></BarChart>
             </div>
 
@@ -38,6 +39,7 @@ const Purchases = () => {
                 data={suppliersData}
                 title="Purchases"
                 color="#3E517A"
+                togglable={true}
               ></BarChart>
             </div>
           </Container>
@@ -45,7 +47,7 @@ const Purchases = () => {
             <div className="graph-wrapper">
               <span className="graph-title"> Purchases Timeline</span>
               <LineChart
-                data={[graphData]}
+                data={graphData}
                 title="Purchases"
                 color="#3BA9E0"
               ></LineChart>
