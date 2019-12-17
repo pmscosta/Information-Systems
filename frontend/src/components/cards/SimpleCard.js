@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 
 const useStyles = makeStyles({
   card: {
-    width: 275,
+    width: "fit-content",
     margin: 30,
     borderRadius: 20,
     border: "10px",
@@ -29,7 +29,10 @@ const useStyles = makeStyles({
     alignSelf: "baseline"
   },
   content: {
-    width: "100%",
+    height: "80%",
+    width: "90%",
+    maxWidth: "90%",
+    marginBottom: "1em",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between"
