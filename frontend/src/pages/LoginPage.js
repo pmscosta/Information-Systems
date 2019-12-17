@@ -12,7 +12,6 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { setLogin } from "../actions/loginActions";
 import { connect } from "react-redux";
 import { Switch, Redirect } from "react-router-dom";
 
@@ -33,14 +32,19 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.props = { ...props, login: false };
+    this.state = { login: false };
   }
 
   handleSubmit(evt) {
-    console.log(this);
-    console.log("PREVENTING");
     evt.preventDefault();
-    this.props.setLogin(true);
+    const user = evt.target.querySelector("div:nth-child(1) > div > input")
+      .value;
+    const pass = evt.target.querySelector("div:nth-child(2) > div > input")
+      .value;
+    if (user == "sinfonia" && pass == "sinf") {
+      localStorage.setItem("loggedIn", true);
+      this.setState({ login: true });
+    }
   }
 
   render() {
@@ -63,12 +67,12 @@ class Login extends React.Component {
         margin: theme.spacing(3, 0, 2)
       }
     }));
+
     return (
       <>
-        {this.props.login ? (
+        {localStorage.getItem("loggedIn") === "true" ? (
           <Switch>
-            {" "}
-            <Redirect to="/" />{" "}
+            <Redirect to="/" />
           </Switch>
         ) : (
           <>
@@ -139,15 +143,4 @@ class Login extends React.Component {
     );
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    login: state.login.loggedIn
-  };
-};
-
-const mapDispatchToProps = {
-  setLogin
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

@@ -38,12 +38,9 @@ class MainPage extends React.Component {
 
   render() {
     const value = this.props.match.params.view || "overview";
-    // const { loggedIn } = useSelector(
-    //   state => state.login
-    // );
     return (
       <>
-        {!this.props.loggedIn ? (
+        {localStorage.getItem("loggedIn") === "false" ? (
           <Switch>
             <Redirect to="/login" />
           </Switch>
@@ -164,10 +161,8 @@ MainPage.propTypes = {
   setSalesError: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => {
-  return {
-    loggedIn: state.login.loggedIn
-  };
+const mapStateToProps = () => {
+  return {};
 };
 
 const mapDispatchToProps = {

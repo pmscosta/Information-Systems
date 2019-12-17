@@ -11,16 +11,7 @@ const Overview = () => {
   const { loading: ploading, purchases } = useSelector(
     state => state.purchases
   );
-  const {
-    loading: sloading,
-    totalSales
-    // loading,
-    // topClients,
-    // clients,
-    // invoices,
-    // topSoldProducts,
-    // salesPerMonth
-  } = useSelector(state => state.sales);
+  const { loading: sloading, totalSales } = useSelector(state => state.sales);
 
   const { loading: cloading, cashflow } = useSelector(state => state.cashflow);
 
