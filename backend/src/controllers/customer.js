@@ -25,7 +25,11 @@ async function getTopClients(req, res) {
           (a, b) => a + b.netTotal,
           0,
         );
-        resolve({ customer, totalSpent });
+        const numItems = invoices.reduce(
+          (a, c) => a + c.invoiceProducts.length,
+          0
+        )
+        resolve({ customer, totalSpent, numItems });
       });
     });
     promises.push(p);
