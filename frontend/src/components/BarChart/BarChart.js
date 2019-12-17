@@ -14,11 +14,11 @@ const BarChart = props => {
 
   const createDataset = () => {
     let data = [];
-    Object.keys(items).forEach(key => {
+    items.forEach(item => {
       if (togglable && showQuantity) {
-        data.push(items[key].quantity);
+        data.push(item.quantity);
       } else {
-        data.push(items[key].value);
+        data.push(item.value);
       }
     });
 
@@ -34,8 +34,8 @@ const BarChart = props => {
 
   const createLabels = () => {
     let labels = [];
-    Object.keys(items).forEach(key => {
-      labels.push(key);
+    items.forEach(item => {
+      labels.push(item.key);
     });
 
     return labels;

@@ -21,12 +21,14 @@ export default (state = initialState, action) => {
       };
     case salesTypes.SET_TOP_CLIENTS:
       const topClients = action.payload.splice(0, 4).reduce((a, b) => {
-        a[b.customer.CustomerID] = {
+        const entry = {
+          key: b.customer.CustomerID,
           quantity: b.numItems,
           value: b.totalSpent.toFixed(2)
         };
+        a.push(entry);
         return a;
-      }, {});
+      }, []);
       return {
         ...state,
         topClients
@@ -48,9 +50,14 @@ export default (state = initialState, action) => {
       };
     case salesTypes.SET_TOP_SOLD_PRODUCTS:
       const topSoldProducts = action.payload.splice(0, 4).reduce((a, b) => {
-        a[b._id] = { quantity: b.count, value: b.salesValue.toFixed(2) };
+        const entry = {
+          key: b._id,
+          quantity: b.count,
+          value: b.salesValue.toFixed(2)
+        };
+        a.push(entry);
         return a;
-      }, {});
+      }, []);
       return {
         ...state,
         topSoldProducts

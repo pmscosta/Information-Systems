@@ -32,32 +32,54 @@ export const createGraphData = (title, invoiced) => {
 };
 
 export const createItemsData = (title, invoiced) => {
-  const grouped = invoiced.reduce((a, b) => {
-    if (!a[b.item.itemId]) {
-      a[b.item.itemId] = {
-        description: b.item.description,
-        quantity: 0,
-        value: 0
-      };
-    }
-    a[b.item.itemId].value += b.amount;
-    a[b.item.itemId].quantity += b.item.quantity;
-    return a;
-  }, {});
+  const temp = invoiced.reduce((a, b) => {
+    const idx = a.findIndex(x => x.key === b.item.itemId);
 
-  return grouped;
+    if (idx === -1) {
+      const entry = {
+        key: b.item.itemId,
+        description: b.item.description,
+        quantity: b.item.quantity,
+        value: b.amount
+      };
+      a.push(entry);
+    } else {
+      a[idx].quantity += b.item.quantity;
+      a[idx].value += b.amount;
+    }
+
+    return a;
+  }, []);
+
+  temp.sort((a, b) => {
+    return b.quantity - a.quantity;
+  });
+
+  return temp.slice(0, 5);
 };
 
 export const createSuppliersData = (title, invoiced) => {
-  const grouped = invoiced.reduce((a, b) => {
-    if (!a[b.supplier]) {
-      a[b.supplier] = { quantity: 0, value: 0 };
+  const temp = invoiced.reduce((a, b) => {
+    const idx = a.findIndex(x => x.key === b.supplier);
+
+    if (idx === -1) {
+      const entry = {
+        key: b.supplier,
+        quantity: b.item.quantity,
+        value: b.amount
+      };
+      a.push(entry);
+    } else {
+      a[idx].quantity += b.item.quantity;
+      a[idx].value += b.amount;
     }
-    a[b.supplier].quantity += b.item.quantity;
-    a[b.supplier].value += b.amount;
 
     return a;
-  }, {});
+  }, []);
 
-  return grouped;
+  temp.sort((a, b) => {
+    return b.quantity - a.quantity;
+  });
+
+  return temp.slice(0, 5);
 };
