@@ -25,7 +25,14 @@ const useStyles = makeStyles({
   },
   number: {
     fontSize: 30,
-    marginBottom: 12
+    marginRight: "2px",
+    alignSelf: "baseline"
+  },
+  content: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between"
   }
 });
 

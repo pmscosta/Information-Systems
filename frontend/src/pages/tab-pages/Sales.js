@@ -7,6 +7,7 @@ import { Container } from "@material-ui/core";
 
 import "./Purchases.css";
 import SimpleValueCard from "../../components/SimpleValueCard";
+import SimpleCard from "../../components/cards/SimpleCard";
 
 const Sales = () => {
   const {
@@ -57,11 +58,7 @@ const Sales = () => {
               )}
             </div>
             <div className="vertical-cards">
-              <SimpleValueCard name="Total Sales" value={`${totalSales} €`} />
-              {/* <SimpleValueCard
-                name="Received but not invoiced"
-                value={`${totalOpenValue} €`}
-              /> */}
+              <SimpleCard label="Total Sales" number={totalSales} />
             </div>
           </Container>
         </Container>
