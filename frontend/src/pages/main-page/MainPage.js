@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import MainPageLayout from "../../components/layout/MainPageLayout";
 import TabsLayout from "../../components/layout/tabs/TabsLayout";
 import MainTabsConfig from "./MainTabsConfig";
+import { useSelector } from "react-redux";
+import { Switch, Redirect } from "react-router-dom";
 import {
   setInventoryLoading,
   setInventoryData,
@@ -34,6 +36,27 @@ class MainPage extends React.Component {
     this.getInventory();
     this.getPurchases();
     this.getSales();
+  }
+
+  render() {
+    const value = this.props.match.params.view || "overview";
+    return (
+      <>
+        {localStorage.getItem("loggedIn") === "false" ? (
+          <Switch>
+            <Redirect to="/login" />
+          </Switch>
+        ) : (
+          <MainPageLayout style>
+            <TabsLayout
+              style={{ backgroundColor: "yellow" }}
+              value={value}
+              options={MainTabsConfig()}
+            />
+          </MainPageLayout>
+        )}
+      </>
+    );
   }
 
   getInventory = () => {
@@ -123,19 +146,6 @@ class MainPage extends React.Component {
         this.props.setSalesError(err);
       });
   };
-
-  render() {
-    const value = this.props.match.params.view || "overview";
-    return (
-      <MainPageLayout style>
-        <TabsLayout
-          style={{ backgroundColor: "yellow" }}
-          value={value}
-          options={MainTabsConfig()}
-        />
-      </MainPageLayout>
-    );
-  }
 }
 
 MainPage.propTypes = {
