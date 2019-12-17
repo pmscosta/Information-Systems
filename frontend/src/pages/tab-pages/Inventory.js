@@ -44,12 +44,10 @@ const useStyles = makeStyles(theme => ({
 
 const Inventory = () => {
   const classes = useStyles();
-  const { loading, inventory } = useSelector(state => state.inventory);
-
-  const inventoryValue = inventory.reduce(
-    (acc, b) => acc + b.warehouses.reduce((i, j) => i + j.balanceAmount, 0),
-    0
+  const { loading, inventory, inventoryBalance } = useSelector(
+    state => state.inventory
   );
+
   const [open, setOpen] = React.useState(
     inventory.reduce((acc, i) => {
       acc[i.itemKey] = false;
@@ -153,7 +151,7 @@ const Inventory = () => {
       <Container id="inventory-page">
         <SimpleValueCard
           name="Inventory Balance"
-          value={`${inventoryValue} €`}
+          value={`${inventoryBalance} €`}
         />
         <div id="inventory-lists">
           {drawItemList(

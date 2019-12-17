@@ -5,7 +5,7 @@ import SimpleCard from "../../components/cards/SimpleCard";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Overview = () => {
-  const { loading: iloading, inventory } = useSelector(
+  const { loading: iloading, inventoryBalance } = useSelector(
     state => state.inventory
   );
   const { loading: ploading, purchases } = useSelector(
@@ -22,6 +22,8 @@ const Overview = () => {
     // salesPerMonth
   } = useSelector(state => state.sales);
 
+  const { loading: cloading, cashflow } = useSelector(state => state.cashflow);
+
   return (
     <>
       {ploading ? (
@@ -33,6 +35,20 @@ const Overview = () => {
         <CircularProgress />
       ) : (
         <SimpleCard label="SALES" to="/sales" number={totalSales} />
+      )}
+      {iloading ? (
+        <CircularProgress />
+      ) : (
+        <SimpleCard
+          label="INVENTORY"
+          to="/inventory"
+          number={inventoryBalance}
+        />
+      )}
+      {cloading ? (
+        <CircularProgress />
+      ) : (
+        <SimpleCard label="CASHFLOW" to="/finances" number={cashflow} />
       )}
     </>
   );

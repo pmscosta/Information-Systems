@@ -7,6 +7,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import "./style/common.css";
 import theme from "./theme";
 import MainPage from "./pages/main-page/MainPage";
+import LoginPage from "./pages/LoginPage";
 import { Provider } from "react-redux";
 
 if (process.env.NODE_ENV === "development") {
@@ -22,6 +23,7 @@ function App() {
         <Router>
           <div className="App">
             <Switch>
+              <Route path="/login" component={LoginPage} />
               <Route path="/:view?" component={MainPage} />
             </Switch>
           </div>
