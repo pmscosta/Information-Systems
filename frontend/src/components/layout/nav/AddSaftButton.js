@@ -23,7 +23,12 @@ class AddSaftButton extends React.Component {
       if (data) {
         axios
           .post("/api/saft", data)
-          .then(this.updateSales())
+          .then(res => {
+            if (res.status === 200) {
+              console.log(res);
+              this.updateSales();
+            }
+          })
           .catch(err => console.log(err));
       }
     }
@@ -31,7 +36,7 @@ class AddSaftButton extends React.Component {
 
   updateSales = () => {
     this.props.setSalesLoading(true);
-    setTimeout(this.getSales(), 2000);
+    this.getSales();
   };
 
   getSales = () => {

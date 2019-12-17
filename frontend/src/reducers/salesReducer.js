@@ -56,11 +56,17 @@ export default (state = initialState, action) => {
         topSoldProducts
       };
     case salesTypes.SET_SALES_PER_MONTH:
-      const salesPerMonth = action.payload.reduce((a, b) => {
+      let orderedSales = action.payload;
+
+      orderedSales.sort((a, b) => {
+        return new Date(a._id.date) - new Date(b._id.date);
+      });
+
+      const salesPerMonth = orderedSales.reduce((a, b) => {
         let prev_amount = a.length > 0 ? a[a.length - 1].value : 0;
-        const date = new Date(b._id.year, b._id.month);
+        const date = new Date(b._id.date);
         const val = b.total;
-        a.push({ time: date.toString(), value: val + prev_amount });
+        a.push({ time: date, value: val + prev_amount });
         return a;
       }, []);
 

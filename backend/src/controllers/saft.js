@@ -4,29 +4,30 @@ const SafT = require('../models/saft');
 const fs = require('fs');
 const parser = require('../api/parser/parser');
 
-async function parseFields(xml2js) {
-  await parser.parseCustomers(xml2js);
-
-  await parser.parseInvoices(xml2js);
+function parseFields(xml2js) {
+  return new Promise(resolve => {
+    parser.parseCustomers(xml2js).then(() => {
+      parser.parseInvoices(xml2js).then(() => {
+        resolve();
+      });
+    });
+  });
 }
 
 function addSaft(req, res) {
-  let file = fs.readFileSync(req.file.path);
+  const file = fs.readFileSync(req.file.path);
 
   parser
     .parseXML(file)
     .catch(console.error)
-    .then(async result => {
-      let newSafT = new SafT({
+    .then(result => {
+      const newSafT = new SafT({
         type: req.file.mimetype,
         data: result,
       });
-      // newSafT.save()
-      //   .catch(res.send);
-
-      await parseFields(result);
-
-      res.json('Done');
+      parseFields(result).then(() => {
+        res.status(200).json('Done');
+      });
     })
     .catch(err => res.status(400).json(err));
 }

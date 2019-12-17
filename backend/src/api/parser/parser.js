@@ -24,29 +24,27 @@ function parseXML(xml) {
 const parseCustomers = xml2js => {
   return Promise.all(
     xml2js.AuditFile.MasterFiles[0].Customer.map(async customer => {
-      try {
-        const result = await Customer.findOne({
+      const result = await Customer.findOne({
+        CustomerID: customer.CustomerID[0],
+      });
+
+      if (result === null) {
+        const cust = new Customer({
           CustomerID: customer.CustomerID[0],
+          CustomerTaxID: customer.CustomerTaxID[0],
+          CompanyName: customer.CompanyName[0],
         });
 
-        if (result === null) {
-          const cust = new Customer({
-            CustomerID: customer.CustomerID[0],
-            CustomerTaxID: customer.CustomerTaxID[0],
-            CompanyName: customer.CompanyName[0],
-          });
-
-          await cust.save();
-        }
-      } catch (error) {
-        console.error(error);
+        await cust.save();
+        return true;
       }
+      return false;
     }),
   );
 };
 
 const parseInvoices = xml2js => {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     xml2js.AuditFile.SourceDocuments[0].SalesInvoices[0].Invoice.forEach(
       invoice => {
         const newInvoice = new Invoice({
@@ -73,7 +71,7 @@ const parseInvoices = xml2js => {
         CustomerController.getById(invoice.CustomerID[0]).then(
           customerdb => {
             newInvoice.customer = customerdb;
-            newInvoice.save();
+            newInvoice.save().then(() => resolve());
           },
         );
       },

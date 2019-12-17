@@ -36,16 +36,22 @@ function getTopSoldProducts(req, res) {
 }
 
 const getSalesPerMonth = async (req, res) => {
-  const salesPerMonth = [];
-
-  // InvoiceProduct.findOne({}).then(inv => console.log(inv));
-
   InvoiceProduct.aggregate([
     {
       $project: {
         month: { $month: '$date' },
         year: { $year: '$date' },
+        day: { $dayOfMonth: '$date' },
+        date: 1,
         total: { $multiply: ['$quantity', '$unitPrice'] },
+      },
+    },
+    // Sort everything (descending so highest price per day is on top)
+    {
+      $sort: {
+        year: -1,
+        month: -1,
+        day: -1,
       },
     },
     {
@@ -53,7 +59,10 @@ const getSalesPerMonth = async (req, res) => {
         _id: {
           month: '$month',
           year: '$year',
+          day: '$day',
+          date: '$date',
         },
+        date: { $first: '$date' },
         total: { $sum: '$total' },
       },
     },

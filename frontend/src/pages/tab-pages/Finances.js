@@ -65,9 +65,6 @@ class Finances extends React.Component {
 const calculateCOGS = (all_purchases, invoices) => {
   if (Array.isArray(all_purchases) && Array.isArray(invoices)) {
     const items = [];
-
-    console.log(invoices);
-
     invoices.forEach(invoice => {
       invoice.prods.forEach(prod => {
         const bought = all_purchases.find(
