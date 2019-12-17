@@ -13,10 +13,11 @@ function getAll(req, res) {
 function getAllTest(req, res) {
   Invoice.find()
     .populate('invoiceProducts')
-    .exec(function(err, invoices) {
+    .exec(function (err, invoices) {
       res.json(invoices);
     });
 }
+
 
 function getTopSoldProducts(req, res) {
   InvoiceProduct.aggregate([
