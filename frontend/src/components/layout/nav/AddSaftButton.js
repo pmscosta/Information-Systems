@@ -17,13 +17,15 @@ import {
 
 class AddSaftButton extends React.Component {
   handleUploadFile = event => {
-    const data = new FormData();
-    data.append("xmlFile", event.target.files[0]);
-    if (data) {
-      axios
-        .post("/api/saft", data)
-        .then(this.updateSales())
-        .catch(err => console.log(err));
+    for (let i = 0; i < event.target.files.length; i++) {
+      const data = new FormData();
+      data.append("xmlFile", event.target.files[i]);
+      if (data) {
+        axios
+          .post("/api/saft", data)
+          .then(this.updateSales())
+          .catch(err => console.log(err));
+      }
     }
   };
 
