@@ -1,4 +1,15 @@
-#overview-page {
+#overview-card {
   display: flex;
-  flex-wrap: wrap;
 }
+@media (max-width: 800px) {
+  #overview-card {
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* #overview-page .graph-wrapper {
+  max-height: 30em;
+} */

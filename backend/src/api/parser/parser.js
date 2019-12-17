@@ -43,6 +43,13 @@ const parseCustomers = xml2js => {
   );
 };
 
+const parseDate = xml2js => {
+  return [
+    xml2js.AuditFile.Header[0].StartDate,
+    xml2js.AuditFile.Header[0].EndDate,
+  ];
+};
+
 const parseInvoices = xml2js => {
   return new Promise(resolve => {
     xml2js.AuditFile.SourceDocuments[0].SalesInvoices[0].Invoice.forEach(
@@ -65,6 +72,7 @@ const parseInvoices = xml2js => {
           });
 
           newProductInvoice.save();
+          // createInvoiceProduct(newProductInvoice);
           newInvoice.invoiceProducts.push(newProductInvoice);
         });
 
@@ -79,8 +87,58 @@ const parseInvoices = xml2js => {
   });
 };
 
+const createInvoice = invoice => {
+  let newInvoice = {
+    invoiceNo: invoice.invoiceNo,
+    invoiceType: invoice.invoiceType,
+    invoiceDate: invoice.invoiceDate,
+    netTotal: invoice.netTotal,
+    invoiceProducts: invoice.invoiceProducts,
+    customer: invoice.customer,
+  };
+
+  Invoice.findOneAndUpdate(
+    { invoiceNo: invoice.invoiceNo },
+    newInvoice,
+    { upsert: true, new: true, runValidators: true },
+    function(err, doc) {
+      // callback
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(doc);
+      }
+    },
+  );
+};
+
+const createInvoiceProduct = invoiceProduct => {
+  let newInvoiceProduct = {
+    productCode: invoiceProduct.productCode,
+    productDescription: invoiceProduct.productDescription,
+    quantity: invoiceProduct.quantity,
+    unitPrice: invoiceProduct.unitPrice,
+    date: invoiceProduct.date,
+  };
+
+  InvoiceProduct.findOneAndUpdate(
+    { productCode: invoiceProduct.productCode },
+    newInvoiceProduct,
+    { upsert: true, new: true, runValidators: true },
+    function(err, doc) {
+      // callback
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(doc);
+      }
+    },
+  );
+};
+
 module.exports = {
   parseXML,
   parseInvoices,
   parseCustomers,
+  parseDate,
 };

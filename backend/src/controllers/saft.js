@@ -14,6 +14,12 @@ function parseFields(xml2js) {
   });
 }
 
+function getAll(req, res) {
+  SafT.find()
+    .then(saft => res.json(saft))
+    .catch(err => res.status(400).json(err));
+}
+
 function addSaft(req, res) {
   const file = fs.readFileSync(req.file.path);
 
@@ -21,17 +27,39 @@ function addSaft(req, res) {
     .parseXML(file)
     .catch(console.error)
     .then(result => {
+      const dates = parser.parseDate(result);
+
       const newSafT = new SafT({
         type: req.file.mimetype,
-        data: result,
+        // data: "",
+        startDate: dates[0],
+        endDate: dates[1],
       });
-      parseFields(result).then(() => {
-        res.status(200).json('Done');
-      });
+
+      SafT.findOne(
+        { startDate: dates[0], endDate: dates[1] },
+        (err, list) => {
+          if (err) {
+            console.error(err);
+          }
+          if (!list) {
+            newSafT.save().then(() => {
+              parseFields(result).then(() => {
+                res.status(200).json('Done');
+              });
+            });
+          } else {
+            res
+              .status(400)
+              .json('Saft for this period already exists');
+          }
+        },
+      );
     })
     .catch(err => res.status(400).json(err));
 }
 
 module.exports = {
+  getAll,
   addSaft,
 };
