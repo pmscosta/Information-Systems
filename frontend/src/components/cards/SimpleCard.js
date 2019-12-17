@@ -60,9 +60,13 @@ const SimpleCard = props => {
                 {props.number}
               </Typography>
             </Grid>
-            <Grid item>
-              {props.unit ? props.unit : <EuroIcon color="primary" />}
-            </Grid>
+            {props.unit !== "none" ? (
+              <Grid item>
+                {props.unit ? props.unit : <EuroIcon color="primary" />}
+              </Grid>
+            ) : (
+              <></>
+            )}
           </Grid>
         </CardContent>
       </StyledLink>
