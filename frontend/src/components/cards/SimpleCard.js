@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   }
 });
 
-const SimpleCard = ({ label, number, to }) => {
+const SimpleCard = ({ label, number, to, unit }) => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
@@ -52,9 +52,7 @@ const SimpleCard = ({ label, number, to }) => {
                 {number}
               </Typography>
             </Grid>
-            <Grid item>
-              <EuroIcon color="primary" />
-            </Grid>
+            <Grid item>{unit ? unit : <EuroIcon color="primary" />}</Grid>
           </Grid>
         </CardContent>
       </StyledLink>

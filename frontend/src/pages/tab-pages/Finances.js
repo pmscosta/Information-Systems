@@ -2,11 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { connect } from "react-redux";
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 import ValueCard from "../../components/ValueCard";
-import { useSelector } from "react-redux";
 import SimpleCard from "../../components/cards/SimpleCard";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { Container } from "@material-ui/core";
 import SimpleValueCard from "../../components/SimpleValueCard";
 import AppLinearProgress from "../../components/AppLinearProgress";
@@ -16,30 +14,84 @@ class Finances extends React.Component {
     super(props);
     this.props = {
       ...props,
+      totalSales: 0,
       costsOfGoodsSold: 0
     };
   }
   render() {
+    console.log(this.props);
     return (
       <>
-        <div>Accounts Payable: {this.props.accountsPayable}</div>
-        <div>Accounts Receivable: {this.props.accountsReceivable}</div>
-        <div>Costs Of Goods Sold: {this.props.costsOfGoodsSold}</div>
-        <div>
-          Net Profit Margin:{" "}
-          {((parseInt(this.props.totalSales) - this.props.costsOfGoodsSold) *
-            100) /
-            parseInt(this.props.totalSales)}
-          %
-        </div>
+        <SimpleCard
+          label="ACCOUNTS PAYABLE"
+          number={this.props.accountsPayable}
+        />
+        <SimpleCard
+          label="ACCOUNTS RECEIVABLE"
+          number={this.props.accountsReceivable}
+        />
+        <SimpleCard
+          label="COSTS OF GOODS SOLD"
+          number={this.props.costsOfGoodsSold}
+        />
+        <SimpleCard
+          label="NET PROFIT MARGIN"
+          number={(
+            ((this.props.totalSales - this.props.costsOfGoodsSold) * 100) /
+            this.props.totalSales
+          ).toFixed(0)}
+          unit="%"
+        ></SimpleCard>
         <div>Cashflow Data: {this.props.cashFlowData}</div>
       </>
     );
   }
 }
 
+const calculateCOGS = (all_purchases, invoices) => {
+  if (Array.isArray(all_purchases) && Array.isArray(invoices)) {
+    const items = [];
+
+    invoices.forEach(invoice => {
+      invoice.prods.forEach(prod => {
+        const bought = all_purchases.find(
+          x => x.item.itemId === prod.productCode
+        );
+
+        if (bought !== null && bought !== undefined) {
+          const idx = items.findIndex(x => x.itemId === bought.item.itemId);
+
+          if (idx === -1) {
+            items.push({
+              itemId: bought.item.itemId,
+              value: bought.item.value * prod.quantity,
+              quantity: prod.quantity
+            });
+          } else {
+            items[idx].value += bought.item.value * prod.quantity;
+            items[idx].quantity += prod.quantity;
+          }
+        }
+      });
+    });
+
+    let nom = 0;
+    let den = 0;
+    items.forEach(item => {
+      nom += item.value * item.quantity;
+      den += item.quantity;
+    });
+
+    const res = nom / den;
+
+    return res;
+  }
+  return 0;
+};
+
+const mapDispatchToProps = {};
+
 const mapStateToProps = state => {
-  console.log(state.sales);
   return {
     accountsPayable: state.purchases.invoiced
       .filter(({ naturalKey }) => {
@@ -48,91 +100,16 @@ const mapStateToProps = state => {
       .reduce((a, b) => a + b.payableAmount, 0)
       .toFixed(2),
     accountsReceivable: state.sales.invoices.reduce(
-      (a, b) => a + b.netTotal,
+      (a, b) => a + b.invoice.netTotal,
       0
     ),
-    costsOfGoodsSold: 0,
+    costsOfGoodsSold: calculateCOGS(
+      state.purchases.all_purchases,
+      state.sales.invoices
+    ).toFixed(2),
     cashFlowData: [],
-    totalSales: state.sales.totalSales
+    totalSales: parseInt(state.sales.totalSales)
   };
-const Finances = () => {
-  const { loading: iloading, inventory } = useSelector(
-    state => state.inventory
-  );
-  const { loading: ploading, accountsPayable, all_purchases } = useSelector(
-    state => state.purchases
-  );
-  const {
-    loading: sloading,
-    totalSales,
-    loading,
-    topClients,
-    clients,
-    invoices,
-    topSoldProducts,
-    salesPerMonth
-  } = useSelector(state => state.sales);
-
-  const [cogs, setCogs] = useState(0);
-
-  useEffect(() => {
-    // calculate COGS
-    if (Array.isArray(all_purchases) && Array.isArray(invoices)) {
-      const items = [];
-
-      invoices.forEach(invoice => {
-        invoice.prods.forEach(prod => {
-          const bought = all_purchases.find(
-            x => x.item.itemId === prod.productCode
-          );
-
-          if (bought !== null && bought !== undefined) {
-            const idx = items.findIndex(x => x.itemId === bought.item.itemId);
-
-            if (idx === -1) {
-              items.push({
-                itemId: bought.item.itemId,
-                value: bought.item.value * prod.quantity,
-                quantity: prod.quantity
-              });
-            } else {
-              items[idx].value += bought.item.value * prod.quantity;
-              items[idx].quantity += prod.quantity;
-            }
-          }
-        });
-      });
-
-      let nom = 0;
-      let den = 0;
-      items.forEach(item => {
-        nom += item.value * item.quantity;
-        den += item.quantity;
-      });
-
-      const res = nom / den;
-
-      setCogs(res);
-    }
-  }, [all_purchases, invoices]);
-
-  return (
-    <>
-      {(loading || ploading || sloading) && <AppLinearProgress />}
-      {!(loading || ploading || sloading) && (
-        <Container>
-          <SimpleValueCard name="Costs of goods sold" value={`${cogs} €`} />
-          <SimpleValueCard
-            name="Accounts payable"
-            value={`${accountsPayable} €`}
-          />
-          <SimpleValueCard name="Net Margin" value={`${totalSales - cogs} €`} />
-        </Container>
-      )}
-    </>
-  );
 };
-
-const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Finances);
