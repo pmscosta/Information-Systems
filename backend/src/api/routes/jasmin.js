@@ -28,36 +28,13 @@ router.get('/stock', (req, res) => {
 });
 
 router.get('/sales', async (req, res) => {
-  const invoices = await jasmin.sales.getSalesInvoices();
-  const orders = await jasmin.sales.getSalesOrders();
+  const payments = await jasmin.sales.getSalesReceivable();
 
   res.status(200).json({
-    invoiced: invoices
-      .filter(({ isDeleted }) => {
-        return !isDeleted;
-      })
-      .reduce(
-        (a, b) =>
-          a.concat({
-            sourceDoc: b.documentLines[0].sourceDoc,
-            amount: b.payableAmount.amount,
-            date: b.dueDate,
-          }),
-        [],
-      ),
-    open: orders
-      .filter(({ isDeleted }) => {
-        return !isDeleted;
-      })
-      .filter(el => el.naturalKey.indexOf('EI') === -1)
-      .reduce(
-        (a, b) =>
-          a.concat({
-            naturalKey: b.naturalKey,
-            amount: b.taxExclusiveAmount.amount,
-          }),
-        [],
-      ),
+    payments: payments.reduce(
+      (a, b) => a.concat({ sourceDoc: b.receiptLines[0].sourceDoc }),
+      [],
+    ),
   });
 });
 
