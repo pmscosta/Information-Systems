@@ -9,7 +9,7 @@ import { Container } from "@material-ui/core";
 import SimpleValueCard from "../../components/SimpleValueCard";
 import AppLinearProgress from "../../components/AppLinearProgress";
 import LineChart from "../../components/LineChart/LineChart";
-
+import { setCashflowData } from "../../actions/cashFlowActions";
 import "./Finances.css";
 
 class Finances extends React.Component {
@@ -21,6 +21,7 @@ class Finances extends React.Component {
       costsOfGoodsSold: 0
     };
   }
+
   render() {
     return (
       <Container id="finances-page">
@@ -169,7 +170,9 @@ const calculateCashflow = (
   return cashFlow;
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  setCashflowData
+};
 
 const mapStateToProps = state => {
   return {

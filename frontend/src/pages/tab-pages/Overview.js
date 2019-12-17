@@ -12,12 +12,15 @@ const Overview = () => {
   const { loading: iloading, inventory, inventoryBalance } = useSelector(
     state => state.inventory
   );
-  const { loading: ploading, purchases, totalReceiptValue } = useSelector(
-    state => state.purchases
+  const {
+    loading: ploading,
+    invoiced,
+    payments,
+    totalReceiptValue
+  } = useSelector(state => state.purchases);
+  const { loading: sloading, totalSales, invoices, paidSales } = useSelector(
+    state => state.sales
   );
-  const { loading: sloading, totalSales } = useSelector(state => state.sales);
-
-  const { loading: cloading, cashflow } = useSelector(state => state.cashflow);
 
   const useStyles = makeStyles({
     warning: {
@@ -31,10 +34,14 @@ const Overview = () => {
     return stockBalance <= 0;
   });
 
+  let cashflow = calculateCashflow(invoiced, payments, invoices, paidSales);
+  console.log(cashflow);
+  if (cashflow.data) cashflow = cashflow.data[cashflow.data.length - 1].value;
+
   return (
     <Container id="overview-page">
       <div id="overview-card">
-        {cloading ? (
+        {ploading || sloading ? (
           <CircularProgress />
         ) : (
           <SimpleCard label="CASHFLOW" to="/finances" number={cashflow} />
@@ -91,6 +98,73 @@ const Overview = () => {
       )}
     </Container>
   );
+};
+
+const calculateCashflow = (
+  purchases_invoices,
+  purchases_payments,
+  sales_invoices,
+  sales_payments
+) => {
+  let cashFlow = [];
+
+  if (
+    Array.isArray(purchases_invoices) &&
+    purchases_invoices.length &&
+    Array.isArray(sales_invoices) &&
+    sales_invoices.length
+  ) {
+    const only_invoices = sales_invoices.map(invoice => {
+      return { ...invoice.invoice, date: invoice.invoice.invoiceDate };
+    });
+
+    const paid_purchases = purchases_invoices.filter(({ naturalKey }) => {
+      return purchases_payments.find(x => x.sourceDoc === naturalKey);
+    });
+
+    const paid_sales = only_invoices.filter(({ invoiceNo }) => {
+      return sales_payments.find(
+        x =>
+          x.sourceDoc.replace(/\.|\//g, " ") ===
+          invoiceNo.replace(/\.|\//g, " ")
+      );
+    });
+
+    const purchases_and_sales = paid_sales.concat(paid_purchases);
+
+    purchases_and_sales.sort((a, b) => {
+      return new Date(a.date) - new Date(b.date);
+    });
+
+    const data = purchases_and_sales.reduce((r, a) => {
+      let prev_amount = r.length > 0 ? r[r.length - 1].value : 0;
+      let prev_date = r.length > 0 ? r[r.length - 1].time : "";
+
+      let newVal = 0;
+
+      if (a.netTotal !== undefined && a.netTotal !== null) {
+        newVal = a.grossTotal;
+      } else {
+        newVal = -a.payableAmount;
+      }
+
+      if (new Date(prev_date).getTime() === new Date(a.date).getTime()) {
+        r[r.length - 1].value += newVal;
+        return r;
+      } else {
+        let b = {
+          time: a.date,
+          value: newVal + prev_amount
+        };
+        r.push(b);
+        return r;
+      }
+    }, []);
+
+    cashFlow = { title: "CashFlow", data: data };
+  }
+
+  return cashFlow;
 };
 
 export default Overview;
