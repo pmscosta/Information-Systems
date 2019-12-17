@@ -22,7 +22,7 @@ export default (state = initialState, action) => {
     case salesTypes.SET_TOP_CLIENTS:
       const topClients = action.payload.splice(0, 4).reduce((a, b) => {
         a[b.customer.CustomerID] = {
-          quantity: 0,
+          quantity: b.numItems,
           value: b.totalSpent.toFixed(2)
         };
         return a;

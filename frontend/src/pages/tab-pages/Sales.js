@@ -40,7 +40,7 @@ const Sales = () => {
                   data={topClients}
                   title="Purchases"
                   color="#3E517A"
-                  togglable={false}
+                  togglable={true}
                 ></BarChart>
               </div>
             )}
