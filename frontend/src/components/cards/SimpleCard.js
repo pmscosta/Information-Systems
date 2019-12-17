@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import StyledLink from "../../components/StyledLink";
 import Grid from "@material-ui/core/Grid";
 import EuroIcon from "@material-ui/icons/Euro";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles({
   card: {
@@ -35,18 +36,18 @@ const useStyles = makeStyles({
   }
 });
 
-const SimpleCard = ({ label, number, to, unit }) => {
+const SimpleCard = props => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
-      <StyledLink to={to}>
+      <StyledLink to={props.to || "/"}>
         <CardContent className={classes.content}>
           <Typography
             className={classes.title}
             color="textSecondary"
             gutterBottom
           >
-            {label}
+            {props.label}
           </Typography>
           <Typography
             align="left"
@@ -54,12 +55,20 @@ const SimpleCard = ({ label, number, to, unit }) => {
             gutterBottom
             className={classes.number}
           >
-            {number} {unit ? unit : <EuroIcon color="primary" />}
+            {props.number}{" "}
+            {props.unit ? props.unit : <EuroIcon color="primary" />}
           </Typography>
         </CardContent>
       </StyledLink>
     </Card>
   );
 };
+
+// SimpleCard.propTypes = {
+//   label: PropTypes.string,
+//   number: PropTypes.integ,
+//   to: PropTypes.string,
+//   unit: PropTypes.string
+// }
 
 export default SimpleCard;
