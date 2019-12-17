@@ -22,10 +22,12 @@ import {
   setSalesTotal,
   setSalesTopSoldProducts,
   setSalesPerMonth,
+  setSalesPaid,
   setSalesError
 } from "../../actions/salesActions";
 
 import axios from "axios";
+import { resolve } from "dns";
 
 class MainPage extends React.Component {
   componentDidMount() {
@@ -67,6 +69,7 @@ class MainPage extends React.Component {
 
   getSales = () => {
     this.props.setSalesLoading(true);
+
     axios
       .get("/api/customer/topclient")
       .then(res => {
@@ -91,7 +94,10 @@ class MainPage extends React.Component {
                           .get("/api/product/salesPerMonth")
                           .then(res => {
                             this.props.setSalesPerMonth(res.data);
-                            this.props.setSalesLoading(false);
+                            axios.get("/api/jasmin/sales").then(res => {
+                              this.props.setSalesPaid(res.data);
+                              this.props.setSalesLoading(false);
+                            });
                           })
                           .catch(err => {
                             this.props.setSalesError(err);
@@ -169,6 +175,7 @@ const mapDispatchToProps = {
   setSalesTotal,
   setSalesTopSoldProducts,
   setSalesPerMonth,
+  setSalesPaid,
   setSalesError
 };
 

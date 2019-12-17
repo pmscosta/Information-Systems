@@ -5,29 +5,31 @@ require('mongoose-moment')(mongoose);
 
 const { Schema } = mongoose;
 
-const invoiceProductSchema = new Schema({ 
+const invoiceProductSchema = new Schema({
   productCode: {
     type: String,
-    required: true
+    required: true,
   },
   productDescription: {
     type: String,
-    required: true
+    required: true,
   },
   quantity: {
     type: Number,
-    required: true
+    required: true,
   },
   unitPrice: {
     type: Number,
-    required: true
+    required: true,
   },
   date: {
     type: Date,
-    required: true
-  }
+    required: true,
+  },
 });
 
-
-const InvoiceProduct = mongoose.model('invoiceProduct', invoiceProductSchema);
+const InvoiceProduct = mongoose.model(
+  'invoiceProduct',
+  invoiceProductSchema,
+);
 module.exports = InvoiceProduct;

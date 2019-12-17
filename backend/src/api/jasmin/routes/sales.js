@@ -4,6 +4,16 @@ const axios = require('axios');
 const jasminOptions = require('../consts');
 const refreshToken = require('../token');
 
+const getSalesReceivable = () => {
+  return axios
+    .get(
+      `${jasminOptions.baseUrlRequest}/accountsReceivable/receipts`,
+    )
+    .then(res => {
+      return res.data;
+    });
+};
+
 const getSalesInvoices = () => {
   // get the jasmin api token
   return axios
@@ -35,4 +45,5 @@ const getSalesOrders = () => {
 module.exports = {
   getSalesInvoices,
   getSalesOrders,
+  getSalesReceivable,
 };

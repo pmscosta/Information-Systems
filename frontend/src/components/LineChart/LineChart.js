@@ -45,13 +45,6 @@ class LineChart extends React.Component {
               type: "time",
               distribution: "series"
             }
-          ],
-          yAxes: [
-            {
-              ticks: {
-                min: 0
-              }
-            }
           ]
         }
       },

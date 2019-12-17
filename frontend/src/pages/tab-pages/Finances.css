@@ -1,0 +1,15 @@
+#finances-card {
+  display: flex;
+}
+@media (max-width: 800px) {
+  #finances-card {
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+#finances-page .graph-wrapper {
+  max-height: 30em;
+}

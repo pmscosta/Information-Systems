@@ -8,6 +8,7 @@ const initialState = {
   totalSales: 0,
   topSoldProducts: [],
   salesPerMonth: [],
+  paidSales: [],
   error: null
 };
 
@@ -71,6 +72,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         salesPerMonth: graphData
+      };
+    case salesTypes.SET_SALES_PAID:
+      const paidSales = action.payload;
+
+      return {
+        ...state,
+        paidSales: paidSales.payments
       };
     case salesTypes.SET_ERROR:
       return {

@@ -54,6 +54,7 @@ const parseInvoices = xml2js => {
           invoiceType: invoice.InvoiceType[0],
           invoiceDate: invoice.InvoiceDate[0],
           netTotal: invoice.DocumentTotals[0].NetTotal[0],
+          grossTotal: invoice.DocumentTotals[0].GrossTotal[0],
         });
 
         invoice.Line.forEach(line => {

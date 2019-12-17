@@ -24,7 +24,14 @@ const useStyles = makeStyles({
   },
   number: {
     fontSize: 30,
-    marginBottom: 12
+    marginRight: "2px",
+    alignSelf: "baseline"
+  },
+  content: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between"
   }
 });
 
@@ -33,7 +40,7 @@ const SimpleCard = ({ label, number, to, unit }) => {
   return (
     <Card className={classes.card}>
       <StyledLink to={to}>
-        <CardContent>
+        <CardContent className={classes.content}>
           <Typography
             className={classes.title}
             color="textSecondary"
@@ -41,19 +48,14 @@ const SimpleCard = ({ label, number, to, unit }) => {
           >
             {label}
           </Typography>
-
-          <Grid container className={classes.root} spacing={2}>
-            <Grid item>
-              <Typography
-                align="left"
-                className={classes.number}
-                color="primary"
-              >
-                {number}
-              </Typography>
-            </Grid>
-            <Grid item>{unit ? unit : <EuroIcon color="primary" />}</Grid>
-          </Grid>
+          <Typography
+            align="left"
+            color="primary"
+            gutterBottom
+            className={classes.number}
+          >
+            {number} {unit ? unit : <EuroIcon color="primary" />}
+          </Typography>
         </CardContent>
       </StyledLink>
     </Card>

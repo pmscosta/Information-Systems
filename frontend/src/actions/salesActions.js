@@ -6,6 +6,7 @@ export const salesTypes = Object.freeze({
   SET_TOTAL_SALES: "sales/set-total-sales",
   SET_TOP_SOLD_PRODUCTS: "sales/set-top-sold-products",
   SET_SALES_PER_MONTH: "sales/set-sales-per-month",
+  SET_SALES_PAID: "sales/set-sales-paid",
   SET_SALES_ERROR: "sales/set-error"
 });
 
@@ -41,6 +42,11 @@ export const setSalesTopSoldProducts = data => ({
 
 export const setSalesPerMonth = data => ({
   type: salesTypes.SET_SALES_PER_MONTH,
+  payload: data
+});
+
+export const setSalesPaid = data => ({
+  type: salesTypes.SET_SALES_PAID,
   payload: data
 });
 
