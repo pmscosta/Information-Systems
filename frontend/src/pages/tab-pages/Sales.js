@@ -53,12 +53,12 @@ const Sales = () => {
                 <LineChart
                   data={salesPerMonth}
                   title="Purchases"
-                  color="#3BA9E0"
+                  color="#4717F6"
                 ></LineChart>
               )}
             </div>
             <div className="vertical-cards">
-              <SimpleCard label="Total Sales" number={totalSales} />
+              <SimpleCard label="TOTAL SALES" number={totalSales} />
             </div>
           </Container>
         </Container>

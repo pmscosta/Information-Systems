@@ -1,0 +1,7 @@
+@import "../../style/common.css";
+
+.graph-title {
+    font-family: "Raleway";
+    font-weight: 400;
+    text-transform: uppercase;
+}

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Chart from "chart.js";
-
 import "./BarChart.css";
 import { Button } from "@material-ui/core";
 import UpdateOutlinedIcon from "@material-ui/icons/UpdateOutlined";
@@ -27,7 +26,7 @@ const BarChart = props => {
     return {
       barPercentage: 0.4,
       label,
-      backgroundColor: ["#FF555E", "#FF8650", "#83B2FF", "#FFE981", "#8BF18B"],
+      backgroundColor: ["#4717F6", "#0599AB", "#C1DB22", "#F1BE2E"],
       data
     };
   };
@@ -91,6 +90,7 @@ const BarChart = props => {
           variant="outlined"
           endIcon={<UpdateOutlinedIcon>change</UpdateOutlinedIcon>}
           onClick={() => setToggle(!showQuantity)}
+          color="primary"
         >
           Toggle data
         </Button>
