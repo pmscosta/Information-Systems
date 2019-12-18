@@ -85,7 +85,7 @@ const Overview = () => {
                 {breakdown.map(item => (
                   <SimpleCard
                     label={item.itemKey}
-                    unit="none"
+                    unit=" "
                     number={item.description}
                   />
                 ))}

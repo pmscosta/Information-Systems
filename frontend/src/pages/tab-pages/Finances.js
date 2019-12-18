@@ -48,7 +48,7 @@ class Finances extends React.Component {
           ></SimpleCard>
         </div>
         <div className="graph-wrapper">
-          <span className="graph-title"> Purchases Timeline</span>
+          <span className="graph-title"> CashFlow </span>
           {Array.isArray(this.props.cashFlowData.data) &&
             this.props.cashFlowData.data.length && (
               <LineChart

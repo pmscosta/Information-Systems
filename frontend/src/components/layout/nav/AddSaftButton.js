@@ -104,10 +104,11 @@ class AddSaftButton extends React.Component {
         />
         <label htmlFor="contained-button-file">
           <Button
-            variant="contained"
-            color="primary"
+            variant="outlined"
+            color="secondary"
             component="span"
             className="button"
+            font-size="14"
             startIcon={<CloudUploadIcon />}
           >
             Upload SAF-T

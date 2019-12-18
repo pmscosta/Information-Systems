@@ -25,6 +25,11 @@
     font-size: 40px;
 }
 
+#appbar .button {
+    font-weight: bold;
+    font-size: 14;
+}
+
 #appbar .button:hover {
     font-family: "Raleway";
     font-weight: 600;
