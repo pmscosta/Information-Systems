@@ -15,8 +15,9 @@ import CardContent from "@material-ui/core/CardContent";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import HomeWorkIcon from "@material-ui/icons/HomeWork";
-import SimpleValueCard from "../../components/SimpleValueCard";
+import SimpleCard from "../../components/cards/SimpleCard";
 import "./Inventory.css";
+import "../../style/common.css";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -34,11 +35,18 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(4)
   },
   danger: {
-    color: "red"
+    fontFamily: "Raleway",
+    color: "red",
+    fontWeight: 400
+  },
+  normal: {
+    fontFamily: "Raleway",
+    fontWeight: 400
   },
   title: {
+    fontFamily: "Raleway",
     fontSize: 22,
-    fontWeight: "bold"
+    fontWeight: 600
   }
 }));
 
@@ -96,7 +104,7 @@ const Inventory = () => {
                       className={
                         item.stockBalance <= (item.minStock || 0)
                           ? classes.danger
-                          : ""
+                          : classes.normal
                       }
                       secondary={`Total Stock Balance: ${item.stockBalance}`}
                     />
@@ -149,19 +157,16 @@ const Inventory = () => {
         </>
       )}
       <Container id="inventory-page">
-        <SimpleValueCard
-          name="Inventory Balance"
-          value={`${inventoryBalance} €`}
-        />
+        <SimpleCard label="INVENTORY BALANCE" number={`${inventoryBalance}`} />
         <div id="inventory-lists">
           {drawItemList(
-            "Stock Breakdown",
+            "STOCK BREAKDOWN",
             inventory.filter(({ stockBalance }) => {
               return stockBalance <= 0;
             }),
             true
           )}
-          {drawItemList("Stock List", inventory, false)}
+          {drawItemList("STOCK LIST", inventory, false)}
         </div>
       </Container>
     </>
