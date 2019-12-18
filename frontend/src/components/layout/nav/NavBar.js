@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AddSaftButton from "./AddSaftButton";
 import IconButton from "@material-ui/core/IconButton";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
+import "./NavBar.css";
 
 const navBarStyle = makeStyles(theme => ({
   toolbar: {
@@ -12,8 +13,7 @@ const navBarStyle = makeStyles(theme => ({
   },
   appbar: {
     position: "fixed",
-    marginBottom: theme.spacing(16),
-    color: "--light-color"
+    marginBottom: theme.spacing(16)
   }
 }));
 
@@ -26,22 +26,18 @@ function NavBar() {
   const styles = navBarStyle();
 
   return (
-    <AppBar className={styles.appbar} color="primary">
+    <AppBar id="appbar" color="primary">
       <Toolbar className={styles.toolbar}>
-        <Typography
-          variant="h6"
-          href="/"
-          style={{
-            fontFamily: "Pacifico",
-            fontSize: "2.2em",
-            margin: "0.1em",
-            color: "#E7DFDD"
-          }}
-        >
+        <Typography href="/" className="title">
           Sinfonia
         </Typography>
         <AddSaftButton />
-        <IconButton color="secondary" component="span" onClick={onLogout}>
+        <IconButton
+          color="secondary"
+          className="logout"
+          component="span"
+          onClick={onLogout}
+        >
           <PowerSettingsNewIcon />
         </IconButton>
       </Toolbar>
