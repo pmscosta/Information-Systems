@@ -54,9 +54,9 @@ const Purchases = () => {
               ></LineChart>
             </div>
             <div className="vertical-cards">
-              <SimpleCard label="Total Purchases" number={totalReceiptValue} />
+              <SimpleCard label="TOTAL PURCHASES" number={totalReceiptValue} />
               <SimpleCard
-                label="Received but not invoiced"
+                label="RECEIVED BUT NOT INVOICED"
                 number={totalOpenValue}
               />
             </div>

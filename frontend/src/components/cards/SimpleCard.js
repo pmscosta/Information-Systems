@@ -28,9 +28,12 @@ const useStyles = makeStyles({
     alignSelf: "baseline"
   },
   content: {
-    height: "80%",
-    width: "90%",
-    maxWidth: "90%",
+    borderColor: "red",
+    height: "80% ",
+    paddingBottom: "5px !important",
+    maxHeight: "fit-content",
+    width: "90% ",
+    maxWidth: "90% ",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between"
@@ -43,7 +46,7 @@ const SimpleCard = props => {
   return (
     <Card className={classes.card}>
       <StyledLink to={props.to || "/"}>
-        <CardContent className={{ ...classes.content, borderColor: "red" }}>
+        <CardContent className={classes.content}>
           <Typography
             className={classes.title}
             color="textSecondary"
