@@ -1,13 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { connect } from "react-redux";
-// import React, { useEffect, useState } from "react";
-import ValueCard from "../../components/ValueCard";
 import SimpleCard from "../../components/cards/SimpleCard";
 import { Container } from "@material-ui/core";
-import SimpleValueCard from "../../components/SimpleValueCard";
-import AppLinearProgress from "../../components/AppLinearProgress";
 import LineChart from "../../components/LineChart/LineChart";
 import { setCashflowData } from "../../actions/cashFlowActions";
 import "./Finances.css";
@@ -72,17 +66,31 @@ const calculateCOGS = (all_purchases, invoices) => {
           x => x.item.itemId === prod.productCode
         );
 
+        const bought_array = all_purchases.filter(
+          x => x.item.itemId === prod.productCode
+        );
+
         if (bought !== null && bought !== undefined) {
+          let val = 0;
+          let quantity = 0;
+
+          bought_array.forEach(item => {
+            val += item.item.value * item.item.quantity;
+            quantity += item.item.quantity;
+          });
+
+          val = val / quantity;
+
           const idx = items.findIndex(x => x.itemId === bought.item.itemId);
 
           if (idx === -1) {
             items.push({
               itemId: bought.item.itemId,
-              value: bought.item.value * prod.quantity,
+              value: val * prod.quantity,
               quantity: prod.quantity
             });
           } else {
-            items[idx].value += bought.item.value * prod.quantity;
+            items[idx].value += val * prod.quantity;
             items[idx].quantity += prod.quantity;
           }
         }
