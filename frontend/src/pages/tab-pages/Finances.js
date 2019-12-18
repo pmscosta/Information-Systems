@@ -34,10 +34,21 @@ class Finances extends React.Component {
           />
           <SimpleCard
             label="NET PROFIT MARGIN"
-            number={(
-              ((this.props.totalSales - this.props.costsOfGoodsSold) * 100) /
-              this.props.totalSales
-            ).toFixed(0)}
+            number={
+              isNaN(
+                (
+                  ((this.props.totalSales - this.props.costsOfGoodsSold) *
+                    100) /
+                  this.props.totalSales
+                ).toFixed(0)
+              )
+                ? "-"
+                : (
+                    ((this.props.totalSales - this.props.costsOfGoodsSold) *
+                      100) /
+                    this.props.totalSales
+                  ).toFixed(0)
+            }
             unit="%"
           ></SimpleCard>
         </div>
