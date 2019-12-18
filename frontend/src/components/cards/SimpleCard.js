@@ -16,7 +16,8 @@ const useStyles = makeStyles({
     border: "1px",
     borderColor: "#E7DFDD",
     fontFamily: "Roboto",
-    borderStyle: "solid"
+    borderStyle: "solid",
+    maxHeight: "130px"
   },
   title: {
     fontSize: 18,
