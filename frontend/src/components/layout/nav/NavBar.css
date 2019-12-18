@@ -1,0 +1,39 @@
+@import "../../../style/common.css";
+
+/* style={{
+            fontFamily: "Pacifico",
+            fontSize: "2.2em",
+            margin: "0.1em",
+            color: "#E7DFDD"
+          }} */
+
+#appbar {
+    position: "fixed";
+    margin-bottom: 16px;
+    color: "--light-color";
+}
+#appbar .toolbar {
+    display: "flex";
+    justify-content: "space-between";
+    background-color: var("--jewel");
+}
+
+#appbar .title {
+    font-family: "Raleway";
+    font-weight: 900;
+    font-style: italic;
+    font-size: 40px;
+}
+
+#appbar .button:hover {
+    font-family: "Raleway";
+    font-weight: 600;
+    font-size: 15px;
+    background-color: var(--fuschia);
+    color: var(--stark);
+}
+
+#appbar .logout:hover {
+    background-color: var(--fuschia);
+    color: var(--stark);
+}

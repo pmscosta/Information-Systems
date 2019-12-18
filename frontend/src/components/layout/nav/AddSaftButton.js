@@ -14,6 +14,7 @@ import {
   setSalesPerMonth,
   setSalesError
 } from "../../../actions/salesActions";
+import "./NavBar.css";
 
 class AddSaftButton extends React.Component {
   handleUploadFile = event => {
@@ -106,6 +107,7 @@ class AddSaftButton extends React.Component {
             variant="contained"
             color="primary"
             component="span"
+            className="button"
             startIcon={<CloudUploadIcon />}
           >
             Upload SAF-T
