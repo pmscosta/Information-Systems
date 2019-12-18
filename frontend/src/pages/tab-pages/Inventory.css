@@ -6,3 +6,19 @@
 #inventory-page #inventory-lists {
   display: flex;
 }
+
+@media (max-width: 800px) {
+  #inventory-page {
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #inventory-lists {
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+}

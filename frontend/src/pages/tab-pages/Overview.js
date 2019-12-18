@@ -7,6 +7,7 @@ import { Container, Typography } from "@material-ui/core";
 import ReportProblemIcon from "@material-ui/icons/ReportProblem";
 import { makeStyles } from "@material-ui/core/styles";
 import "./Overview.css";
+import Divider from "@material-ui/core/Divider";
 
 const Overview = () => {
   const { loading: iloading, inventory, inventoryBalance } = useSelector(
@@ -26,9 +27,19 @@ const Overview = () => {
     warning: {
       fontFamily: "sans-serif",
       color: "#A239CA",
-      textAlign: "center"
+      textAlign: "center",
+      marginRight: "1em"
+    },
+    report: {
+      fontWeight: "bolder",
+      fontSize: "large"
+    },
+    divider: {
+      marginTop: "4em"
     }
   });
+
+  const classes = useStyles();
 
   const breakdown = inventory.filter(({ stockBalance }) => {
     return stockBalance <= 0;
@@ -40,7 +51,7 @@ const Overview = () => {
 
   return (
     <Container id="overview-page">
-      <div id="overview-card">
+      <div id="overview-inital-cards">
         {ploading || sloading ? (
           <CircularProgress />
         ) : (
@@ -70,18 +81,24 @@ const Overview = () => {
           />
         )}
       </div>
-      {breakdown.length > 0 ? (
-        iloading ? (
-          <CircularProgress />
-        ) : (
-          <div className="graph-wrapper" style={{ textAlign: "center" }}>
-            {/* <Typography > //className={useStyles().warning} */}
-            <Typography>
-              <ReportProblemIcon style={{ color: "#f1af09" }} /> WARNING - THESE
-              PRODUCTS ARE OUT OF STOCK
-            </Typography>
-            <Container id="overview-page">
-              <div id="overview-card" style={{ align: "center" }}>
+      <Divider className={classes.divider} variant="inset" />
+      <Container id="overview-breakdown">
+        {breakdown.length > 0 ? (
+          iloading ? (
+            <CircularProgress />
+          ) : (
+            <div className="graph-wrapper" style={{ textAlign: "center" }}>
+              <Typography className={classes.report}>
+                <ReportProblemIcon
+                  className={classes.warning}
+                  style={{ color: "#f1af09" }}
+                />
+                WARNING - THESE PRODUCTS ARE OUT OF STOCK
+              </Typography>
+              <div
+                className="overview-breakdown-cards"
+                style={{ align: "center" }}
+              >
                 {breakdown.map(item => (
                   <SimpleCard
                     label={item.itemKey}
@@ -90,12 +107,12 @@ const Overview = () => {
                   />
                 ))}
               </div>
-            </Container>
-          </div>
-        )
-      ) : (
-        <></>
-      )}
+            </div>
+          )
+        ) : (
+          <></>
+        )}
+      </Container>
     </Container>
   );
 };
