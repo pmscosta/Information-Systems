@@ -1,15 +1,50 @@
-#overview-card {
+#overview-inital-cards {
   display: flex;
 }
+
 @media (max-width: 800px) {
-  #overview-card {
+  #overview-breakdown {
     flex-direction: column;
     align-content: center;
     justify-content: center;
     align-items: center;
   }
+
+  #overview-inital-cards {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #overview-page {
+    margin-top: 0em !important;
+  }
+
+  .overview-breakdown-cards {
+    flex-direction: column;
+  }
 }
 
-/* #overview-page .graph-wrapper {
-  max-height: 30em;
-} */
+#overview-page {
+  margin-top: 4em;
+}
+
+#overview-breakdown {
+  /* position: fixed;
+  bottom: 5em; */
+  margin-top: 14em;
+}
+
+#overview-top-info {
+  margin-top: 4em;
+}
+
+.overview-breakdown-cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.report-problem {
+  font-weight: bolder;
+}
