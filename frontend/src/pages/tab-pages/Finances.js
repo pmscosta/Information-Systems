@@ -48,7 +48,7 @@ class Finances extends React.Component {
               <LineChart
                 data={this.props.cashFlowData}
                 title="Purchases"
-                color="#3BA9E0"
+                color="#4717F6"
               ></LineChart>
             )}
         </div>

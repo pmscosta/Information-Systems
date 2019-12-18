@@ -29,7 +29,7 @@ const Purchases = () => {
               <BarChart
                 data={itemsData}
                 title="Purchases"
-                color="#3E517A"
+                color="#4717F6"
                 togglable={true}
               ></BarChart>
             </div>
@@ -50,7 +50,7 @@ const Purchases = () => {
               <LineChart
                 data={graphData}
                 title="Purchases"
-                color="#3BA9E0"
+                color="#4717F6"
               ></LineChart>
             </div>
             <div className="vertical-cards">

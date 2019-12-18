@@ -13,9 +13,10 @@ const useStyles = makeStyles({
     minWidth: 250,
     margin: 30,
     borderRadius: 20,
-    border: "10px",
-    borderColor: "red",
-    fontFamily: "Roboto"
+    border: "1px",
+    borderColor: "#E7DFDD",
+    fontFamily: "Roboto",
+    borderStyle: "solid"
   },
   title: {
     fontSize: 18,
@@ -30,7 +31,6 @@ const useStyles = makeStyles({
     height: "80%",
     width: "90%",
     maxWidth: "90%",
-    marginBottom: "1em",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between"
@@ -39,10 +39,11 @@ const useStyles = makeStyles({
 
 const SimpleCard = props => {
   const classes = useStyles();
+  console.log(props.color);
   return (
     <Card className={classes.card}>
       <StyledLink to={props.to || "/"}>
-        <CardContent className={classes.content}>
+        <CardContent className={{ ...classes.content, borderColor: "red" }}>
           <Typography
             className={classes.title}
             color="textSecondary"
